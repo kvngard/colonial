@@ -1,0 +1,33 @@
+<%inherit file="app_base/templates/base.html" />w
+
+<%block name="content">
+<ul id="nav-mobile" class="side-nav  fixed">
+      <a href="#">
+        <a href="/">
+            <img src="${ STATIC_URL }app_home/media/logo.svg" alt='profile_image' class='nav-logo' />
+        </a>
+      </a>
+      <div class="input-field">
+        <input id="search" type="text" required>
+        <label for="search"><i class="mdi-action-search"></i></label>
+      </div>
+</ul>
+<div class="view-box">
+    <div class="row">
+        %for rental in rentals:
+        <div class="store-item card col l2 s12">
+            <div class="card-content">
+              <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="${rental.rentable_article.photo.image}">
+              </div>
+              <span class="card-title grey-text text-darken-4">${rental.rentable_article.name}</span>
+              <p>Rented By: ${rental.transaction.customer}</p>
+              <p>Current Fee: <a href="#!">$${rental.rentable_article.price_per_day*dayslate[rental.rentable_article.name]}</a></p>
+              <p>Days late: ${dayslate[rental.rentable_article.name]}</p>
+            </div>
+          </div>
+        %endfor
+      </div>
+  </div>
+</div>
+</%block>

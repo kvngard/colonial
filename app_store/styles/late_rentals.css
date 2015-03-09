@@ -1,0 +1,16 @@
+.store-item{
+    margin: 0 6rem 2rem 0;
+}
+.view-box{
+    margin: 2rem 0 0 20rem;
+}
+.store-item .card-content{
+    padding: 10px;
+}
+.nav-logo{
+    padding: 1rem;
+    width: 12rem;
+}
+.input-field{
+    margin: 0 1rem 1rem 1rem;
+}

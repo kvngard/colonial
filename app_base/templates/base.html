@@ -1,0 +1,94 @@
+## this is the skeleton of all pages on in this app - it defines the basic html tags
+
+## set up a StaticRenderer object to enable the CSS/JS automatic inclusion magic.
+<% from django_mako_plus.controller import static_files %>
+<%  static_renderer = static_files.StaticRenderer(self) %>
+
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+        <title>Colonial Heritage Foundation</title>
+
+        <!-- CSS  -->
+        <link rel="stylesheet" type="text/css" href="${ STATIC_URL }components/materialize/bin/materialize.css">
+        ## render the css with the same name as this page
+        ${ static_renderer.get_template_css(request, context)  }
+        <%block name="style"></%block>
+
+        <!-- Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=IM+Fell+DW+Pica:400,400italic' rel='stylesheet' type='text/css'>
+
+        ## Sets up the favicon
+        <link rel="icon" type="image/x-icon" href="${ STATIC_URL }app_base/media/favicon.ico">
+
+        <!--  Scripts-->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="${ STATIC_URL }components/materialize/bin/materialize.js"></script>
+        <script src="${ STATIC_URL }app_base/media/jquery.form.js"></script>
+        <script src="${ STATIC_URL }app_base/media/jquery.loadmodal.js"></script>
+
+        ## A set of polyfills built on top of the Web Components specifications.
+        <script src="${ STATIC_URL }components/webcomponentsjs/webcomponents.js"></script>
+
+    </head>
+    <body>
+
+        <%block name="navigation">
+            <nav class="white" role="navigation">
+              <div class="nav-wrapper">
+                <ul class="left" id="logo">
+                    <a href="/">
+                        <img src="${ STATIC_URL }app_home/media/logo.svg" alt='profile_image' class='logo responsive-img' />
+                    </a>
+                </ul>
+                <ul class="right" id="account-mgmt">
+                %if request.user.is_authenticated():
+                      <li><a href="#user_modal" class='grey-text user-trigger'>
+                           ${ request.user.get_full_name() }</a></li>
+                %else:
+                      <li><a href="#login_modal" class="grey-text login-trigger">Log In</a></li>
+                      <li><a href="#signup_modal" class="grey-text signup-trigger">Sign Up</a></li>
+                %endif
+                </ul>
+                <ul id="nav-mobile" class="side-nav">
+                  <li><a href="#">Navbar Link</a></li>
+                </ul>
+                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+              </div>
+          </nav>
+
+          %if request.user.is_authenticated():
+          <div id="user_modal" class="modal user-tag z-depth-1">
+            <ul class="user-content">
+                <li><a href="/app_account/login.logoutUser/" class="btn-flat waves-effect waves-teal logout-btn">Log Out</a></li>
+                <li><a href="/app_account/manage/" class="btn-flat waves-effect waves-teal account-btn">Account</a></li>
+            </ul>
+            <img src=${ request.user.profile_image } alt='profile_image' class='circle responsive-img' />
+          </div>
+          %endif
+
+          <div id="login_modal" class="modal">
+            <div class="modal-content">
+            </div>
+          </div>
+
+          <div id="signup_modal" class="modal">
+            <div class="modal-content">
+            </div>
+          </div>
+
+        </%block>
+
+        <%block name="content">
+          Site content goes here in sub-templates.
+        </%block>
+
+        ## render the JS with the same name as this page
+        ${ static_renderer.get_template_js(request, context)  }
+
+    </body>
+</html>

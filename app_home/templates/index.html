@@ -1,0 +1,103 @@
+<%inherit file="app_base/templates/base.html" />
+
+<%block name="content">
+
+  <div id="index-banner" class="parallax-container hero">
+    <div class="section no-pad-bot">
+      <div class="container hero-text">
+        <br><br>
+        <h1 class="header center white-text">Colonial Heritage Foundation</h1>
+        <div class="row center">
+          <h3 class="header col s12 white-text">Share The Vision</h3>
+        </div>
+        <div class="row center">
+          <a href="#description" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
+        </div>
+        <br><br>
+
+      </div>
+    </div>
+    <div class="parallax"><img src="${STATIC_URL}app_home/media/background1.jpg" alt="Unsplashed background img 2"></div>
+  </div>
+
+  <div class="container" id="description">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="mdi-image-brush"></i></h2>
+            <h5 class="center">Enjoy Crafts</h5>
+
+            <p class="light">${ craft_text }</p>
+            <div class='center-align'>
+              <br>
+              <a href="/app_store/" class="btn-large waves-effect waves-light orange accent-3">Take A Look</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="mdi-maps-terrain"></i></h2>
+            <h5 class="center">Celebrate History</h5>
+
+            <p class="light">${ heritage_text }</p>
+            <div class='center-align'>
+              <br>
+              <a href="/app_store/manage.late" class="btn-large waves-effect waves-light orange accent-3">Learn More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="mdi-social-group"></i></h2>
+            <h5 class="center">Build Communities</h5>
+
+            <p class="light">${ community_text }</p>
+            <div class='center-align'>
+              <br>
+              <a href="#description" class="btn-large waves-effect waves-light orange accent-3">Join Us</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="index-banner" class="parallax-container medium-parallax">
+      <div class="parallax"><img src="${STATIC_URL}app_home/media/background3.jpg" alt="Unsplashed background img 2"></div>
+  </div>
+
+  <footer class="page-footer teal">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">About Us</h5>
+          <p class="grey-text text-lighten-4">The Colonial Heritage Foundation came about through the work and vision of several individuals who felt that something of great value was at risk of being lost in our great nation. Our dedicated team of volunteers sincerely believe in those values of hard-work, equality, opportunity, and freedom. We know that what America has to offer to its citizens and the world is of great value, and we sacrifice our free time (and some of our not-so-free time) in order to help history come alive in an effort to preserve that legacy.</p>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Legal</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Contact Us</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="brown-text text-lighten-3" href="google.com">Bughatti</a>
+      </div>
+    </div>
+  </footer>
+
+</%block>

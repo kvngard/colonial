@@ -1,0 +1,39 @@
+<%inherit file="app_base/templates/base_ajax.html" />
+
+<%block name="content">
+  <h2>Shopping Cart</h2>
+  <table class="striped">
+    <thead>
+      <tr>
+        <th data-field="id">Item Name</th>
+        <th data-field="quantity">Quantity</th>
+        <th data-field="price">Price</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      %for item in items:
+      <tr>
+        <td>${item.name}</td>
+        <td>
+          <select class="select-dropdown">
+          %for j in reversed(range(1,cart[str(item.id)]+1)):
+            <option value="${j}"}>${j}</option>
+          %endfor
+        </td>
+        <td>$${cart[str(item.id)] * item.price}</td>
+        <td>
+          <div class='options'>
+            <a rel="${item.id}" class="btn-flat waves-effect waves-light red accent-3 white-text">Delete</a>
+          </div>
+        </td>
+      </tr>
+      %endfor
+    </tbody>
+  </table>
+  <a href="/app_store/index.checkout/">
+    <button class="btn waves-effect waves-light orange accent-3" type="submit" name="action">Checkout
+      <i class="mdi-action-shopping-cart right"></i>
+    </button>
+  </a>
+</%block>

@@ -1,0 +1,1214 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Ren",
+				"Rental_Item	class"
+			],
+			[
+				"Sa",
+				"Sale_Product	class"
+			],
+			[
+				"chang",
+				"ChangePassword"
+			],
+			[
+				"user",
+				"CustomUserChangeForm	class"
+			],
+			[
+				"U",
+				"UserEditForm	class"
+			],
+			[
+				"M",
+				"models	module"
+			],
+			[
+				"app_",
+				"app_base	module"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"pa",
+				"padding-bottom"
+			],
+			[
+				"clea",
+				"clean_username	function"
+			],
+			[
+				"a",
+				"address"
+			],
+			[
+				"add",
+				"address1"
+			],
+			[
+				"G",
+				"Group"
+			],
+			[
+				"dat",
+				"datetime	class"
+			],
+			[
+				"set",
+				"set_password	function"
+			],
+			[
+				"For",
+				"ForeignKey	class"
+			],
+			[
+				"Sal",
+				"Sale_Product"
+			],
+			[
+				"Fo",
+				"ForeignKey	class"
+			],
+			[
+				"Man",
+				"ManyToManyField	class"
+			],
+			[
+				"cat",
+				"Category"
+			],
+			[
+				"custo",
+				"customer_info"
+			],
+			[
+				"lo",
+				"localflavor	module"
+			],
+			[
+				"Fa",
+				"FamilyName	statement"
+			],
+			[
+				"Does",
+				"DoesNotExist"
+			],
+			[
+				"Http",
+				"HttpResponseRedirect"
+			],
+			[
+				"http",
+				"HttpResponseRedirect"
+			],
+			[
+				"is",
+				"is_authenticated"
+			],
+			[
+				"Prod",
+				"ProductEditForm"
+			],
+			[
+				"drop",
+				"dropdown-menu"
+			],
+			[
+				"profile",
+				"profile_image"
+			],
+			[
+				"clean",
+				"cleaned_data"
+			],
+			[
+				"b",
+				"button"
+			],
+			[
+				"pap",
+				"paper-shadow"
+			],
+			[
+				"z",
+				"z-index"
+			],
+			[
+				"fi",
+				"first_name"
+			],
+			[
+				"bord",
+				"border-radius"
+			],
+			[
+				"background",
+				"background-color"
+			],
+			[
+				"Use",
+				"UserEditForm"
+			],
+			[
+				"Htt",
+				"HttpResponseRedirect"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"h",
+				"HttpResponseRedirect"
+			],
+			[
+				"C",
+				"ColonialHeritageSite"
+			],
+			[
+				"dmp",
+				"dmp_render_to_response"
+			],
+			[
+				"fo",
+				"font-weight"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"mar",
+				"margin-left"
+			],
+			[
+				"al",
+				"vertical-align"
+			],
+			[
+				"m",
+				"margin-top"
+			],
+			[
+				"n",
+				"transparent"
+			],
+			[
+				"backg",
+				"background-color"
+			],
+			[
+				"margi",
+				"margin-top"
+			],
+			[
+				"head",
+				"header	Tag"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app_store/styles/store.css",
+			"settings":
+			{
+				"buffer_size": 226,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app_store/templates/late_rentals.html",
+			"settings":
+			{
+				"buffer_size": 1264,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app_store/scripts/late_rentals.js",
+			"settings":
+			{
+				"buffer_size": 791,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app_store/templates/store.html",
+			"settings":
+			{
+				"buffer_size": 2066,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app_store/styles/late_rentals.css",
+			"settings":
+			{
+				"buffer_size": 226,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app_store/scripts/store.js",
+			"settings":
+			{
+				"buffer_size": 791,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app_store/views/index.py",
+			"settings":
+			{
+				"buffer_size": 868,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app_store/views/manage.py",
+			"settings":
+			{
+				"buffer_size": 948,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app_home/templates/index.html",
+			"settings":
+			{
+				"buffer_size": 3919,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app_base/models.py",
+			"settings":
+			{
+				"buffer_size": 15160,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "init_db.py",
+			"settings":
+			{
+				"buffer_size": 17826,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app_base/scripts/base.js",
+			"settings":
+			{
+				"buffer_size": 577,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app_home/scripts/index.js",
+			"settings":
+			{
+				"buffer_size": 592,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 736.0,
+		"selected_items":
+		[
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Add Repository"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				":$ - EOF"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"removee",
+				"Package Control: Remove Package"
+			],
+			[
+				"p",
+				"Package Control: Enable Package"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 768.0
+	},
+	"console":
+	{
+		"height": 246.0,
+		"history":
+		[
+			"cmder",
+			"pip update django-mako-plus",
+			"import urllib.request,os; pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Kevin/Development/colonial",
+		"/C/Users/Kevin/Development/colonial/app_account/scripts",
+		"/C/Users/Kevin/Development/colonial/app_account/templates",
+		"/C/Users/Kevin/Development/colonial/app_account/views",
+		"/C/Users/Kevin/Development/colonial/app_base",
+		"/C/Users/Kevin/Development/colonial/app_base/media",
+		"/C/Users/Kevin/Development/colonial/app_home",
+		"/C/Users/Kevin/Development/colonial/app_home/scripts",
+		"/C/Users/Kevin/Development/colonial/app_home/templates",
+		"/C/Users/Kevin/Development/colonial/app_store",
+		"/C/Users/Kevin/Development/colonial/app_store/scripts",
+		"/C/Users/Kevin/Development/colonial/app_store/styles",
+		"/C/Users/Kevin/Development/colonial/app_store/templates",
+		"/C/Users/Kevin/Development/colonial/app_store/views"
+	],
+	"file_history":
+	[
+		"/C/Users/Kevin/Development/colonial/app_base/media/jquery.loadmodal.js",
+		"/C/Users/Kevin/Development/colonial/app_store/templates/store.html",
+		"/C/Users/Kevin/Development/colonial/app_store/templates/storefront.html",
+		"/C/Users/Kevin/Development/colonial/app_base/templates/base.html",
+		"/C/Users/Kevin/Development/colonial/app_account/templates/form.html",
+		"/C/Users/Kevin/Development/colonial/app_account/account_forms.py",
+		"/C/Users/Kevin/Development/colonial/app_account/views/login.py",
+		"/C/Users/Kevin/Development/colonial/app_account/views/manage.py",
+		"/C/Users/Kevin/Development/colonial/app_base/admin.py",
+		"/C/Users/Kevin/Development/colonial/init_db.py",
+		"/C/Users/Kevin/Development/colonial/app_account/scripts/form.js",
+		"/C/Users/Kevin/Development/colonial/app_base/models.py",
+		"/C/Users/Kevin/Development/colonial/app_home/templates/index.html",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/forms.py",
+		"/C/Users/Kevin/AppData/Local/Temp/Rar$EXa0.816/parallax-template/index.html",
+		"/C/Users/Kevin/Development/colonial/app_store/views/__init__.py",
+		"/C/Users/Kevin/Development/colonial/app_base/views/index.py",
+		"/C/Users/Kevin/Development/colonial/app_store/templates/index.html",
+		"/C/Users/Kevin/Development/colonial/app_base/views/__init__.py",
+		"/C/Users/Kevin/Development/colonial/app_store/models.py",
+		"/C/Users/Kevin/Development/colonial/app_account/views/change_password.py",
+		"/C/Users/Kevin/Development/colonial/app_home/styles/index.css",
+		"/C/Users/Kevin/Development/colonial/colonial/settings.py",
+		"/C/Users/Kevin/Development/colonial/app_base/styles/base.css",
+		"/C/Users/Kevin/Development/colonial/app_base/scripts/base.js",
+		"/C/Users/Kevin/Development/colonial/app_base/templates/base_ajax.html",
+		"/C/Users/Kevin/Development/colonial/app_account/scripts/manage.js",
+		"/C/Users/Kevin/Development/colonial/app_account/templates/manage.html",
+		"/C/Users/Kevin/Development/colonial/app_account/views/new.py",
+		"/C/Users/Kevin/Development/colonial/app_home/scripts/index.js",
+		"/C/Users/Kevin/Development/colonial/app_base/templates/navigation.html",
+		"/C/Users/Kevin/Development/colonial/app_account/styles/manage.css",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/views/users.py",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/templates/adminPortal.html",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/views/login.py",
+		"/C/Users/Kevin/Development/colonial/app_account/styles/form.css",
+		"/C/Users/Kevin/Development/colonial/app_account/models.py",
+		"/C/Users/Kevin/Development/colonial/app_account/templates/form_wrapper.html",
+		"/C/Users/Kevin/Development/colonial/app_account/templates/login_modal.html",
+		"/C/Users/Kevin/Development/colonial/app_account/scripts/form_wrapper.js",
+		"/C/Users/Kevin/Development/colonial/app_account/styles/form_wrapper.css",
+		"/C/Users/Kevin/Development/colonial/colonial/admin.py",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/templates/base.html",
+		"/C/Users/Kevin/Development/colonial/app_home/views/__init__.py",
+		"/C/Users/Kevin/Development/colonial/app_account/views/__init__.py",
+		"/C/Users/Kevin/Development/colonial/colonial/__init__.py",
+		"/C/Users/Kevin/Development/colonial/app_account/__init__.py",
+		"/C/Users/Kevin/Development/colonial/app_account/templates/login.html",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/templates/login.html",
+		"/C/Users/Kevin/Desktop/init_db.py",
+		"/C/Python34/Lib/site-packages/django/db/models/fields/related.py",
+		"/C/Python34/Lib/site-packages/django/db/models/related.py",
+		"/C/Python34/Lib/site-packages/django_mako_plus/controller/router.py",
+		"/C/Python34/Lib/site-packages/django_mako_plus/controller/static_files.py",
+		"/C/Python34/Lib/site-packages/django_mako_plus/controller/signals.py",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/styles/index.css",
+		"/C/Users/Kevin/Development/colonial/home/styles/index.css",
+		"/C/Users/Kevin/Development/colonial/base/templates/base.html",
+		"/C/Users/Kevin/Development/colonial/home/templates/index.html",
+		"/C/Users/Kevin/Development/colonial/base/views/index.py",
+		"/C/Users/Kevin/Development/colonial/base/styles/base.css",
+		"/C/Users/Kevin/Development/colonial/.bowerrc",
+		"/C/Python34/Lib/site-packages/django_mako_plus/controller/app_template/models.py",
+		"/C/Users/Kevin/Development/colonial/components/polymer/layout.html",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/templates/index.html",
+		"/C/Users/Kevin/Development/colonial/bower.json",
+		"/C/Users/Kevin/Development/colonial/base/templates/index.html",
+		"/C/Users/Kevin/Development/colonial/base/views/__init__.py",
+		"/C/Users/Kevin/Development/colonial/home/views/__init__.py",
+		"/C/Users/Kevin/Development/colonial/colonial/models.py",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/models.py",
+		"/C/Users/Kevin/Desktop/vaf-jquery-2015-master/js/script.js",
+		"/C/Users/Kevin/Development/colonial/components/materialize/templates/parallax-template/js/init.js",
+		"/C/Users/Kevin/Development/colonial/home/scripts/index.js",
+		"/C/Users/Kevin/Development/colonial/home/views/index.py",
+		"/C/Users/Kevin/Development/colonial/home/templates/base.html",
+		"/C/Users/Kevin/Development/colonial/base/models.py",
+		"/C/Users/Kevin/Development/colonial/home/models.py",
+		"/C/Users/Kevin/Development/colonial/initdb.py",
+		"/C/Users/Kevin/Desktop/vaf-jquery-2015-master/index.html",
+		"/C/Users/Kevin/Development/colonial/CHF.sublime-project",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/ColonialHeritageSite/settings.py",
+		"/C/Users/Kevin/Development/colonial/components/materialize/dist/css/materialize.css",
+		"/C/Users/Kevin/Development/colonial/components/materialize/dist/templates/parallax-template/js/init.js",
+		"/C/Users/Kevin/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Kevin/Development/colonial/components/materialize/js/parallax.js",
+		"/C/Users/Kevin/Development/colonial/components/jquery/src/data/var/data_priv.js",
+		"/C/Users/Kevin/Development/colonial/components/jquery/src/core/var/rsingleTag.js",
+		"/C/Users/Kevin/Desktop/Sprint2Models.py",
+		"/C/Users/Kevin/AppData/Roaming/Sublime Text 3/Packages/Highlight/README.md",
+		"/C/Users/Kevin/Development/colonial/manage.py",
+		"/C/Users/Kevin/Development/colonial/components/materialize/dist/templates/starter-template/css/style.css",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/ColonialHeritageSite/urls.py",
+		"/C/Users/Kevin/Development/colonial/components/materialize/templates/parallax-template/css/style.css",
+		"/C/Users/Kevin/Development/colonial/colonial/urls.py",
+		"/C/Users/Kevin/Development/colonial/home/__init__.py",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/ColonialHeritageSite/__init__.py",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/views/__init__.py",
+		"/C/Users/Kevin/Development/colonial/home/templates/base.htm",
+		"/C/Users/Kevin/AppData/Local/Temp/Rar$EXa0.221/parallax-template/index.html",
+		"/C/Users/Kevin/Development/colonial/components/jquery/dist/jquery.js",
+		"/C/Users/Kevin/Development/colonial/manage.pyw",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/manage.py",
+		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/Colonial.sublime-project",
+		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/views/events.py",
+		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/ColonialHeritageSite/settings.py",
+		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/views/index.py",
+		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/views/items.py",
+		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/forms.py",
+		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/models.py",
+		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/styles/admin.css",
+		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/templates/edit.html",
+		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/views/login.py",
+		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/templates/adminPortal.html",
+		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/templates/aNavigation.html",
+		"/C/Users/Kevin/AppData/Local/Temp/Rar$DIa0.801/README.md",
+		"/C/Users/Kevin/AppData/Local/Temp/Rar$DIa0.857/readme.md",
+		"/C/Program Files/PostgreSQL/9.4/doc/postgresql/html/index.html",
+		"/C/Python34/Lib/site-packages/django/contrib/auth/models.py",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/templates/items.html",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/views/items.py",
+		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/templates/index.html",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/views/index.py",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/styles/admin.css",
+		"/C/Users/Kevin/AppData/Roaming/Sublime Text 3/Packages/User/Python.sublime-settings",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/templates/phones.html",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/templates/events.html",
+		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/templates/mNavigation.html"
+	],
+	"find":
+	{
+		"height": 103.0
+	},
+	"find_in_files":
+	{
+		"height": 301.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"responsive",
+			"${ STATIC_URL }",
+			"content",
+			"welcome",
+			"user",
+			"content",
+			"HttpResponse",
+			"loginUser",
+			"login_modal",
+			"signup_modal",
+			"login_modal",
+			"Required. 30",
+			"required",
+			"index",
+			"Address",
+			"address",
+			"Address",
+			"dmp_render",
+			"We",
+			"/\n",
+			"dist",
+			"}\n",
+			"container",
+			"center",
+			"base",
+			"address",
+			"group",
+			"groups",
+			"many",
+			"BASE_DIR",
+			"weight",
+			"home",
+			"auto_formatting",
+			"01579b",
+			"item",
+			"required",
+			" = ",
+			"  ",
+			"group",
+			"svg",
+			"btn-block",
+			"wardrobeItem",
+			"form",
+			"Product",
+			"Event",
+			"Events",
+			"EventEditForm",
+			"Product",
+			"Products",
+			"product",
+			"products",
+			"ProductEditForm",
+			"phone",
+			".navbar",
+			"h1 {",
+			"p {",
+			"p{",
+			"p",
+			"btn",
+			"table{",
+			"th{",
+			":after",
+			"a{",
+			":ho",
+			"html",
+			".dropdown-men",
+			"open > .dropdown-men",
+			"btn-group",
+			"loginForm",
+			"backdrop",
+			">",
+			"custom_user",
+			"person",
+			"User",
+			"form-",
+			"form",
+			"a:active",
+			":active",
+			"a {",
+			"first_name",
+			"	",
+			"test",
+			"test_dmp",
+			"test",
+			"main",
+			"block",
+			"#0000ff\">"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"/static/",
+			"	background-color: #e992b9;\n	color: #ffffff;\n	font-size: 0.75rem;\n	text-align: center;\n	line-height: 1;",
+			"=",
+			"=\\ ",
+			"= ",
+			"    ",
+			"png",
+			"",
+			"venue",
+			"Venue",
+			"venue",
+			"Venue",
+			"venue",
+			"Venue",
+			"venue",
+			"Venue",
+			"venue",
+			"Venue",
+			"venue",
+			"WardrobeItem",
+			"wardrobeItem",
+			"wardrobeitem",
+			"WardrobeItem",
+			"wardrobeitem",
+			"WardrobeItem",
+			"wardrobeitem",
+			"WardrobeItem",
+			"wardrobeitem",
+			"WardrobeItem",
+			"wardrobeitem",
+			"WardrobeItem",
+			"wardrobeitems",
+			"WardrobeItemEditForm",
+			"Item",
+			"item",
+			"items",
+			"Items",
+			"item",
+			"Item",
+			"item",
+			"Item",
+			"item",
+			"Item",
+			"item",
+			"Item",
+			"items",
+			"ItemEditForm",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 7,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app_store/styles/store.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 226,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								193,
+								193
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app_store/templates/late_rentals.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1264,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								867,
+								894
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Mako/Syntaxes/HTML (Mako).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app_store/scripts/late_rentals.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 791,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app_store/templates/store.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2066,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								478,
+								478
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Mako/Syntaxes/HTML (Mako).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 540.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app_store/styles/late_rentals.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 226,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app_store/scripts/store.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 791,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								152,
+								159
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app_store/views/index.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 868,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								867,
+								867
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1080.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app_store/views/manage.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 948,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								232,
+								232
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "app_home/templates/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3919,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1725,
+								1725
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Mako/Syntaxes/HTML (Mako).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1350.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "app_base/models.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15160,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11371,
+								11386
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 13770.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "init_db.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17826,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								689,
+								675
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 270.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "app_base/scripts/base.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 577,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								483,
+								483
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "app_home/scripts/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 592,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								573,
+								573
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 102.0
+	},
+	"input":
+	{
+		"height": 55.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.anaconda_documentation":
+	{
+		"height": 236.0
+	},
+	"output.exec":
+	{
+		"height": 240.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "CHF.sublime-project",
+	"replace":
+	{
+		"height": 202.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				"homepage\\bower_components\\paper-dialog\\demo.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 555.0,
+		"selected_items":
+		[
+		],
+		"width": 784.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 416.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
