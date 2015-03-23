@@ -524,7 +524,7 @@ for data in [
 
 print('Fees initialized')
 
-transaction=bmod.Transaction.objects.get(date=datetime.date.today())
+transaction = bmod.Transaction.objects.get(date=datetime.date.today())
 
 print(transaction.customer.get_full_name())
 

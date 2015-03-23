@@ -24,4 +24,3 @@ class UserEditForm(forms.ModelForm):
         widgets = {
             'groups': CheckboxSelectMultiple(),
         }
-
