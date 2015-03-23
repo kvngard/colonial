@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from django.forms.widgets import ChoiceInput, ChoiceFieldRenderer, RendererMixin, SelectMultiple
 from django.utils.encoding import force_text
 from django.utils.html import conditional_escape, format_html
