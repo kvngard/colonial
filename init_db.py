@@ -18,8 +18,8 @@ import subprocess
 
 __author__ = 'Group1-3'
 cursor = connection.cursor()
-cursor.execute("DROP SCHEMA PUBLIC CASCADE")
-cursor.execute("CREATE SCHEMA PUBLIC")
+cursor.execute("PRAGMA writable_schema = 1;")
+cursor.execute("delete from sqlite_master where type in ('table', 'index', 'trigger');")
 subprocess.call([sys.executable, "manage.py", "migrate"])
 
 
@@ -198,15 +198,15 @@ for data in [
      'date_packed':             datetime.date.today() - datetime.timedelta(1),
      'date_shipped':            datetime.date.today(),
      'tracking_number':         '12324356u5634',
-     'customer_id':             bmod.User.objects.get(username='2Tyler2Quit').id,
+     'customer':                bmod.User.objects.get(username='2Tyler2Quit'),
      'shipped_by':              bmod.User.objects.get(username='Reverend'),
      'handled_by':              bmod.User.objects.get(username='Reverend'),
-     'ships_to_id':             bmod.User.objects.get(username='2Tyler2Quit').address_id,
+     'ships_to':                bmod.User.objects.get(username='2Tyler2Quit').address,
      'payment_processed_by':    bmod.User.objects.get(username='Reverend')},
     {'date':                    datetime.date.today() - datetime.timedelta(3),
      'phone':                   '801-245-5678',
      'date_paid':               datetime.date.today() - datetime.timedelta(2),
-     'customer_id':             bmod.User.objects.get(username='CodyingAllNight').id,
+     'customer':                bmod.User.objects.get(username='CodyingAllNight'),
      'payment_processed_by':    bmod.User.objects.get(username='Reverend')},
     {'date':                    datetime.date.today() - datetime.timedelta(3),
      'phone':                   '801-456-6456',
@@ -216,12 +216,12 @@ for data in [
     {'date':                    datetime.date.today() - datetime.timedelta(4),
      'phone':                   '801-345-1122',
      'date_paid':               datetime.date.today() - datetime.timedelta(4),
-     'customer_id':             bmod.User.objects.get(username='TyCool4School').id,
+     'customer':                bmod.User.objects.get(username='TyCool4School'),
      'payment_processed_by':    bmod.User.objects.get(username='Kevbo')},
     {'date':                    datetime.date.today(),
      'phone':                   '801-345-1122',
      'date_paid':               datetime.date.today(),
-     'customer_id':             bmod.User.objects.get(username='TyCool4School').id,
+     'customer':                bmod.User.objects.get(username='TyCool4School'),
      'payment_processed_by':    bmod.User.objects.get(username='Kevbo')}
 
 ]:
@@ -397,26 +397,27 @@ for data in [
 print('Order Forms initialized')
 
 
-#           CREATE SALE ITEMS           #
+#           CREATE SALE           #
 
 for data in [
-    {'transaction_id':  bmod.Transaction.objects.get(customer_id=bmod.User.objects.get(username='CodyingAllNight')).id,
+    {'transaction':  bmod.Transaction.objects.get(customer_id=bmod.User.objects.get(username='CodyingAllNight')),
      'amount':          35.00,
      'quantity':        1,
-     'product_id':      bmod.Custom_Product.objects.first().id,
-     'order_form_id':   bmod.Order_Form.objects.first().id},
-    {'transaction_id':  bmod.Transaction.objects.get(customer_id=bmod.User.objects.get(username='2Tyler2Quit')).id,
+     'sale_item':            bmod.Custom_Product.objects.first(),
+     'order_form':      bmod.Order_Form.objects.first()},
+    {'transaction':     bmod.Transaction.objects.get(customer_id=bmod.User.objects.get(username='2Tyler2Quit')),
      'amount':          15.00,
      'quantity':        3,
-     'product_id':      bmod.Sale_Product.objects.get(name='Quill').id}
+     'sale_item':            bmod.Sale_Product.objects.get(name='Quill')}
 ]:
 
-    si = bmod.Sale_Item()
+    si = bmod.Sale()
     for k, v in data.items():
+        print(k,v)
         setattr(si, k, v)
     si.save()
 
-print('Sale Items initialized')
+print('Sales initialized')
 
 
 #           CREATE RENTABLE ARTICLES          #
@@ -451,36 +452,36 @@ for data in [
 print('Rentable Articles initialized')
 
 
-#           CREATE RENTAL ITEMS           #
+#           CREATE RENTALS         #
 
 for data in [
     {'transaction_id':          bmod.Transaction.objects.get(customer_id=bmod.User.objects.get(username='Kevbo')).id,
      'amount':                  bmod.Rentable_Article.objects.get(serial_number='R3256').price_per_day*2,
-     'rentable_article_id':     bmod.Rentable_Article.objects.get(serial_number='R3256').id,
+     'rental_item':                    bmod.Rentable_Article.objects.get(serial_number='R3256'),
      'date_out':                bmod.Transaction.objects.get(customer_id=bmod.User.objects.get(username='Kevbo')).date,
      'date_due':                datetime.date.today() - datetime.timedelta(1),
      'discount_percent':        1.00},
-    {'transaction_id':          bmod.Transaction.objects.get(date=datetime.date.today() - datetime.timedelta(4)).id,
+    {'transaction_id':          bmod.Transaction.objects.get(date=datetime.date.today()).id,
      'amount':                  bmod.Rentable_Article.objects.get(serial_number='R4516').price_per_day*1,
-     'rentable_article_id':     bmod.Rentable_Article.objects.get(serial_number='R4516').id,
+     'rental_item':                    bmod.Rentable_Article.objects.get(serial_number='R4516'),
      'date_out':                bmod.Transaction.objects.get(date=datetime.date.today() - datetime.timedelta(4)).date,
      'date_due':                datetime.date.today() - datetime.timedelta(2),
      'discount_percent':        0.25}
 ]:
 
-    ri = bmod.Rental_Item()
+    ri = bmod.Rental()
     for k, v in data.items():
         setattr(ri, k, v)
     ri.amount = ri.amount * Decimal((1-ri.discount_percent))
     ri.save()
 
-print('Rental Items initialized')
+print('Rentals initialized')
 
 
 #           CREATE RENTAL RETURNS           #
 
 for data in [
-    {'rental_item':         bmod.Rental_Item.objects.get(transaction_id=bmod.Transaction.objects.get(date=datetime.date.today() - datetime.timedelta(4)).id),
+    {'rental':              bmod.Rental.objects.get(date_due=datetime.date.today() - datetime.timedelta(2)),
      'date_returned':       datetime.date.today() - datetime.timedelta(1),
      'return_condition':    'It looks like someone lit it on fire.',
      'handled_by':          bmod.Employee.objects.get(username='Reverend')}
@@ -496,11 +497,10 @@ print('Rental Returns initialized')
 
 #           CREATE FEES           #
 
-delta = bmod.Rental_Return.objects.first().date_returned - bmod.Rental_Item.objects.get(id=bmod.Rental_Return.objects.first().rental_item.id).date_due
+delta = bmod.Rental_Return.objects.first().date_returned - bmod.Rental.objects.get(id=bmod.Rental_Return.objects.first().rental.id).date_due
 
 for data in [
     {'transaction':     bmod.Transaction.objects.get(date=datetime.date.today()),
-     'rental_item':     bmod.Rental_Return.objects.first().rental_item,
      'rental_return':   bmod.Rental_Return.objects.first(),
      'days_late':       delta.days}
 ]:
@@ -512,7 +512,6 @@ for data in [
 
 for data in [
     {'transaction':     bmod.Transaction.objects.get(date=datetime.date.today()),
-     'rental_item':     bmod.Rental_Return.objects.first().rental_item,
      'rental_return':   bmod.Rental_Return.objects.first(),
      'amount':          400.34,
      'description':     'The back seems to have a symbol burned into it. Who knows what it means.'}
@@ -524,3 +523,19 @@ for data in [
     df.save()
 
 print('Fees initialized')
+
+transaction=bmod.Transaction.objects.get(date=datetime.date.today())
+
+print(transaction.customer.get_full_name())
+
+for line_item in transaction.rental_set.all():
+    print(line_item.rental_item.name)
+    print(line_item.amount)
+
+for line_item in transaction.sale_set.all():
+    print(line_item.sale_item.name)
+    print(line_item.amount)
+
+for line_item in transaction.damage_fee_set.all():
+    print(line_item.rental_return.rental.rental_item.name)
+    print(line_item.amount)
