@@ -40,20 +40,25 @@
         <%block name="navigation">
             <nav class="white" role="navigation">
               <div class="nav-wrapper">
+
                 <ul class="left" id="logo">
                     <a href="/">
                         <img src="${ STATIC_URL }app_home/media/logo.svg" alt='profile_image' class='logo responsive-img' />
                     </a>
                 </ul>
+
                 <ul class="right" id="account-mgmt">
                 %if request.user.is_authenticated():
                       <li><a href="#user_modal" class='grey-text user-trigger'>
-                           ${ request.user.get_full_name() }</a></li>
+                           ${ request.user.get_full_name() }
+                           <img src='${ request.user.profile_image }' alt='profile_image' class='circle profile-sm responsive-img' />
+                           </a></li>
                 %else:
                       <li><a href="#login_modal" class="grey-text login-trigger">Log In</a></li>
                       <li><a href="#signup_modal" class="grey-text signup-trigger">Sign Up</a></li>
                 %endif
                 </ul>
+
                 <ul id="nav-mobile" class="side-nav">
                   <li><a href="#">Navbar Link</a></li>
                 </ul>
@@ -62,12 +67,18 @@
           </nav>
 
           %if request.user.is_authenticated():
-          <div id="user_modal" class="modal user-tag z-depth-1">
-            <ul class="user-content">
-                <li><a href="/app_account/login.logoutUser/" class="btn-flat waves-effect waves-teal logout-btn">Log Out</a></li>
-                <li><a href="/app_account/manage/" class="btn-flat waves-effect waves-teal account-btn">Account</a></li>
-            </ul>
-            <img src=${ request.user.profile_image } alt='profile_image' class='circle responsive-img' />
+          <div id="user_modal" class="user-tag z-depth-1 modal">
+            <div class='triangle'></div>
+            <div id='account-wrapper'>
+              <div class='account-left'>
+                  <a href="/app_account/manage/" class="btn waves-effect waves-teal account-btn">Account</a>
+                  <a href="/app_account/login.logoutUser/" class="btn waves-effect red darken-4 logout-btn">Log Out</a>
+              </div>
+              <div class='account-right'>
+                <span class='helper'></span>
+                <img src='${ request.user.profile_image }' alt='profile_image' class='profile' />
+              </div>
+            </div>
           </div>
           %endif
 

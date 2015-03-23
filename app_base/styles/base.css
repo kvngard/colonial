@@ -4,36 +4,69 @@
 .light-blue{
    color: #3498DB;
 }
-#account-mgmt{
-    margin-right: 12rem;
-}
 .logo{
     width: 5rem;
-    margin-left: 1rem;
 }
-.circle{
+.profile{
     width: 4rem;
+}
+.profile-sm{
+    width: 2rem;
+    margin: .25rem;
     vertical-align: middle;
-    position: absolute;
-    top: 2rem;
-    right: 1rem;
+}
+.triangle{
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: -14px;
+  right: 15px;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid azure;
 }
 #user_modal{
     position: absolute;
-    right: 12rem;
-    width: 15rem;
-    left: 83rem;
-    margin: -2.3rem 0 0 0;
+    top: 78px !important;
+    right: 1rem !important;
+    left: initial;
+    width: 18rem;
+    align-items: center;
+    overflow-y: initial;
+    background: azure;
+}
+#account-wrapper{
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 .user-content{
     padding: 0 0 0 1rem;
     margin: 0;
 }
+.account-left{
+    margin-left: 1rem;
+    flex: 2;
+}
+.account-right{
+    flex: 1;
+}
+.helper{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
 .user-content li{
     display: inline;
 }
 .logout-btn{
+    padding: 0 1.5rem;
+    width: 90%;
+}
+.account-btn{
     margin-top: 1rem;
+    padding: 0 1.5rem;
+    width: 90%;
 }
 .welcome{
     position: absolute;

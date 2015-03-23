@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"in",
+				"inline-block"
+			],
+			[
+				"ema",
+				"email_address	statement"
+			],
+			[
+				"Em",
+				"EmailField	class"
+			],
+			[
+				"f",
+				"forms	module"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"login",
+				"login_required	function"
+			],
+			[
+				"al",
+				"text-align"
+			],
+			[
 				"Ren",
 				"Rental_Item	class"
 			],
@@ -188,10 +216,6 @@
 				"margin-left"
 			],
 			[
-				"al",
-				"vertical-align"
-			],
-			[
 				"m",
 				"margin-top"
 			],
@@ -216,90 +240,26 @@
 	"buffers":
 	[
 		{
-			"file": "app_store/styles/store.css",
+			"file": "app_account/views/login.py",
 			"settings":
 			{
-				"buffer_size": 226,
+				"buffer_size": 1039,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app_store/templates/late_rentals.html",
+			"file": "app_base/templates/base_ajax.html",
 			"settings":
 			{
-				"buffer_size": 1264,
+				"buffer_size": 808,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app_store/scripts/late_rentals.js",
+			"file": "app_base/templates/base.html",
 			"settings":
 			{
-				"buffer_size": 791,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app_store/templates/store.html",
-			"settings":
-			{
-				"buffer_size": 2066,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app_store/styles/late_rentals.css",
-			"settings":
-			{
-				"buffer_size": 226,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app_store/scripts/store.js",
-			"settings":
-			{
-				"buffer_size": 791,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app_store/views/index.py",
-			"settings":
-			{
-				"buffer_size": 868,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app_store/views/manage.py",
-			"settings":
-			{
-				"buffer_size": 948,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app_home/templates/index.html",
-			"settings":
-			{
-				"buffer_size": 3919,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app_base/models.py",
-			"settings":
-			{
-				"buffer_size": 15160,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "init_db.py",
-			"settings":
-			{
-				"buffer_size": 17826,
+				"buffer_size": 4318,
 				"line_ending": "Windows"
 			}
 		},
@@ -312,10 +272,42 @@
 			}
 		},
 		{
-			"file": "app_home/scripts/index.js",
+			"file": "app_account/account_forms.py",
 			"settings":
 			{
-				"buffer_size": 592,
+				"buffer_size": 795,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app_base/admin.py",
+			"settings":
+			{
+				"buffer_size": 3268,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "init_db.py",
+			"settings":
+			{
+				"buffer_size": 17826,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app_base/styles/base.css",
+			"settings":
+			{
+				"buffer_size": 1158,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app_home/styles/index.css",
+			"settings":
+			{
+				"buffer_size": 523,
 				"line_ending": "Windows"
 			}
 		}
@@ -326,6 +318,10 @@
 		"height": 736.0,
 		"selected_items":
 		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
 			[
 				"in",
 				"Package Control: Install Package"
@@ -349,10 +345,6 @@
 			[
 				"",
 				":$ - EOF"
-			],
-			[
-				"inst",
-				"Package Control: Install Package"
 			],
 			[
 				"ins",
@@ -411,53 +403,68 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/Kevin/Development/colonial",
-		"/C/Users/Kevin/Development/colonial/app_account/scripts",
-		"/C/Users/Kevin/Development/colonial/app_account/templates",
-		"/C/Users/Kevin/Development/colonial/app_account/views",
-		"/C/Users/Kevin/Development/colonial/app_base",
-		"/C/Users/Kevin/Development/colonial/app_base/media",
-		"/C/Users/Kevin/Development/colonial/app_home",
-		"/C/Users/Kevin/Development/colonial/app_home/scripts",
-		"/C/Users/Kevin/Development/colonial/app_home/templates",
-		"/C/Users/Kevin/Development/colonial/app_store",
-		"/C/Users/Kevin/Development/colonial/app_store/scripts",
-		"/C/Users/Kevin/Development/colonial/app_store/styles",
-		"/C/Users/Kevin/Development/colonial/app_store/templates",
-		"/C/Users/Kevin/Development/colonial/app_store/views"
+		"/C/Users/Kevin/Development/colonial"
 	],
 	"file_history":
 	[
-		"/C/Users/Kevin/Development/colonial/app_base/media/jquery.loadmodal.js",
-		"/C/Users/Kevin/Development/colonial/app_store/templates/store.html",
-		"/C/Users/Kevin/Development/colonial/app_store/templates/storefront.html",
-		"/C/Users/Kevin/Development/colonial/app_base/templates/base.html",
-		"/C/Users/Kevin/Development/colonial/app_account/templates/form.html",
-		"/C/Users/Kevin/Development/colonial/app_account/account_forms.py",
-		"/C/Users/Kevin/Development/colonial/app_account/views/login.py",
-		"/C/Users/Kevin/Development/colonial/app_account/views/manage.py",
-		"/C/Users/Kevin/Development/colonial/app_base/admin.py",
-		"/C/Users/Kevin/Development/colonial/init_db.py",
-		"/C/Users/Kevin/Development/colonial/app_account/scripts/form.js",
+		"/C/Users/Kevin/Development/colonial/app_store/scripts/cart.js",
+		"/C/Users/Kevin/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Kevin/Development/colonial/app_base/models.py",
+		"/C/Users/Kevin/Development/colonial/app_account/scripts/form.js",
+		"/C/Users/Kevin/Development/colonial/app_account/scripts/manage.js",
+		"/C/Users/Kevin/Desktop/coming_soon/coming_soon/settings.py",
+		"/C/Users/Kevin/Desktop/coming_soon/app_base/views/index.py",
+		"/C/Users/Kevin/Desktop/coming_soon/app_base/scripts/index.js",
+		"/C/Users/Kevin/Desktop/coming_soon/app_base/templates/base.html",
+		"/C/Users/Kevin/Desktop/coming_soon/app_base/styles/index.css",
+		"/C/Users/Kevin/Desktop/coming_soon/app_base/templates/index.html",
+		"/C/Users/Kevin/Desktop/coming_soon/app_base/models.py",
+		"/C/Users/Kevin/Development/colonial/app_account/account_forms.py",
+		"/C/Users/Kevin/Development/colonial/app_store/styles/cart.css",
+		"/C/Users/Kevin/Development/colonial/app_account/templates/form.html",
+		"/C/Users/Kevin/Development/colonial/app_store/templates/cart.html",
+		"/C/Users/Kevin/Development/colonial/app_store/scripts/store.js",
+		"/C/Users/Kevin/Development/colonial/app_store/styles/late_rentals.css",
+		"/C/Users/Kevin/Development/colonial/app_store/styles/store.css",
+		"/C/Users/Kevin/Development/colonial/app_store/scripts/checkout.js",
+		"/C/Users/Kevin/Desktop/coming_soon/coming_soon/urls.py",
+		"/C/Users/Kevin/Development/colonial/app_base/views/__init__.py",
+		"/C/Users/Kevin/Development/colonial/app_base/__init__.py",
+		"/C/Users/Kevin/Desktop/init_db.py",
+		"/C/Users/Kevin/Development/colonial/init_db.py",
+		"/C/Users/Kevin/Development/colonial/app_store/views/index.py",
+		"/C/Users/Kevin/Development/colonial/app_base/scripts/base.js",
+		"/C/Users/Kevin/Development/colonial/app_store/storeforms.py",
+		"/C/Users/Kevin/Development/colonial/app_store/styles/congrats.css",
+		"/C/Users/Kevin/Development/colonial/app_store/templates/late_rentals.html",
+		"/C/Users/Kevin/Development/colonial/app_store/views/manage.py",
+		"/C/Users/Kevin/Development/colonial/app_store/templates/congrats.html",
+		"/C/Users/Kevin/Development/colonial/app_store/templates/checkout.html",
+		"/C/Users/Kevin/Development/colonial/app_account/views/manage.py",
+		"/C/Users/Kevin/Development/colonial/app_account/views/change_password.py",
+		"/C/Users/Kevin/Development/colonial/app_store/templates/store.html",
+		"/C/Users/Kevin/Development/colonial/app_account/views/login.py",
+		"/C/Users/Kevin/Development/colonial/app_store/styles/checkout.css",
+		"/C/Users/Kevin/Development/colonial/app_base/templates/default.html",
+		"/C/Users/Kevin/Development/colonial/app_base/admin.py",
+		"/C/Users/Kevin/Development/colonial/app_home/scripts/index.js",
 		"/C/Users/Kevin/Development/colonial/app_home/templates/index.html",
+		"/C/Users/Kevin/Development/colonial/app_base/templates/base.html",
+		"/C/Users/Kevin/Development/colonial/app_account/templates/manage.html",
+		"/C/Users/Kevin/Development/colonial/app_store/scripts/late_rentals.js",
+		"/C/Users/Kevin/Development/colonial/app_base/media/jquery.loadmodal.js",
+		"/C/Users/Kevin/Development/colonial/app_store/templates/storefront.html",
 		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/forms.py",
 		"/C/Users/Kevin/AppData/Local/Temp/Rar$EXa0.816/parallax-template/index.html",
 		"/C/Users/Kevin/Development/colonial/app_store/views/__init__.py",
 		"/C/Users/Kevin/Development/colonial/app_base/views/index.py",
 		"/C/Users/Kevin/Development/colonial/app_store/templates/index.html",
-		"/C/Users/Kevin/Development/colonial/app_base/views/__init__.py",
 		"/C/Users/Kevin/Development/colonial/app_store/models.py",
-		"/C/Users/Kevin/Development/colonial/app_account/views/change_password.py",
 		"/C/Users/Kevin/Development/colonial/app_home/styles/index.css",
 		"/C/Users/Kevin/Development/colonial/colonial/settings.py",
 		"/C/Users/Kevin/Development/colonial/app_base/styles/base.css",
-		"/C/Users/Kevin/Development/colonial/app_base/scripts/base.js",
 		"/C/Users/Kevin/Development/colonial/app_base/templates/base_ajax.html",
-		"/C/Users/Kevin/Development/colonial/app_account/scripts/manage.js",
-		"/C/Users/Kevin/Development/colonial/app_account/templates/manage.html",
 		"/C/Users/Kevin/Development/colonial/app_account/views/new.py",
-		"/C/Users/Kevin/Development/colonial/app_home/scripts/index.js",
 		"/C/Users/Kevin/Development/colonial/app_base/templates/navigation.html",
 		"/C/Users/Kevin/Development/colonial/app_account/styles/manage.css",
 		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/views/users.py",
@@ -477,7 +484,6 @@
 		"/C/Users/Kevin/Development/colonial/app_account/__init__.py",
 		"/C/Users/Kevin/Development/colonial/app_account/templates/login.html",
 		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/templates/login.html",
-		"/C/Users/Kevin/Desktop/init_db.py",
 		"/C/Python34/Lib/site-packages/django/db/models/fields/related.py",
 		"/C/Python34/Lib/site-packages/django/db/models/related.py",
 		"/C/Python34/Lib/site-packages/django_mako_plus/controller/router.py",
@@ -512,7 +518,6 @@
 		"/C/Users/Kevin/Development/ColonialHeritageSite/ColonialHeritageSite/settings.py",
 		"/C/Users/Kevin/Development/colonial/components/materialize/dist/css/materialize.css",
 		"/C/Users/Kevin/Development/colonial/components/materialize/dist/templates/parallax-template/js/init.js",
-		"/C/Users/Kevin/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Kevin/Development/colonial/components/materialize/js/parallax.js",
 		"/C/Users/Kevin/Development/colonial/components/jquery/src/data/var/data_priv.js",
 		"/C/Users/Kevin/Development/colonial/components/jquery/src/core/var/rsingleTag.js",
@@ -529,33 +534,7 @@
 		"/C/Users/Kevin/Development/colonial/home/templates/base.htm",
 		"/C/Users/Kevin/AppData/Local/Temp/Rar$EXa0.221/parallax-template/index.html",
 		"/C/Users/Kevin/Development/colonial/components/jquery/dist/jquery.js",
-		"/C/Users/Kevin/Development/colonial/manage.pyw",
-		"/C/Users/Kevin/Development/ColonialHeritageSite/manage.py",
-		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/Colonial.sublime-project",
-		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/views/events.py",
-		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/ColonialHeritageSite/settings.py",
-		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/views/index.py",
-		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/views/items.py",
-		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/forms.py",
-		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/models.py",
-		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/styles/admin.css",
-		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/templates/edit.html",
-		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/views/login.py",
-		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/templates/adminPortal.html",
-		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/templates/aNavigation.html",
-		"/C/Users/Kevin/AppData/Local/Temp/Rar$DIa0.801/README.md",
-		"/C/Users/Kevin/AppData/Local/Temp/Rar$DIa0.857/readme.md",
-		"/C/Program Files/PostgreSQL/9.4/doc/postgresql/html/index.html",
-		"/C/Python34/Lib/site-packages/django/contrib/auth/models.py",
-		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/templates/items.html",
-		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/views/items.py",
-		"/C/Users/Kevin/Development/Sprint 1 - ColonialHeritageSite/homepage/templates/index.html",
-		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/views/index.py",
-		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/styles/admin.css",
-		"/C/Users/Kevin/AppData/Roaming/Sublime Text 3/Packages/User/Python.sublime-settings",
-		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/templates/phones.html",
-		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/templates/events.html",
-		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/templates/mNavigation.html"
+		"/C/Users/Kevin/Development/colonial/manage.pyw"
 	],
 	"find":
 	{
@@ -574,6 +553,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"first_name",
+			"last_name",
+			"ghostwhgreyite",
+			"modal",
 			"responsive",
 			"${ STATIC_URL }",
 			"content",
@@ -717,7 +700,7 @@
 			"ItemEditForm",
 			""
 		],
-		"reverse": false,
+		"reverse": true,
 		"show_context": true,
 		"use_buffer2": true,
 		"whole_word": false,
@@ -726,137 +709,46 @@
 	"groups":
 	[
 		{
-			"selected": 7,
+			"selected": 8,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app_store/styles/store.css",
+					"file": "app_account/views/login.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 226,
+						"buffer_size": 1039,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								193,
-								193
+								118,
+								60
 							]
 						],
 						"settings":
 						{
-							"open_with_edit": true,
-							"syntax": "Packages/CSS/CSS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app_store/templates/late_rentals.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1264,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								867,
-								894
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/Mako/Syntaxes/HTML (Mako).tmLanguage",
-							"tab_size": 2,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app_store/scripts/late_rentals.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 791,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app_store/templates/store.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2066,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								478,
-								478
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Mako/Syntaxes/HTML (Mako).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 540.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "app_store/styles/late_rentals.css",
+					"buffer": 1,
+					"file": "app_base/templates/base_ajax.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 226,
+						"buffer_size": 808,
 						"regions":
 						{
 						},
@@ -869,37 +761,7 @@
 						],
 						"settings":
 						{
-							"open_with_edit": true,
-							"syntax": "Packages/CSS/CSS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "app_store/scripts/store.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 791,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								152,
-								159
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/Mako/Syntaxes/HTML (Mako).tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -909,80 +771,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "app_store/views/index.py",
+					"buffer": 2,
+					"file": "app_base/templates/base.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 868,
+						"buffer_size": 4318,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								867,
-								867
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 1080.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "app_store/views/manage.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 948,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								232,
-								232
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "app_home/templates/index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3919,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1725,
-								1725
+								3188,
+								3188
 							]
 						],
 						"settings":
@@ -992,74 +794,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1350.0,
+						"translation.y": 2183.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
-					"file": "app_base/models.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 15160,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								11371,
-								11386
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": -0.0,
-						"translation.y": 13770.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "init_db.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 17826,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								689,
-								675
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 270.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 11,
+					"buffer": 3,
 					"file": "app_base/scripts/base.js",
 					"semi_transient": false,
 					"settings":
@@ -1071,8 +813,8 @@
 						"selection":
 						[
 							[
-								483,
-								483
+								572,
+								572
 							]
 						],
 						"settings":
@@ -1085,37 +827,157 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
-					"file": "app_home/scripts/index.js",
+					"buffer": 4,
+					"file": "app_account/account_forms.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 592,
+						"buffer_size": 795,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								573,
-								573
+								725,
+								725
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app_base/admin.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3268,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								686,
+								686
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "init_db.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17826,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12445,
+								12445
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 11628.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app_base/styles/base.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1158,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								918,
+								918
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1165.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "app_home/styles/index.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 523,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								180,
+								180
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

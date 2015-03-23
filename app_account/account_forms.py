@@ -19,5 +19,5 @@ class UserEditForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'email', 'security_question',
+        fields = ['first_name', 'last_name', 'username', 'email', 'profile_image', 'security_question',
                   'security_answer', 'phone']

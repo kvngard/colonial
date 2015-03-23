@@ -89,7 +89,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True, null=False)
     is_staff = models.BooleanField(default=False, null=False)
 
-    profile_image = models.ImageField(upload_to='/user/uploads/profile', blank=False, null=False,
+    profile_image = models.ImageField(upload_to='/static/user/uploads/profile', blank=False, null=False,
                                       default="/static/app_account/media/default_profile.jpg")
     security_question = models.CharField(max_length=60, null=True)
     security_answer = models.CharField(max_length=30, null=True)
