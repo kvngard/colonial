@@ -15,6 +15,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 # To install the imagefield field, run the command "pip install pillow".
 from localflavor.us.us_states import US_STATES
 from localflavor.us.models import USStateField, USZipCodeField, PhoneNumberField, USSocialSecurityNumberField
+import datetime
 
 
 class Address(models.Model):
@@ -150,44 +151,6 @@ class Vendor(User):
     sales_tax_return_form_given = models.BooleanField(default=False)
 
 
-class Transaction(models.Model):
-
-    '''
-        An exchange of funds between an individual and the Foundation. Used
-        primary to deal with the sale items through the online store.
-    '''
-    date = models.DateTimeField(null=True)
-    phone = models.CharField(max_length=12, null=True)
-    date_packed = models.DateTimeField(null=True)
-    date_paid = models.DateTimeField(null=True)
-    date_shipped = models.DateTimeField(null=True)
-    tracking_number = models.TextField(max_length=30, null=True)
-
-    payment_processed_by = models.ForeignKey(
-        'User', related_name='paymentprocessedby', null=True, blank=True)
-    ships_to = models.ForeignKey(
-        'Address', related_name='+', null=True, blank=True)
-    shipped_by = models.ForeignKey(
-        'User', related_name='shippedby', null=True, blank=True)
-    handled_by = models.ForeignKey(
-        'User', related_name='handledby', null=True, blank=True)
-    customer = models.ForeignKey('User', related_name='orders')
-
-
-class Transaction_Item(models.Model):
-
-    '''
-        Abstract base class for line items in a transaction.  A line item can be one
-        of sale item, fee, rental item, or service item.
-    '''
-    amount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
-
-    transaction = models.ForeignKey(Transaction)
-
-    class Meta:
-        abstract = True
-
-
 class Category(models.Model):
 
     '''
@@ -281,24 +244,6 @@ class Order_Form(models.Model):
     customer_info = models.TextField(max_length=300, null=True)
 
 
-class Sale_Item(Transaction_Item):
-
-    '''
-        A sale item for either a bulk or a serialized product.
-    '''
-    quantity = models.IntegerField()
-    product = models.ForeignKey(Sale_Product, related_name='+')
-
-    order_form = models.ForeignKey(
-        Order_Form, related_name='+', null=True)
-
-    def __str__(self):
-        return '{} {}'.format(self.amount, self.quantity)
-
-    def get_custom_product_info(self):
-        return self.order_form.customer_info
-
-
 class Rentable_Article(Store_Item):
 
     '''
@@ -310,7 +255,71 @@ class Rentable_Article(Store_Item):
     notes = models.TextField(max_length=300, null=True)
 
 
-class Rental_Item(Transaction_Item):
+class Transaction(models.Model):
+
+    '''
+        Used to track the exchange of goods between an individual and the foundation
+        via the website or in person. Can encompass rentals, sales, or fees.
+    '''
+    date = models.DateTimeField(default=datetime.date.today())
+    phone = models.CharField(max_length=12, null=True)
+    date_packed = models.DateTimeField(null=True)
+    date_shipped = models.DateTimeField(null=True)
+    tracking_number = models.TextField(max_length=30, null=True)
+
+    payment_processed_by = models.ForeignKey(
+        'User', related_name='paymentprocessedby', null=True, blank=True)
+    ships_to = models.ForeignKey(
+        'Address', related_name='+', null=True, blank=True)
+    shipped_by = models.ForeignKey(
+        'User', related_name='shippedby', null=True, blank=True)
+    handled_by = models.ForeignKey(
+        'User', related_name='handledby', null=True, blank=True)
+    customer = models.ForeignKey('User', related_name='orders')
+
+
+class Transaction_Item(models.Model):
+
+    '''
+        Abstract base class for line items in a transaction.  A line item can be one
+        of sale item, fee, rental item, or service item.
+    '''
+
+    amount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+
+    transaction = models.ForeignKey('Transaction')
+
+    class Meta:
+        abstract = True
+
+
+class Payment(Transaction_Item):
+
+    '''
+        An exchange of funds between an individual and the Foundation.
+    '''
+    date_paid = models.DateTimeField(null=True)
+
+
+class Sale(Transaction_Item):
+
+    '''
+        A sale item for either a bulk or a serialized product.
+    '''
+    quantity = models.IntegerField()
+    order_form = models.ForeignKey(
+        Order_Form, related_name='+', null=True)
+
+    sale_item = models.ForeignKey(Store_Item)
+
+    def __str__(self):
+        return '{} {}'.format(self.amount, self.quantity)
+
+    def get_custom_product_info(self):
+        return self.order_form.customer_info
+
+
+class Rental(Transaction_Item):
 
     '''
         Represents the rental of a single article.
@@ -320,7 +329,7 @@ class Rental_Item(Transaction_Item):
     discount_percent = models.DecimalField(
         max_digits=3, decimal_places=2, null=True)
 
-    rentable_article = models.ForeignKey(Rentable_Article)
+    rental_item = models.ForeignKey(Store_Item)
 
 
 class Rental_Return(models.Model):
@@ -331,7 +340,7 @@ class Rental_Return(models.Model):
     return_condition = models.TextField(max_length=200, null=True)
     date_returned = models.DateTimeField(null=True)
 
-    rental_item = models.ForeignKey(Rental_Item, related_name='return_instance')
+    rental = models.ForeignKey(Rental, related_name='return_instance')
     handled_by = models.ForeignKey(
         'User', related_name='rentalhandledby', null=True, blank=True)
 
@@ -344,7 +353,6 @@ class Fee(Transaction_Item):
         price of the rental product less the rental fee.
     '''
     waived = models.BooleanField(default=False)
-    rental_item = models.ForeignKey(Rental_Item, related_name='+')
 
     class Meta:
         abstract = True
@@ -406,6 +414,7 @@ class Event(models.Model):
     map_file_name = models.TextField(max_length=200)
     venue_name = models.TextField(max_length=200)
     address = models.ForeignKey(Address, related_name='+')
+    discount_code = models.CharField(max_length=7)
 
     public_event = models.ForeignKey(Public_Event)
 
