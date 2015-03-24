@@ -29,3 +29,9 @@ div.hero-text h3{
     font-style: italic;
     margin-bottom: 0;
 }
+.footer{
+    margin-top: 0 !important;
+}
+.promotions{
+    padding-bottom: 0;
+}

@@ -145,7 +145,7 @@ DMP_TEMPLATES_CACHE_DIR = 'cached_templates'
 
 # the default app and page to render in Mako when the url is too short
 DMP_DEFAULT_PAGE = 'index'
-DMP_DEFAULT_APP = 'app_base'
+DMP_DEFAULT_APP = 'app_home'
 
 # these are included in every template by default - if you put your
 # most-used libraries here, you won't have to import them exlicitly in

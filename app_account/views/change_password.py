@@ -1,7 +1,7 @@
-from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.http import HttpResponse
 from django_mako_plus.controller import view_function
+from app_base.forms import PasswordChangeForm
 from . import templater
 
 

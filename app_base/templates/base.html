@@ -13,8 +13,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
         <title>Colonial Heritage Foundation</title>
 
-        <!-- CSS  -->
-        <link rel="stylesheet" type="text/css" href="${ STATIC_URL }components/materialize/bin/materialize.css">
+        <!-- CSS  -->        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css">
         ## render the css with the same name as this page
         ${ static_renderer.get_template_css(request, context)  }
         <%block name="style"></%block>
@@ -26,16 +26,14 @@
         <link rel="icon" type="image/x-icon" href="${ STATIC_URL }app_base/media/favicon.ico">
 
         <!--  Scripts-->
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="${ STATIC_URL }components/materialize/bin/materialize.js"></script>
-        <script src="${ STATIC_URL }app_base/media/jquery.form.js"></script>
-        <script src="${ STATIC_URL }app_base/media/jquery.loadmodal.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
+        <script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script> 
 
-        ## A set of polyfills built on top of the Web Components specifications.
-        <script src="${ STATIC_URL }components/webcomponentsjs/webcomponents.js"></script>
+        <link rel="import" href="/static/app_base/components/polymer/polymer.html"/>
 
     </head>
-    <body>
+    <body unresolved>
 
         <%block name="navigation">
             <nav class="white" role="navigation">
