@@ -1,58 +1,40 @@
 <%inherit file="app_base/templates/base.html" />
 
-<%block name="content">
-<ul id="nav-mobile" class="side-nav fixed">
-      <a href="#">
-        <a href="/">
-            <img src="${ STATIC_URL }app_home/media/logo.svg" alt='profile_image' class='nav-logo' />
-        </a>
-      </a>
-      <div class="input-field">
+<%block name="navigation_left">
+  <ul class='left' layout horizontal>
+      <div class="nav-shoulder left hide-on-med-and-down"></div>
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu grey-text"></i></a>
+      <div class="input-field grey-text text-darken-4">
         <input id="search" type="text" required>
-        <label for="search"><i class="mdi-action-search"></i></label>
+        <label for="search"><i class="mdi-action-search grey-text"></i></label>
       </div>
-      <a href="#cart_modal" class="btn-flat waves-effect waves-light green accent-4 white-text cart-display">Display Cart</a>
-</ul>
-<div class="view-box">
-    <div class="row">
-        %for item in items[0:len(items)]:
-        <div class="store-item card col l2 s12">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="${item.photo.image}">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">${item.name}<i class="mdi-navigation-more-vert right"></i></span>
-              <p><a href="#!" class="activator">$${item.price}</a></p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">${item.name}<i class="mdi-navigation-close right"></i></span>
-              <p>${item.description}</p>
-              <form>
-                %if item.quantity_on_hand:
-                <select class="select-dropdown">
-                  <option value="" disabled selected>Quantity</option>
-                  %if item.quantity_on_hand <= 5:
-                    %for j in range(1, item.quantity_on_hand+1):
-                      <option value="${j}"}>${j}</option>
-                    %endfor
-                  %else:
-                    %for j in range(1, 6):
-                      <option value="${j}"}>${j}</option>
-                    %endfor
-                  %endif
-                </select>
-                %endif
-                <a rel="${item.id}" href="#cart_modal" class="btn-flat waves-effect waves-light orange accent-3 white-text cart-trigger">Add to Cart</a>
-              </form>
-            </div>
-          </div>
-          %endfor
-      </div>
-  </div>
+  </ul>
+</%block>
 
-  <div id="cart_modal" class="modal">
-    <div class="modal-content">
-    </div>
+<%block name="navigation_right">
+</%block>
+
+<%block name="content">
+<ul id="slide-out" class="side-nav fixed">
+  <li><a href="/">
+      <img src="${ STATIC_URL }app_home/media/logo.svg" alt='profile_image' class='nav-logo' />
+  </a></li>
+</ul>
+<div class="nav-shoulder left hide-on-med-and-down"></div>
+
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large waves-effect waves-light orange accent-3 cart-display"><i class="mdi-action-shopping-cart cart-icon"></i></a>
+</div>
+
+<main>
+  <div class="row" layout horizontal center wrap>
+    <%block name="main">
+    </%block>
+  </div>
+</main>
+
+<div id="cart_modal" class="modal">
+  <div class="modal-content">
   </div>
 </div>
 </%block>

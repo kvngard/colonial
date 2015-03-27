@@ -1,18 +1,19 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm, ReadOnlyPasswordHashField
+from django.contrib.auth.forms import UserChangeForm, ReadOnlyPasswordHashField
+from app_base.forms import MaterializeUserCreationForm
 from app_base.models import User
 from django import forms
 
 
-class CustomUserCreationForm(UserCreationForm):
+class CustomUserCreationForm(MaterializeUserCreationForm):
 
     """ A form for creating new users. Includes all the required fields, plus a repeated password. """
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(
         label='Password Confirmation', widget=forms.PasswordInput)
 
-    class Meta(UserCreationForm.Meta):
+    class Meta(MaterializeUserCreationForm.Meta):
         model = User
         fields = ('username', 'first_name', 'last_name', 'email')
 

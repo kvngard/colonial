@@ -35,25 +35,29 @@
     </head>
     <body unresolved>
 
-        <%block name="navigation">
             <nav class="white" role="navigation">
               <div class="nav-wrapper">
 
-                <ul class="left" id="logo">
-                    <a href="/">
-                        <img src="${ STATIC_URL }app_home/media/logo.svg" alt='profile_image' class='logo responsive-img' />
-                    </a>
-                </ul>
+                <%block name="navigation_left">
+                  <a href="/" class="left" id="logo">
+                      <img src="${ STATIC_URL }app_home/media/logo.svg" alt='profile_image' class='logo responsive-img' />
+                  </a>
+                </%block>
 
                 <ul class="right" id="account-mgmt">
+                <%block name="navigation_right">
+                  <li><a href="/app_store/" class="grey-text text-darken-3">Shop</a></li>
+                </%block>
                 %if request.user.is_authenticated():
-                      <li><a href="#user_modal" class='grey-text user-trigger'>
-                           ${ request.user.get_full_name() }
-                           <img src='${ request.user.profile_image }' alt='profile_image' class='circle profile-sm responsive-img' />
-                           </a></li>
+                  <li>
+                    <a href="#user_modal" class='grey-text text-darken-3 user-trigger'>
+                       ${ request.user.get_full_name() }
+                       <img src='${ request.user.profile_image }' alt='profile_image' class='circle profile-sm responsive-img' />
+                    </a>
+                  </li>
                 %else:
-                      <li><a href="#login_modal" class="grey-text login-trigger">Log In</a></li>
-                      <li><a href="#signup_modal" class="grey-text signup-trigger">Sign Up</a></li>
+                  <li><a href="#login_modal" class="grey-text text-darken-3 login-trigger">Log In</a></li>
+                  <li><a href="#signup_modal" class="grey-text text-darken-3 signup-trigger">Sign Up</a></li>
                 %endif
                 </ul>
 
@@ -90,10 +94,7 @@
             </div>
           </div>
 
-        </%block>
-
         <%block name="content">
-          Site content goes here in sub-templates.
         </%block>
 
         ## render the JS with the same name as this page

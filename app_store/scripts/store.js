@@ -9,7 +9,7 @@ $(function () {
         url: '/app_store/index.search/',
         data: {p: param},
         success: function(data) {
-          $('.view-box').html(data);
+          $('.row').html(data);
           $('#search').trigger("blur");
         },
       });
@@ -22,7 +22,8 @@ $(function () {
             url: '/app_store/index.search/',
             data: {p: param},
             success: function(data) {
-              $('.view-box').html(data);
+              console.log(data);
+              $('.row').html(data);
               $('#search').trigger("blur");
             },
           });
@@ -51,7 +52,7 @@ $(function () {
    $('.cart-display').on('click', function(){
         $('#cart_modal').openModal();
           $.ajax({
-            url: '/app_store/index.add_to_cart/',
+            url: '/app_store/index.show_cart/',
             success: function(data) {
               $('#cart_modal').find('.modal-content').html(data);
             },

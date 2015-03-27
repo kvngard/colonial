@@ -21,15 +21,15 @@
   width: 0;
   height: 0;
   position: absolute;
-  top: -14px;
-  right: 15px;
+  top: -.75rem;
+  right: .5rem;
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
   border-bottom: 15px solid ghostwhite;
 }
 #user_modal{
     position: absolute;
-    top: 78px !important;
+    top: 5rem !important;
     right: 1rem !important;
     left: initial;
     width: 18rem;

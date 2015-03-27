@@ -1,11 +1,14 @@
-from django.forms.forms import DeclarativeFieldsMetaclass, BaseForm
+from django.forms.forms import DeclarativeFieldsMetaclass, BaseForm, NON_FIELD_ERRORS
 from django.utils.translation import ugettext, ugettext_lazy as _ 
 from django.contrib.auth.tokens import default_token_generator
+from django.contrib.auth.forms import UserCreationForm
 from django.forms.utils import ErrorList
 from collections import OrderedDict
 from django.forms import models
 from django.utils import six
 from django import forms
+
+from app_base.models import User
 
 '''
 So this is a hack that was designed to rearrange the default html 
@@ -20,7 +23,7 @@ class MaterializeBaseForm(BaseForm):
     def as_table(self):
         "Returns this form rendered as HTML <tr>s -- excluding the <table></table>."
         return self._html_output(
-            normal_row='<tr%(html_class_attr)s><td>%(errors)s<div class="input-field">%(field)s%(help_text)s</td><td>%(label)s</td></div></tr>',
+            normal_row='<tr%(html_class_attr)s><td>%(errors)s<div class="input-field">%(field)s%(help_text)s</td><td><%(label)s</td></div></tr>',
             error_row='<tr><td colspan="2">%s</td></tr>',
             row_ender='</td></tr>',
             help_text_html='<br /><span class="helptext">%s</span>',
@@ -118,7 +121,7 @@ class MaterializeBaseModelForm(MaterializeBaseForm):
                 continue
 
             for message in messages:
-                if (isinstance(message, ValidationError) and
+                if (isinstance(message, forms.ValidationError) and
                         message.code in error_messages):
                     message.message = error_messages[message.code]
 
@@ -144,7 +147,7 @@ class MaterializeBaseModelForm(MaterializeBaseForm):
 
         try:
             self.instance.full_clean(exclude=exclude, validate_unique=False)
-        except ValidationError as e:
+        except forms.ValidationError as e:
             self._update_errors(e)
 
         # Validate uniqueness if needed.
@@ -159,7 +162,7 @@ class MaterializeBaseModelForm(MaterializeBaseForm):
         exclude = self._get_validation_exclusions()
         try:
             self.instance.validate_unique(exclude=exclude)
-        except ValidationError as e:
+        except forms.ValidationError as e:
             self._update_errors(e)
 
     def save(self, commit=True):
@@ -310,3 +313,97 @@ PasswordChangeForm.base_fields = OrderedDict(
     (k, PasswordChangeForm.base_fields[k])
     for k in ['old_password', 'new_password1', 'new_password2']
 )
+
+class MaterializeUserCreationForm(site_model_form):
+    """
+    A form that creates a user, with no privileges, from the given username and
+    password.
+    """
+    error_messages = {
+        'duplicate_username': _("A user with that username already exists."),
+        'password_mismatch': _("The two password fields didn't match."),
+    }
+    username = forms.RegexField(label=_("Username"), max_length=30,
+        regex=r'^[\w.@+-]+$',
+        help_text=_("Required. 30 characters or fewer. Letters, digits and "
+                    "@/./+/-/_ only."),
+        error_messages={
+            'invalid': _("This value may contain only letters, numbers and "
+                         "@/./+/-/_ characters.")})
+    password1 = forms.CharField(label=_("Password"),
+        widget=forms.PasswordInput)
+    password2 = forms.CharField(label=_("Password confirmation"),
+        widget=forms.PasswordInput,
+        help_text=_("Enter the same password as above, for verification."))
+
+    class Meta:
+        model = User
+        fields = ("username",)
+
+    def clean_username(self):
+        # Since User.username is unique, this check is redundant,
+        # but it sets a nicer error message than the ORM. See #13147.
+        username = self.cleaned_data["username"]
+        try:
+            User._default_manager.get(username=username)
+        except User.DoesNotExist:
+            return username
+        raise forms.ValidationError(
+            self.error_messages['duplicate_username'],
+            code='duplicate_username',
+        )
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError(
+                self.error_messages['password_mismatch'],
+                code='password_mismatch',
+            )
+        return password2
+
+    def save(self, commit=True):
+        user = super(UserCreationForm, self).save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+        return user
+
+
+class CustomUserCreationForm(MaterializeUserCreationForm):
+
+    """ A form for creating new users. Includes all the required fields, plus a repeated password. """
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(
+        label='Password Confirmation', widget=forms.PasswordInput)
+
+    class Meta(MaterializeUserCreationForm.Meta):
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email')
+
+    def clean_username(self):
+        username = self.cleaned_data["username"]
+
+        try:
+            User._default_manager.get(username=username)
+        except User.DoesNotExist:
+            return username
+        raise forms.ValidationError(self.error_messages['duplicate_username'])
+
+    def clean_password2(self):
+        # Check that the two password entries match
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError("Passwords do not match.")
+        return password2
+
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        user = super(MaterializeUserCreationForm, self).save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+        return user

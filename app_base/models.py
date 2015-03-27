@@ -218,7 +218,6 @@ class Sale_Product(Store_Item):
         represent bulk products or products made by artisans that don't required
         customization.
     '''
-    production_time = models.CharField(max_length=100, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     manufacturer = models.CharField(max_length=100, null=True)
 
@@ -231,6 +230,7 @@ class Custom_Product(Sale_Product):
         A product made by an artisan and customized according to a user's
         specifications.
     '''
+    production_time = models.CharField(max_length=100, null=True)
     required_info = models.TextField(max_length=300, null=True)
 
 

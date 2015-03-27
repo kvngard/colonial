@@ -3,11 +3,20 @@
 <%block name="content">
     <h1>${ title }</h1>
     <div class='valign'>
+        %if redirect_app is not None and redirect_app is not UNDEFINED:
+        <form id="account_form" method="POST" action="/app_account/${ function }/${redirect_app}/${redirect_func}">
+        %else:
         <form id="account_form" method="POST" action="/app_account/${ function }/">
+        %endif
             ${ form }
             <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                 <i class="mdi-content-send right"></i>
             </button>
+        %if option is not None and option is not UNDEFINED:
+            <a class="btn-flat waves-effect waves-light btn-option" name="${ option_link }">
+                ${ option }
+            </a>
+        %endif
         </form>
     </div>
 </%block>
