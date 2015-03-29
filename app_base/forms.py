@@ -23,7 +23,7 @@ class MaterializeBaseForm(BaseForm):
     def as_table(self):
         "Returns this form rendered as HTML <tr>s -- excluding the <table></table>."
         return self._html_output(
-            normal_row='<tr%(html_class_attr)s><td>%(errors)s<div class="input-field">%(field)s%(help_text)s</td><td><%(label)s</td></div></tr>',
+            normal_row='<tr%(html_class_attr)s><td>%(errors)s<div class="input-field">%(field)s%(help_text)s</td><td>%(label)s</td></div></tr>',
             error_row='<tr><td colspan="2">%s</td></tr>',
             row_ender='</td></tr>',
             help_text_html='<br /><span class="helptext">%s</span>',
