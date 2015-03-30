@@ -19,3 +19,20 @@
     text-align: center;
     font-weight: 500;
 }
+#selectbox {
+    list-style: none;
+}
+#paginator{
+    width: 100vw;
+}
+.viewport{
+    height: 70vh;
+    width: 100vw;
+}
+section{
+    width: 100vw;
+}
+.box{
+    width: 70%;
+    margin-left: 9vw;
+}

@@ -1,55 +1,71 @@
-<%inherit file="app_base/templates/base.html" />
+<%inherit file="store.html" />
 
-<%block name="content">
-<ul id="nav-mobile" class="side-nav fixed">
-  <a href="#">
-    <a href="/">
-        <img src="${ STATIC_URL }app_home/media/logo.svg" alt='profile_image' class='nav-logo' />
-    </a>
-  </a>
-  <div class="input-field">
-    <input id="search" type="text" required>
-    <label for="search"><i class="mdi-action-search"></i></label>
-  </div>
-  <a class="btn-flat waves-effect waves-light green accent-4 white-text cart-display">Display Cart</a>
-</ul>
-<div class="view-box container">
-  <h2>Check Out</h2>
-  <table class="striped">
-    <thead>
-      <tr>
-        <th data-field="id">Item Name</th>
-        <th data-field="quantity">Quantity</th>
-        <th data-field="price">Price</th>
-        <th>Options</th>
-      </tr>
-    </thead>
-    <tbody>
-      %for item in items:
-      <tr>
-        <td>${item.name}</td>
-        <td>
-          <select class="select-dropdown">
-          %for j in reversed(range(1,cart[str(item.id)]+1)):
-            <option value="${j}"}>${j}</option>
+<%block name="polymer">
+  <link rel="import" href="/static/app_base/components/core-animated-pages/core-animated-pages.html">
+  <link rel="import" href="/static/app_base/components/core-animated-pages/transitions/slide-from-right.html">
+  <link rel="import" href="/static/app_base/components/core-selector/core-selector.html">
+</%block>
+
+<%block name="main">
+<core-animated-pages class="viewport" selected="0" transitions="slide-from-right">
+  <section id="cart">
+    <div class="box">
+      <h2>My Cart</h2>
+      <table class="striped">
+
+        <thead>
+          <tr>
+            <th data-field="id">Item Name</th>
+            <th data-field="quantity">Quantity</th>
+            <th data-field="price">Price</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          %for item in items:
+          <tr>
+            <td>${item.name}</td>
+            <td>
+              <select class="select-dropdown">
+              %for j in reversed(range(0,cart[str(item.id)]+1)):
+                <option value="${j}"}>${j}</option>
+              %endfor
+              </select>
+            </td>
+            %if hasattr(item, 'price'):
+              <td>$${cart[str(item.id)] * item.price}</td>
+            %elif hasattr(item, 'price_per_day'):
+              <td>$${cart[str(item.id)] * item.price_per_day}</td>
+            %endif
+            <td>
+              <div class='options'>
+                <a rel="${item.id}" class="btn-flat waves-effect waves-light red accent-3 white-text delete-btn">Remove</a>
+              </div>
+            </td>
+          </tr>
           %endfor
-        </td>
-        <td>$${cart[str(item.id)] * item.price}</td>
-        <td>
-          <div class='options'>
-            <a rel="${item.id}" class="btn-flat waves-effect waves-light red accent-3 white-text">Delete</a>
-          </div>
-        </td>
-      </tr>
-      %endfor
-    </tbody>
-  </table>
-  <br>
-  ${form}
-  <a href="/app_store/congrats/">
-  <button class="btn waves-effect waves-light orange accent-3 " type="submit" name="action">Purchase
-    <i class="mdi-content-send right"></i>
-  </button>
-  </a>
+        </tbody>
+
+      </table>
+    </div>
+  </section>
+  <section id="address">
+    <div class="box">
+      <h2>Billing and Shipping Information</h2>
+      ${form}
+      <button class="btn waves-effect waves-light orange accent-3 " type="submit" name="action">
+        Purchase
+      </button>
+    </div>
+  </section>
+</core-animated-pages>
+<div layout vertical center-center id="paginator">
+  <core-selector id="selectbox" class="pagination" selected="0">
+    <li id="pag-left"><a href="#!"><i class="mdi-navigation-chevron-left"></i></a></li>
+    <li class="page waves-effect active" name = "0"><a href="#!">1</a></li>
+    <li class="page waves-effect" name = "1"><a href="#!">2</a></li>
+    <li id="pag-right"><a href="#!"><i class="mdi-navigation-chevron-right"></i></a></li>
+  </core-selector>
 </div>
 </%block>
