@@ -7,59 +7,61 @@
 </%block>
 
 <%block name="main">
-<core-animated-pages class="viewport" selected="0" transitions="slide-from-right">
-  <section id="cart">
-    <div class="box">
-      <h2>My Cart</h2>
-      <table class="striped">
+<div class="viewport" layout vertical>
+  <core-animated-pages selected="0" transitions="slide-from-right" flex>
+    <section id="cart" flex>
+      <div class="box" flex>
+        <h2>My Cart</h2>
+        <table class="striped">
 
-        <thead>
-          <tr>
-            <th data-field="id">Item Name</th>
-            <th data-field="quantity">Quantity</th>
-            <th data-field="price">Price</th>
-            <th>Options</th>
-          </tr>
-        </thead>
+          <thead>
+            <tr>
+              <th data-field="id">Item Name</th>
+              <th data-field="quantity">Quantity</th>
+              <th data-field="price">Price</th>
+              <th>Options</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          %for item in items:
-          <tr>
-            <td>${item.name}</td>
-            <td>
-              <select class="select-dropdown">
-              %for j in reversed(range(0,cart[str(item.id)]+1)):
-                <option value="${j}"}>${j}</option>
-              %endfor
-              </select>
-            </td>
-            %if hasattr(item, 'price'):
-              <td>$${cart[str(item.id)] * item.price}</td>
-            %elif hasattr(item, 'price_per_day'):
-              <td>$${cart[str(item.id)] * item.price_per_day}</td>
-            %endif
-            <td>
-              <div class='options'>
-                <a rel="${item.id}" class="btn-flat waves-effect waves-light red accent-3 white-text delete-btn">Remove</a>
-              </div>
-            </td>
-          </tr>
-          %endfor
-        </tbody>
+          <tbody>
+            %for item in items:
+            <tr>
+              <td>${item.name}</td>
+              <td>
+                <select class="select-dropdown">
+                %for j in reversed(range(0,cart[str(item.id)]+1)):
+                  <option value="${j}"}>${j}</option>
+                %endfor
+                </select>
+              </td>
+              %if hasattr(item, 'price'):
+                <td>$${cart[str(item.id)] * item.price}</td>
+              %elif hasattr(item, 'price_per_day'):
+                <td>$${cart[str(item.id)] * item.price_per_day}</td>
+              %endif
+              <td>
+                <div class='options'>
+                  <a rel="${item.id}" class="btn-flat waves-effect waves-light red accent-3 white-text delete-btn">Remove</a>
+                </div>
+              </td>
+            </tr>
+            %endfor
+          </tbody>
 
-      </table>
-    </div>
-  </section>
-  <section id="address">
-    <div class="box">
-      <h2>Billing and Shipping Information</h2>
-      ${form}
-      <button class="btn waves-effect waves-light orange accent-3 " type="submit" name="action">
-        Purchase
-      </button>
-    </div>
-  </section>
-</core-animated-pages>
+        </table>
+      </div>
+    </section>
+    <section id="address">
+      <div class="box">
+        <h2>Billing and Shipping Information</h2>
+        ${form}
+        <button class="btn waves-effect waves-light orange accent-3 " type="submit" name="action">
+          Purchase
+        </button>
+      </div>
+    </section>
+  </core-animated-pages>
+</div>
 <div layout vertical center-center id="paginator">
   <core-selector id="selectbox" class="pagination" selected="0">
     <li id="pag-left"><a href="#!"><i class="mdi-navigation-chevron-left"></i></a></li>

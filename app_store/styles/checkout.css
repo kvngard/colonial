@@ -25,14 +25,13 @@
 #paginator{
     width: 100vw;
 }
-.viewport{
-    height: 70vh;
-    width: 100vw;
-}
 section{
     width: 100vw;
 }
 .box{
     width: 70%;
     margin-left: 9vw;
+}
+.viewport{
+    height: 80vh;
 }
