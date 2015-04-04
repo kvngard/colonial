@@ -22,9 +22,16 @@
 </ul>
 <div class="nav-shoulder left hide-on-med-and-down"></div>
 
+<%block name="cart">
 <div class="fixed-action-btn">
   <a class="btn-floating btn-large waves-effect waves-light orange accent-3 cart-display"><i class="mdi-action-shopping-cart cart-icon"></i></a>
 </div>
+
+<div id="cart_modal" class="modal">
+  <div class="modal-content">
+  </div>
+</div>
+</%block>
 
 <main>
   <div class="row" layout horizontal center wrap>
@@ -32,9 +39,4 @@
     </%block>
   </div>
 </main>
-
-<div id="cart_modal" class="modal">
-  <div class="modal-content">
-  </div>
-</div>
 </%block>

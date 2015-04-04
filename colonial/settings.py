@@ -36,15 +36,19 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_mako_plus.controller',
+    'password_reset',
     'app_base',
     'app_home',
     'app_account',
     'app_store',
 )
 
-BOWER_INSTALLED_APPS = (
-    'jquery',
-)
+EMAIL_HOST = 'mail.colonialheritagefoundation.org'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'Kevin@colonialheritagefoundation.org'
+EMAIL_HOST_PASSWORD = '13CoKeTyTy$'
+DEFAULT_FROM_EMAIL = 'store@colonialheritagefoundation.org'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

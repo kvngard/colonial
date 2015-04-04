@@ -1,4 +1,5 @@
 from django_mako_plus.controller import view_function
+from django.core.mail import send_mail
 from . import templater
 
 

@@ -17,6 +17,11 @@
                 ${ option }
             </a>
         %endif
+        %if option2 is not None and option2 is not UNDEFINED:
+            <a class="btn-flat waves-effect waves-light btn-option" name="${ option2_link }">
+                ${ option2 }
+            </a>
+        %endif
         </form>
     </div>
 </%block>

@@ -10,6 +10,7 @@
 
 from django.db import models
 from django.core.validators import RegexValidator
+from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 # To install the local flavor package, run the command "pip install django-localflavor" in your terminal.
 # To install the imagefield field, run the command "pip install pillow".
@@ -197,6 +198,19 @@ class Item(models.Model):
     category = models.ManyToManyField(Category, related_name='+', null=True)
     clothing_detail = models.ForeignKey(
         Clothing_Detail, related_name='+', null=True)
+
+    real_type = models.ForeignKey(ContentType, editable=False)
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.real_type = self._get_real_type()
+        super(Item, self).save(*args, **kwargs)
+
+    def _get_real_type(self):
+        return ContentType.objects.get_for_model(type(self))
+
+    def cast(self):
+        return self.real_type.get_object_for_this_type(pk=self.pk)
 
 
 class Store_Item(Item):

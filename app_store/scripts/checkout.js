@@ -14,35 +14,43 @@ $(function () {
     });
 
     $('#pag-right').on('click', function(){
-      if($(".active").next(".page").length > 0) { 
+      if($(".active").next(".page").length > 0) {
         var active = $(".active");
         $(this).toggleClass( "core-selected");
-        active.toggleClass( "core-selected active" ); 
+        active.toggleClass( "core-selected active" );
         active.next(".page").toggleClass( "core-selected active" );
 
         var pages = document.querySelector('core-animated-pages');
-        pages.selected = active.next(".page").attr("name");      
+        pages.selected = active.next(".page").attr("name");
       }
     });
 
     $('#pag-left').on('click', function(){
-      if($(".active").prev(".page").length > 0) { 
+      if($(".active").prev(".page").length > 0) {
         var active = $(".active");
-        active.toggleClass( "core-selected active" ); 
+        active.toggleClass( "core-selected active" );
         active.prev(".page").toggleClass( "core-selected active" );
 
         var pages = document.querySelector('core-animated-pages');
-        pages.selected = active.prev(".page").attr("name"); 
+        pages.selected = active.prev(".page").attr("name");
       }
     });
 
     $('.page').on('click', function(){
-      if(!$(this).hasClass(".active")) { 
-        $(".active").toggleClass( "core-selected active" ); 
+      if(!$(this).hasClass(".active")) {
+        $(".active").toggleClass( "core-selected active" );
         $(this).toggleClass( "active" );
 
         var pages = document.querySelector('core-animated-pages');
-        pages.selected = $(this).attr("name"); 
+        pages.selected = $(this).attr("name");
       }
     });
+
+    $.ajax({
+      url: '/app_store/index.show_cart/',
+      success: function(data) {
+        $('#cart').html($(data).not('#checkout'));
+      },
+    });
+
 });

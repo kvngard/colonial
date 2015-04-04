@@ -16,19 +16,22 @@ def get_items():
 
     return items
 
+
 def sort_items(items):
 
     sorted_items = []
 
     for item in items:
         try:
-            item = mod.Rentable_Article.objects.get(id=item.id, quantity_on_hand__gt=0)
+            item = mod.Rentable_Article.objects.get(
+                id=item.id, quantity_on_hand__gt=0)
         except mod.Rentable_Article.DoesNotExist:
             try:
                 item = mod.Custom_Product.objects.get(id=item.id)
             except mod.Custom_Product.DoesNotExist:
                 try:
-                    item = mod.Sale_Product.objects.get(id=item.id, quantity_on_hand__gt=0)
+                    item = mod.Sale_Product.objects.get(
+                        id=item.id, quantity_on_hand__gt=0)
                 except mod.Sale_Product.DoesNotExist:
                     continue
         sorted_items.append(item)
@@ -60,7 +63,8 @@ def search(request):
     search_parameter = request.REQUEST.get('p')
 
     try:
-        items = get_items().filter(Q(name__icontains=search_parameter) | Q(description__icontains=search_parameter))
+        items = get_items().filter(Q(name__icontains=search_parameter) | Q(
+            description__icontains=search_parameter))
     except mod.Store_Item.DoesNotExist:
         return HttpResponseRedirect('/')
 
@@ -88,12 +92,14 @@ def show_cart(request, items=None):
 
 @view_function
 def add_to_cart(request):
-    params = {}
     item_id = request.REQUEST.get('i')
-    quantity = request.REQUEST.get('q')    
+    quantity = request.REQUEST.get('q')
+
+    if quantity is None:
+        quantity = 1
 
     # If there is no shopping_cart session variable, make it!
-    check_and_intialize_cart(request)    
+    check_and_intialize_cart(request)
 
     if item_id in request.session['shopping_cart'].keys():
         request.session['shopping_cart'][item_id] = int(
@@ -116,9 +122,7 @@ def delete_from_cart(request):
     params = {}
     item_id = request.REQUEST.get('i')
 
-    print(str(item_id))
     del request.session['shopping_cart'][str(item_id)]
-    # Save session variable changes
     request.session.modified = True
 
     params['items'] = mod.Sale_Product.objects.filter(
@@ -135,13 +139,18 @@ def checkout(request):
     params = {}
     params['form'] = CheckoutForm()
 
-    params['items'] = mod.Sale_Product.objects.filter(
+    items = mod.Store_Item.objects.filter(
         id__in=request.session['shopping_cart'].keys())
+    params['items'] = sort_items(items)
+
     params['cart'] = request.session['shopping_cart']
 
     total = 0
-    for item in params['items']:
-        total += params['cart'][str(item.id)] * item.price
+    for item in items:
+        if item.__class__.__name__ is "Sale_Product":
+            total += params['cart'][str(item.id)] * item.price
+        elif item.__class__.__name__ is "Rentable_Article":
+            total += params['cart'][str(item.id)] * item.price_per_day
     params['total'] = total
 
     return templater.render_to_response(request, 'checkout.html', params)

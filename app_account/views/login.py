@@ -17,11 +17,12 @@ def loginUser(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
+
             user = authenticate(username=form.cleaned_data.get(
                 'username'), password=form.cleaned_data.get('password'))
             login(request, user)
             if request.urlparams[0] != '':
-                return HttpResponse("<script> window.location.href = '/{}/{}/'</script>".format(request.urlparams[0],request.urlparams[1]))
+                return HttpResponse("<script> window.location.href = '/{}/{}/'</script>".format(request.urlparams[0], request.urlparams[1]))
             return HttpResponse('''
                 <script>
                     window.location.href = window.location.href;
@@ -38,6 +39,8 @@ def loginUser(request):
     params['function'] = 'login.loginUser'
     params['option'] = 'Sign Up'
     params['option_link'] = '/app_account/new.validate_form/'
+    params['option2'] = 'Forgot Password?'
+    params['option2_link'] = '/password_reset/'
 
     return templater.render_to_response(request, 'form.html', params)
 
