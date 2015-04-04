@@ -133,7 +133,6 @@ for data in [
      'first_name':      'Kevin',
      'last_name':       'Gardner',
      'is_superuser':    'TRUE',
-     'is_staff':        'TRUE',
      'date_hired':      datetime.datetime.now(),
      'salary':          65400.00},
     {'username':        'Reverend',
@@ -141,7 +140,6 @@ for data in [
      'first_name':      'Rebecca',
      'last_name':       'Gardner',
      'is_superuser':    'FALSE',
-     'is_staff':        'TRUE',
      'date_hired':      datetime.datetime.now(),
      'wage':            32.45}
 ]:
