@@ -324,7 +324,7 @@ class Sale(Transaction_Item):
     order_form = models.ForeignKey(
         Order_Form, related_name='+', null=True)
 
-    sale_item = models.ForeignKey(Store_Item)
+    sale_item = models.ForeignKey(Sale_Product)
 
     def __str__(self):
         return '{} {}'.format(self.amount, self.quantity)
@@ -343,7 +343,7 @@ class Rental(Transaction_Item):
     discount_percent = models.DecimalField(
         max_digits=3, decimal_places=2, null=True)
 
-    rental_item = models.ForeignKey(Store_Item)
+    rental_item = models.ForeignKey(Rentable_Article)
 
 
 class Rental_Return(models.Model):

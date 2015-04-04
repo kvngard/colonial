@@ -1,6 +1,6 @@
 from django import forms
 from ldap3 import Server, Connection, AUTH_SIMPLE, STRATEGY_SYNC, GET_ALL_INFO
-from ldap3.core.exceptions import LDAPBindError
+from ldap3.core.exceptions import LDAPBindError, LDAPPasswordIsMandatoryError
 from app_base.forms import site_model_form, site_form
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import Group
@@ -62,6 +62,8 @@ class LoginForm(site_form):
                 print(ldape)
                 raise forms.ValidationError(
                     "Sorry, that's not an existing email-password combination.")
+            except LDAPPasswordIsMandatoryError as ldape:
+                print(ldape)
 
 
 class UserEditForm(site_model_form):

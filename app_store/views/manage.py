@@ -12,7 +12,7 @@ def late(request):
     params = {}
 
     try:
-        rentals = mod.Rental_Item.objects.filter(
+        rentals = mod.Rental.objects.filter(
             date_due__lt=datetime.date.today(), return_instance__iexact=None)
     except mod.Sale_Product.DoesNotExist:
         return HttpResponseRedirect('/')
@@ -22,7 +22,7 @@ def late(request):
         today = datetime.datetime.today().replace(tzinfo=None)
         due_date = rental.date_due.replace(tzinfo=None)
         delta = today - due_date
-        dayslate[rental.rentable_article.name] = delta.days
+        dayslate[rental.rental_item.name] = delta.days
 
     params['rentals'] = rentals
     params['dayslate'] = dayslate

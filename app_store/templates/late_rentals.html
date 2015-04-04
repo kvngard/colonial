@@ -18,12 +18,12 @@
         <div class="store-item card col l2 s12">
             <div class="card-content">
               <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="${rental.rentable_article.photo.image}">
+                <img class="activator" src="${rental.rental_item.photo.image}">
               </div>
-              <span class="card-title grey-text text-darken-4">${rental.rentable_article.name}</span>
+              <span class="card-title grey-text text-darken-4">${rental.rental_item.name}</span>
               <p>Rented By: ${rental.transaction.customer}</p>
-              <p>Current Fee: <a href="#!">$${rental.rentable_article.price_per_day*dayslate[rental.rentable_article.name]}</a></p>
-              <p>Days late: ${dayslate[rental.rentable_article.name]}</p>
+              <p>Current Fee: <a href="#!">$${rental.rental_item.price_per_day*dayslate[rental.rental_item.name]}</a></p>
+              <p>Days late: ${dayslate[rental.rental_item.name]}</p>
             </div>
           </div>
         %endfor
