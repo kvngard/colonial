@@ -30,3 +30,6 @@ main{
     width: 250px;
     min-height: 64px;
 }
+.row {
+    padding-left: 250px;
+}
