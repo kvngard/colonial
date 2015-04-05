@@ -49,7 +49,8 @@ $(function () {
     $.ajax({
       url: '/app_store/index.show_cart/',
       success: function(data) {
-        $('#cart').html($(data).not('#checkout'));
+        $('#cart').html(data);
+        $('#checkout').hide()
       },
     });
 

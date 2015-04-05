@@ -1,0 +1,31 @@
+<%inherit file="app_base/templates/base.html" />
+
+<%block name="navigation_left">
+  <ul class='left' layout horizontal>
+      <div class="nav-shoulder left hide-on-med-and-down">
+          <a>Late Rentals</a>
+      </div>
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu grey-text"></i></a>
+  </ul>
+</%block>
+
+<%block name="navigation_right">
+</%block>
+
+<%block name="content">
+<ul id="slide-out" class="side-nav fixed">
+  <li>
+    <a href="/">
+      <img src="${ STATIC_URL }app_home/media/logo.svg" alt='logo' class='nav-logo' />
+    </a>
+  </li>
+</ul>
+<div class="nav-shoulder left hide-on-med-and-down"></div>
+
+<main>
+  <div class="row" layout horizontal center wrap>
+    <%block name="main">
+    </%block>
+  </div>
+</main>
+</%block>

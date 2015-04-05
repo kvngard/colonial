@@ -22,20 +22,26 @@ import datetime
 class Address(models.Model):
 
     '''
-        A user's location. Can be used to ship items or make payments.
+        A location. Can be used to ship items or locate events.
     '''
-    address1 = models.CharField(max_length=200, null=True)
-    address2 = models.CharField(max_length=200, null=True)
-    city = models.CharField(max_length=30, null=True)
-    state = USStateField(choices=US_STATES, default='')
-    zip_code = USZipCodeField(max_length=5, null=True, blank=True)
+    address1 = models.CharField(max_length=200)
+    address2 = models.CharField(max_length=200, null=True, blank=True)
+    city = models.CharField(max_length=30)
+    state = USStateField(choices=US_STATES)
+    zip_code = USZipCodeField(max_length=5)
 
     class Meta:
         ordering = ['state', 'city', 'zip_code', 'address1', 'address2']
         verbose_name_plural = 'addresses'
 
     def __str__(self):
-        return '{} {} {}, {}  {}'.format(self.address1, self.address1, self.city, self.state, self.zip_code)
+        return '{} {} {}, {} {}'.format(self.address1, self.address2, self.city, self.state, self.zip_code)
+
+    def get_line1(self):
+        return self.address1
+
+    def get_line2(self):
+        return '{}, {} {}'.format(self.city, self.state, self.zip_code)
 
 
 class Photograph(models.Model):
@@ -225,7 +231,7 @@ class Store_Item(Item):
     order_file = models.TextField(max_length=100, null=True)
 
 
-class Sale_Product(Store_Item):
+class Sale_Item(Store_Item):
 
     '''
         Any product commonly sold in the store. This conrete class is intended to
@@ -238,7 +244,7 @@ class Sale_Product(Store_Item):
     creator = models.ForeignKey(Vendor, null=True)
 
 
-class Custom_Product(Sale_Product):
+class Custom_Item(Sale_Item):
 
     '''
         A product made by an artisan and customized according to a user's
@@ -258,7 +264,7 @@ class Order_Form(models.Model):
     customer_info = models.TextField(max_length=300, null=True)
 
 
-class Rentable_Article(Store_Item):
+class Rental_Item(Store_Item):
 
     '''
         Any item in the Foundation's inventory that they are willing to rent out.
@@ -312,7 +318,8 @@ class Payment(Transaction_Item):
     '''
         An exchange of funds between an individual and the Foundation.
     '''
-    date_paid = models.DateTimeField(null=True)
+    date_paid = models.DateTimeField(default=datetime.date.today())
+    charge_id = models.CharField(max_length=40)
 
 
 class Sale(Transaction_Item):
@@ -324,12 +331,12 @@ class Sale(Transaction_Item):
     order_form = models.ForeignKey(
         Order_Form, related_name='+', null=True)
 
-    sale_item = models.ForeignKey(Sale_Product)
+    sale_item = models.ForeignKey(Sale_Item)
 
     def __str__(self):
         return '{} {}'.format(self.amount, self.quantity)
 
-    def get_custom_product_info(self):
+    def get_custom_item_info(self):
         return self.order_form.customer_info
 
 
@@ -338,12 +345,15 @@ class Rental(Transaction_Item):
     '''
         Represents the rental of a single article.
     '''
+    checkout_by_date = models.DateTimeField()
+    duration = models.IntegerField()
+    checkout_price = models.DecimalField(max_digits=10, decimal_places=2)
     date_out = models.DateTimeField(null=True)
     date_due = models.DateTimeField(null=True)
     discount_percent = models.DecimalField(
         max_digits=3, decimal_places=2, null=True)
 
-    rental_item = models.ForeignKey(Rentable_Article)
+    rental_item = models.ForeignKey(Rental_Item)
 
 
 class Rental_Return(models.Model):
@@ -407,6 +417,7 @@ class Expected_Sale_Item(models.Model):
     high_price = models.DecimalField(max_digits=10, decimal_places=2)
 
     photo = models.ForeignKey(Photograph, related_name='+', null=True)
+    event = models.ForeignKey('Event')
 
 
 class Public_Event(models.Model):
@@ -418,7 +429,7 @@ class Public_Event(models.Model):
     description = models.TextField(max_length=1000)
 
 
-class Event(models.Model):
+class Event(Public_Event):
 
     '''
         An instance of a public event, such as "The 2015 Colonial Heritage Festival at Orem".
@@ -429,8 +440,6 @@ class Event(models.Model):
     venue_name = models.TextField(max_length=200)
     address = models.ForeignKey(Address, related_name='+')
     discount_code = models.CharField(max_length=7)
-
-    public_event = models.ForeignKey(Public_Event)
 
 
 class Area(models.Model):

@@ -12,7 +12,7 @@
     width: 12rem;
 }
 .input-field{
-    margin: 0 2rem 1rem 2rem;
+    margin: 0 2rem 1rem 0;
 }
 .cart-display{
     margin:0 3rem 0 3rem;
@@ -29,8 +29,8 @@ section{
     width: 100vw;
 }
 .box{
-    width: 78%;
-    margin-left: 5vw;
+    width: 70%;
+    margin-left: 8vw;
 }
 .viewport{
     height: 80vh;

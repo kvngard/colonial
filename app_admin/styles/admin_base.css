@@ -1,0 +1,32 @@
+.nav-logo{
+    padding: 1rem;
+    width: 12rem;
+}
+main{
+    position: relative;
+}
+.store-item{
+    margin: 2rem 0 0 2rem !important;
+}
+.cart-display{
+    width: 4rem !important;
+    height: 4rem !important;
+}
+.card-content {
+    padding: 1rem;
+}
+.card-reveal {
+    left: 0;
+}
+.fixed-action-btn {
+    right: 2rem;
+    bottom: 5rem;
+}
+.cart-icon {
+    margin-top: .25rem;
+    font-size: 2rem !important;
+}
+.nav-shoulder {
+    width: 250px;
+    min-height: 64px;
+}

@@ -7,6 +7,7 @@
 </%block>
 
 <%block name="main">
+<form method="POST" action="/app_store/checkout/">
 <div class="viewport" layout vertical>
   <core-animated-pages selected="0" transitions="slide-from-right" flex>
     <section id="first" flex>
@@ -15,8 +16,15 @@
     </section>
     <section id="second">
       <div class="box">
-        <h2>Billing and Shipping Information</h2>
-        ${form}
+        <h2>Billing and Shipping Address</h2>
+        ${address_form}
+      </div>
+    </section>
+    <section id="third">
+      <div class="box">
+        <h2>Credit Card Information</h2>
+        ${credit_card_form}
+        <br />
         <button class="btn waves-effect waves-light orange accent-3 " type="submit" name="action">
           Purchase
         </button>
@@ -24,12 +32,14 @@
     </section>
   </core-animated-pages>
 </div>
+</form>
 <div layout vertical center-center id="paginator">
   <core-selector id="selectbox" class="pagination" selected="0">
-    <li id="pag-left"><a href="#!"><i class="mdi-navigation-chevron-left"></i></a></li>
+    <li id="pag-left"><a><i class="mdi-navigation-chevron-left"></i></a></li>
     <li class="page waves-effect active" name = "0"><a href="#!">1</a></li>
     <li class="page waves-effect" name = "1"><a href="#!">2</a></li>
-    <li id="pag-right"><a href="#!"><i class="mdi-navigation-chevron-right"></i></a></li>
+    <li class="page waves-effect" name = "2"><a href="#!">3</a></li>
+    <li id="pag-right"><a><i class="mdi-navigation-chevron-right"></i></a></li>
   </core-selector>
 </div>
 </%block>

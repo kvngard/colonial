@@ -6,3 +6,6 @@
 .select-wrapper{
     margin: 0 2rem 0 0;
 }
+td, th{
+    text-align: center !important;
+}

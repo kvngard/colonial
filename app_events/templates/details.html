@@ -1,0 +1,47 @@
+<%inherit file="app_base/templates/base.html" />
+
+<%block name="content">
+
+    <div class="container">
+        <h1>${ event.name }</h1>
+        <div layout horizontal>
+            <img class="materialboxed" data-caption="Park map for the event. Area numbers will be added later" width="450" src="${ event.map_file_name }" />
+            <ul class='information'>
+                <li>When: ${event.start_date} - ${event.end_date} </li>
+                <li>Where: ${ event.venue_name }</li>
+                <p><strong>Address:</strong><br />${ event.address.get_line1() }<br />${ event.address.get_line2() }</p>
+                <h4>Event Areas</h4>
+                %for area in event.area_set.all():
+                    <div>
+                        <ul>
+                            <li><strong> ${ area.name } </strong></li>
+                            <li> ${ area.description }${}</li>
+                        </ul>
+                    </div>
+                    <br />
+                %endfor
+            </ul>
+        </div>
+        <h4>Look for these artisan products at the event:</h4>
+        <div class='row' layout horizontal center>
+            %for item in event.expected_sale_item_set.all():
+                <div class="store-item card col 12 s8 m4 l2">
+                    <div class="card-image waves-effect waves-block waves-light">
+                      <img class="activator" src="${item.photo.image}">
+                    </div>
+
+                    <div class="card-content">
+                      <span class="card-title activator grey-text text-darken-4">${item.name}<i class="mdi-navigation-more-vert right"></i></span>
+                      <p><a href="#!" class="activator">$${item.low_price}</a></p>
+                    </div>
+
+                    <div class="card-reveal">
+                      <span class="card-title grey-text text-darken-4">${item.name}<i class="mdi-navigation-close right"></i></span>
+                      <p>${item.description}</p>
+                    </div>
+                  </div>
+            %endfor
+        </div>
+    </div>
+
+</%block>

@@ -1,0 +1,113 @@
+<%inherit file="app_base/templates/base.html" />
+
+<%block name="content">
+  <div class="slider fullscreen">
+    <ul class="slides">
+
+      <li>
+        <img src="${ STATIC_URL }app_events/media/food.jpg"> <!-- random image -->
+        <div class="caption center-align">
+          <h1 class="headline">The Continental Feast</h1>
+          <br/><br/>
+          <div class="row" layout horizontal center-center>
+
+            <div class="col s12 m3">
+              <div class="card">
+                <div class="card-image">
+                  <img src="${ STATIC_URL }app_events/media/volunteer.jpg">
+                  <span class="card-title">Volunteer</span>
+                </div>
+                <div class="card-content">
+                  <p>Come along and lend a hand. We love to help people learn and also
+                  appreciate anyone with historic food-making talent.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col s12 m3">
+              <div class="card">
+                <div class="card-image">
+                  <img src="${ STATIC_URL }app_events/media/enjoy.jpg">
+                  <span class="card-title">Enjoy</span>
+                </div>
+                <div class="card-content">
+                  <p>I am a very simple card. I am good at containing small bits of information.
+                  I am convenient because I require little markup to use effectively.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col s12 m3">
+              <a href='/app_events/details/The Continental Feast/'>
+                <div class="card">
+                  <div class="card-image">
+                    <img src="${ STATIC_URL }app_events/media/participate.jpg">
+                    <span class="card-title">Learn More</span>
+                  </div>
+                  <div class="card-content">
+                    <p>I am a very simple card. I am good at containing small bits of information.
+                    I am convenient because I require little markup to use effectively.</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <img src="${ STATIC_URL }app_events/media/camp.jpg"> <!-- random image -->
+        <div class="caption center-align">
+          <h1 class="headline">Rebels and Redcoats!</h1>
+          <br/><br/>
+          <div class="row" layout horizontal center-center>
+
+            <div class="col s12 m3">
+              <div class="card">
+                <div class="card-image">
+                  <img src="${ STATIC_URL }app_events/media/cheer.jpg">
+                  <span class="card-title">Participate</span>
+                </div>
+                <div class="card-content">
+                  <p>I am a very simple card. I am good at containing small bits of information.
+                  I am convenient because I require little markup to use effectively.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col s12 m3">
+              <div class="card">
+                <div class="card-image">
+                  <img src="${ STATIC_URL }app_events/media/cannon.jpg">
+                  <span class="card-title">Celebrate</span>
+                </div>
+                <div class="card-content">
+                  <p>I am a very simple card. I am good at containing small bits of information.
+                  I am convenient because I require little markup to use effectively.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col s12 m3">
+              <a href='/app_events/details/Rebels and Redcoats!/'>
+                <div class="card">
+                  <div class="card-image">
+                    <img src="${ STATIC_URL }app_events/media/learn.jpg">
+                    <span class="card-title">Learn More</span>
+                  </div>
+                  <div class="card-content">
+                    <p>I am a very simple card. I am good at containing small bits of information.
+                    I am convenient because I require little markup to use effectively.</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</%block>

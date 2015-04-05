@@ -1,12 +1,12 @@
-from django import forms
 from ldap3 import Server, Connection, AUTH_SIMPLE, STRATEGY_SYNC, GET_ALL_INFO
 from ldap3.core.exceptions import LDAPBindError, LDAPPasswordIsMandatoryError
 from app_base.forms import site_model_form, site_form
+from app_base.widgets import CheckboxSelectMultiple
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import Group
 from app_base.models import User
-from app_base.widgets import CheckboxSelectMultiple
-import json
+from django import forms
+
 
 
 class LoginForm(site_form):
@@ -42,7 +42,7 @@ class LoginForm(site_form):
                 )
 
                 # Parse the LDAP query response to get the user_info dictionary.
-                user_info = json.loads(c.response_to_json(search_results))['entries'][0]['attributes']
+                user_info = c.response[0]['attributes']
 
                 if user is None:
 

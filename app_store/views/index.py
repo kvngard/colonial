@@ -1,10 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django_mako_plus.controller import view_function
 from django.http import HttpResponseRedirect
-from app_store.storeforms import CheckoutForm
 from django.db.models import Q
 import app_base.models as mod
+from decimal import Decimal
 from . import templater
+
+reserve_percent = Decimal('0.20')
+checkout_percent = Decimal('0.80')
 
 
 def get_items():
@@ -23,26 +26,39 @@ def sort_items(items):
 
     for item in items:
         try:
-            item = mod.Rentable_Article.objects.get(
+            item = mod.Rental_Item.objects.get(
                 id=item.id, quantity_on_hand__gt=0)
-        except mod.Rentable_Article.DoesNotExist:
+        except mod.Rental_Item.DoesNotExist:
             try:
-                item = mod.Custom_Product.objects.get(id=item.id)
-            except mod.Custom_Product.DoesNotExist:
+                item = mod.Custom_Item.objects.get(id=item.id)
+            except mod.Custom_Item.DoesNotExist:
                 try:
-                    item = mod.Sale_Product.objects.get(
+                    item = mod.Sale_Item.objects.get(
                         id=item.id, quantity_on_hand__gt=0)
-                except mod.Sale_Product.DoesNotExist:
+                except mod.Sale_Item.DoesNotExist:
                     continue
         sorted_items.append(item)
 
     return sorted_items
 
 
-def check_and_intialize_cart(request):
-    if 'shopping_cart' not in request.session:
-        request.session['shopping_cart'] = {}
-    return
+def calculate_total(request):
+
+    cart = request.session['shopping_cart']
+
+    items = mod.Store_Item.objects.filter(id__in=cart.keys())
+    items = sort_items(items)
+
+    total = 0
+
+    for item in items:
+
+        if item.__class__.__name__ is "Sale_Item" or item.__class__.__name__ is "Custom_Item":
+            total += round(cart[str(item.id)]['quantity'] * item.price, 2)
+        elif item.__class__.__name__ is "Rental_Item":
+            total += round(cart[str(item.id)]['duration'] * item.price_per_day * reserve_percent, 2)
+
+    return total
 
 
 @view_function
@@ -63,8 +79,9 @@ def search(request):
     search_parameter = request.REQUEST.get('p')
 
     try:
-        items = get_items().filter(Q(name__icontains=search_parameter) | Q(
-            description__icontains=search_parameter))
+        items = get_items().filter(
+            Q(name__icontains=search_parameter) |
+            Q(description__icontains=search_parameter))
     except mod.Store_Item.DoesNotExist:
         return HttpResponseRedirect('/')
 
@@ -74,18 +91,32 @@ def search(request):
     return templater.render_to_response(request, 'search_display.html', params)
 
 
+def check_and_intialize_cart(request):
+    if 'shopping_cart' not in request.session:
+        request.session['shopping_cart'] = {}
+    return
+
+
 @view_function
 def show_cart(request, items=None):
     params = {}
     check_and_intialize_cart(request)
+    cart = request.session['shopping_cart']
 
-    if items is None:
-        items = mod.Store_Item.objects.filter(
-            id__in=request.session['shopping_cart'].keys())
-
+    items = mod.Store_Item.objects.filter(
+            id__in=cart.keys())
     items = sort_items(items)
-    params['items'] = items
-    params['cart'] = request.session['shopping_cart']
+
+    rentals = [ i for i in items if i.__class__.__name__ is "Rental_Item" ]
+    sales = [ i for i in items if i.__class__.__name__ is "Sale_Item"
+                                  or i.__class__.__name__ is "Custom_Item" ]
+
+    params['rentals'] = rentals
+    params['sales'] = sales
+    params['total'] = calculate_total(request)
+    params['cart'] = cart
+    params['reserve_percent'] = reserve_percent
+    params['checkout_percent'] = checkout_percent
 
     return templater.render_to_response(request, 'cart.html', params)
 
@@ -93,6 +124,7 @@ def show_cart(request, items=None):
 @view_function
 def add_to_cart(request):
     item_id = request.REQUEST.get('i')
+    duration = request.REQUEST.get('d')
     quantity = request.REQUEST.get('q')
 
     if quantity is None:
@@ -101,17 +133,21 @@ def add_to_cart(request):
     # If there is no shopping_cart session variable, make it!
     check_and_intialize_cart(request)
 
-    if item_id in request.session['shopping_cart'].keys():
-        request.session['shopping_cart'][item_id] = int(
-            request.session['shopping_cart'][item_id]) + int(quantity)
+    cart = request.session['shopping_cart']
+
+    if item_id in cart.keys():
+        cart[item_id]['quantity'] = int(cart[item_id]) + int(quantity)
     else:
-        request.session['shopping_cart'][item_id] = int(quantity)
+        cart[item_id] = {}
+        cart[item_id]['quantity'] = int(quantity)
+
+    if duration != '':
+        cart[item_id]['duration'] = int(duration)
 
     # Save session variable changes
     request.session.modified = True
 
-    items = mod.Store_Item.objects.filter(
-        id__in=request.session['shopping_cart'].keys())
+    items = mod.Store_Item.objects.filter(id__in=cart.keys())
 
     return show_cart(request, items)
 
@@ -120,37 +156,11 @@ def add_to_cart(request):
 def delete_from_cart(request):
 
     params = {}
+    cart = request.session['shopping_cart']
     item_id = request.REQUEST.get('i')
 
-    del request.session['shopping_cart'][str(item_id)]
+    del cart[str(item_id)]
     request.session.modified = True
 
-    params['items'] = mod.Sale_Product.objects.filter(
-        id__in=request.session['shopping_cart'].keys())
-    params['cart'] = request.session['shopping_cart']
+    return show_cart(request)
 
-    return templater.render_to_response(request, 'cart.html', params)
-
-
-@view_function
-@login_required(redirect_field_name='/app_store/')
-def checkout(request):
-
-    params = {}
-    params['form'] = CheckoutForm()
-
-    items = mod.Store_Item.objects.filter(
-        id__in=request.session['shopping_cart'].keys())
-    params['items'] = sort_items(items)
-
-    params['cart'] = request.session['shopping_cart']
-
-    total = 0
-    for item in items:
-        if item.__class__.__name__ is "Sale_Product":
-            total += params['cart'][str(item.id)] * item.price
-        elif item.__class__.__name__ is "Rentable_Article":
-            total += params['cart'][str(item.id)] * item.price_per_day
-    params['total'] = total
-
-    return templater.render_to_response(request, 'checkout.html', params)

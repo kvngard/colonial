@@ -1,0 +1,63 @@
+<%inherit file="app_base/templates/base.html" />
+
+<%block name="content">
+<div id='cart' class='container'>
+    <div id='table'>
+      <h3>Your Purchase</h3>
+      %if len(t.sale_set.all()) > 0:
+      <table class="striped">
+        <caption><h4>Purchases</h4></caption>
+        <thead>
+          <tr>
+            <th data-field="id">Item Name</th>
+            <th data-field="quantity">Quantity</th>
+            <th data-field="price">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          %for sale in t.sale_set.all():
+          <tr>
+            <td>${ sale.sale_item.name }</td>
+            <td>${ sale.quantity}</td>
+            <td><strong>$${ sale.amount }</strong></td>
+          </tr>
+          %endfor
+        </tbody>
+      </table>
+      %endif
+      %if len(t.rental_set.all()) > 0:
+      <br />
+      <table class="striped">
+        <caption><h4>Rentals</h4></caption>
+        <thead>
+          <tr>
+            <th data-field="id">Item Name</th>
+            <th data-field="duration">Rental Duration</th>
+            <th data-field="checkout_by">Checkout By</th>
+            <th data-field="price">Reservation Cost</th>
+            <th data-field="price">Cost to Pick Up</th>
+          </tr>
+        </thead>
+        <tbody>
+          %for rental in t.rental_set.all():
+          <tr>
+            <td>${ rental.rental_item.name }</td>
+            <td>${ rental.duration } Days</td>
+            <td>${ '{:%m/%d/%y}'.format(rental.checkout_by_date.date()) }</td>
+            <td><strong>$${ rental.amount }</strong></td>
+            <td>$${ rental.checkout_price }</td>
+          </tr>
+          %endfor
+        </tbody>
+      </table>
+      %endif
+
+      <br />
+      <h5>Total Paid: $${ paid }</h5>
+      <br />
+    </div>
+    <a href='/app_store/' class="btn waves-effect waves-light orange accent-3" type="submit" name="action">
+      Back to the Market
+    </a>
+</div>
+</%block>

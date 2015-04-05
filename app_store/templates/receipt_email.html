@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div>
+      <div>
+        <h3>Your Purchase</h3>
+        %if len(t.sale_set.all()) > 0:
+        <h4>Purchases</h4>
+        <table style='text-align:center;'>
+          <thead>
+            <tr>
+              <th>Item Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            %for sale in t.sale_set.all():
+            <tr>
+              <td>${ sale.sale_item.name }</td>
+              <td>${ sale.quantity}</td>
+              <td><strong>$${ sale.amount }</strong></td>
+            </tr>
+            %endfor
+          </tbody>
+        </table>
+        %endif
+        %if len(t.rental_set.all()) > 0:
+        <br />
+        <h4>Rentals</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Item Name</th>
+              <th>Rental Duration</th>
+              <th>Checkout By</th>
+              <th>Reservation Cost</th>
+              <th>Cost to Pick Up</th>
+            </tr>
+          </thead>
+          <tbody>
+            %for rental in t.rental_set.all():
+            <tr>
+              <td>${ rental.rental_item.name }</td>
+              <td>${ rental.duration } Days</td>
+              <td>${ '{:%m/%d/%y}'.format(rental.checkout_by_date.date()) }</td>
+              <td><strong>$${ rental.amount }</strong></td>
+              <td>$${ rental.checkout_price }</td>
+            </tr>
+            %endfor
+          </tbody>
+        </table>
+        %endif
+
+        <br />
+        <h1>Total Paid: $${ paid }</h1>
+        <br />
+      </div>
+  </div>
+</body>
+</html>

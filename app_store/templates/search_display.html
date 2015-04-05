@@ -2,11 +2,11 @@
 
 <%block name="content">
 %for item in items:
-  <div class="store-item card col 12 s8 m4 l2"> 
+  <div class="store-item card col 12 s8 m4 l2">
     <div class="card-image waves-effect waves-block waves-light">
       <img class="activator" src="${item.photo.image}">
     </div>
-    
+
     <div class="card-content">
       <span class="card-title activator grey-text text-darken-4">${item.name}<i class="mdi-navigation-more-vert right"></i></span>
       %if hasattr(item, 'price'):
@@ -21,7 +21,7 @@
       <p>${item.description}</p>
       <form>
 
-        %if item.quantity_on_hand:
+       %if item.quantity_on_hand and hasattr(item, 'price'):
         <select class="select-dropdown">
           <option value="" disabled selected>Quantity</option>
           %if item.quantity_on_hand <= 5:
@@ -36,9 +36,20 @@
         </select>
         %endif
 
+        %if hasattr(item, 'price_per_day'):
+        <p class="range-field">
+          <label>Rental Duration (Days)</label>
+          <input type="range" value='1' id="Duration" min="1" max="90" />
+        </p>
+        %endif
+
         <a rel="${item.id}" href="#cart_modal" class="btn-flat waves-effect waves-light orange accent-3 white-text cart-trigger">Add to Cart</a>
       </form>
     </div>
   </div>
 %endfor
+</%block>
+
+<%block name="js">
+  <script type="text/javascript" src="${ STATIC_URL }app_store/scripts/default_display.js"></script>
 </%block>

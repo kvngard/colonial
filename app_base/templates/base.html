@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
         <title>Colonial Heritage Foundation</title>
 
-        <!-- CSS  -->        
+        <!-- CSS  -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css">
         ## render the css with the same name as this page
         ${ static_renderer.get_template_css(request, context)  }
@@ -28,7 +28,7 @@
         <!--  Scripts-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
-        <script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script> 
+        <script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script>
 
         <link rel="import" href="/static/app_base/components/polymer/polymer.html"/>
         <%block name="polymer"></%block>
@@ -47,7 +47,8 @@
 
                 <ul class="right" id="account-mgmt">
                 <%block name="navigation_right">
-                  <li><a href="/app_store/" class="grey-text text-darken-3">Shop</a></li>
+                  <li><a href="/app_events/" class="grey-text text-darken-3">Events</a></li>
+                  <li><a href="/app_store/" class="grey-text text-darken-3">Market</a></li>
                 </%block>
                 %if request.user.is_authenticated():
                   <li>

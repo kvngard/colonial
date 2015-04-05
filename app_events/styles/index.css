@@ -1,0 +1,20 @@
+.slider{
+    z-index: -100;
+}
+.headline{
+    font-family: 'IM Fell DW Pica', serif;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 5rem;
+}
+.card-title{
+  font-weight: 400 !important;
+}
+.card-content p{
+    color: #424242 !important;
+}
+.col{
+    margin: 0 4rem;
+}

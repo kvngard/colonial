@@ -20,6 +20,12 @@ def loginUser(request):
 
             user = authenticate(username=form.cleaned_data.get(
                 'username'), password=form.cleaned_data.get('password'))
+
+            if 'shopping_cart' in request.session:
+                cart = request.session['shopping_cart']
+                login(request, user)
+                request.session['shopping_cart'] = cart
+
             login(request, user)
             if request.urlparams[0] != '':
                 return HttpResponse("<script> window.location.href = '/{}/{}/'</script>".format(request.urlparams[0], request.urlparams[1]))
@@ -34,11 +40,15 @@ def loginUser(request):
 
     params['redirect_app'] = redirect_app
     params['redirect_func'] = redirect_func
+
     params['form'] = form
     params['title'] = title
+
     params['function'] = 'login.loginUser'
+
     params['option'] = 'Sign Up'
     params['option_link'] = '/app_account/new.validate_form/'
+
     params['option2'] = 'Forgot Password?'
     params['option2_link'] = '/password_reset/'
 
