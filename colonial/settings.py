@@ -45,12 +45,11 @@ INSTALLED_APPS = (
     'app_store',
 )
 
-EMAIL_HOST = 'mail.colonialheritagefoundation.org'
-EMAIL_HOST_USER = 'store@colonialheritagefoundation.org'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'chfsite@gmail.com'
 EMAIL_HOST_PASSWORD = '13CoKeTyTy$'
-DEFAULT_FROM_EMAIL = 'store@colonialheritagefoundation.org'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_PORT = 25
+EMAIL_PORT = 587
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
