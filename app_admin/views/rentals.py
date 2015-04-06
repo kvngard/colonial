@@ -1,15 +1,41 @@
 from django.contrib.auth.decorators import permission_required
 from django_mako_plus.controller import view_function
 from django.http import HttpResponseRedirect
+from app_store.storeforms import Credit_Card_Form
 from django.core.mail import send_mail
 import app_base.models as mod
 from django import forms
 from . import templater
 import datetime
 
+@view_function
+def checkout(request):
+    params = {}
+
+    try:
+        rentals = mod.Rental.objects.filter(
+            checkout_by_date__gte=datetime.date.today(),
+            date_out__exact=None)
+    except mod.Rental.DoesNotExist:
+        return HttpResponseRedirect('/')
+
+    if request.method == 'POST':
+
+        print(request.POST)
+        '''credit_card_form = Credit_Card_Form(request.POST, total=total, user=request.user)
+
+        if address_form.is_valid() and credit_card_form.is_valid():
+            a = address_form.save()
+            t = create_transaction(request, credit_card_form.resp, total, a)
+            return HttpResponseRedirect('/app_store/checkout.receipt/{}'.format(t.id))'''
+
+    params['title'] = "Checkout Rentals"
+    params['rentals'] = rentals
+
+    return templater.render_to_response(request, 'checkout_rentals.html', params)
 
 @view_function
-def process_request(request):
+def late(request):
     params = {}
     days_late_filter = request.urlparams[0]
 
@@ -20,19 +46,38 @@ def process_request(request):
     except mod.Rental.DoesNotExist:
         return HttpResponseRedirect('/')
 
-    ninety = []
+    dayslate = {}
 
-    sixty = []
+    for rental in rentals:
+        today = datetime.date.today()
+        due_date = rental.date_due.date()
+        delta = today - due_date
+        dayslate[rental.rental_item.name] = delta.days
 
-    thirty = []
+    params['rentals'] =rentals
+    params['dayslate'] = dayslate
 
-    new = []
+    return templater.render_to_response(request, 'late_rentals.html', params)
+
+@view_function
+def report(request):
+
+    params = {}
+
+    try:
+        rentals = mod.Rental.objects.filter(
+            date_due__lt=datetime.date.today(),
+            return_instance__iexact=None)
+    except mod.Rental.DoesNotExist:
+        return HttpResponseRedirect('/')
+
+    ninety, sixty, thirty, new = [], [], [], []
 
     dayslate = {}
 
     for rental in rentals:
-        today = datetime.datetime.today().replace(tzinfo=None)
-        due_date = rental.date_due.replace(tzinfo=None)
+        today = datetime.date.today()
+        due_date = rental.date_due.date()
         delta = today - due_date
         dayslate[rental.rental_item.name] = delta.days
 
@@ -45,24 +90,25 @@ def process_request(request):
         else:
             ninety.append(rental)
 
-    params['new'] = new
-    params['thirty'] = thirty
-    params['sixty'] = sixty
-    params['ninety'] = ninety
+    params['rentals'] = rentals
     params['dayslate'] = dayslate
+    params['ninety'] = ninety
+    params['sixty'] = sixty
+    params['thirty'] = thirty
+    params['new'] = new
 
-    emailbody = templater.render(request, 'late_rentals_email.html', params)
-    print(request.user.email)
-    print(send_mail(
+    emailbody = templater.render(request, 'rental_report_email.html', params)
+
+    send_mail(
         'Colonial Heritage Foundation - Receipt',
         emailbody,
         'chfsite@gmail.com',
         [request.user.email],
         html_message=emailbody,
         fail_silently=False
-    ))
+    )
 
-    return templater.render_to_response(request, 'late_rentals.html', params)
+    return templater.render_to_response(request, 'rental_report.html', params)
 
 @view_function
 def return_rental(request):

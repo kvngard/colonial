@@ -440,7 +440,7 @@ print('Sales initialized')
 for data in [
     {'quantity_on_hand':    "1",
      'shelf_location':      "D-5.1",
-     'name':                "Robes of Sir Gove",
+     'name':                "Allen's Robe",
      'description':         "Professor Gove's very own robe.",
      'serial_number':       "R4516",
      'value':               20.99,

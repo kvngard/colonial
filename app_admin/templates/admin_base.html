@@ -1,11 +1,13 @@
-<%inherit file="app_base/templates/base.html" />
+<%inherit file="/app_base/templates/base.html" />
 
 <%block name="navigation_left">
   <ul class='left' layout horizontal>
-      <div class="nav-shoulder left hide-on-med-and-down">
-          <a>Late Rentals</a>
-      </div>
+      <div class="nav-shoulder left hide-on-med-and-down"></div>
       <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu grey-text"></i></a>
+      <div class="input-field grey-text text-darken-4">
+        <input id="search" type="text" required>
+        <label for="search"><i class="mdi-action-search grey-text"></i></label>
+      </div>
   </ul>
 </%block>
 
@@ -14,11 +16,24 @@
 
 <%block name="content">
 <ul id="slide-out" class="side-nav fixed">
-  <li>
-    <a href="/">
-      <img src="${ STATIC_URL }app_home/media/logo.svg" alt='logo' class='nav-logo' />
-    </a>
-  </li>
+  <li><a href="/">
+      <img src="${ STATIC_URL }app_home/media/logo.svg" alt='profile_image' class='nav-logo' />
+  </a></li>
+    <ul class="collapsible" data-collapsible="accordion">
+      <li>
+        <a href='/app_admin/users/' class="collapsible-header bold">Users</a>
+      </li>
+      <li>
+        <a class="collapsible-header bold">Rentals</a>
+        <div class="collapsible-body">
+          <ul>
+            <li><a href='/app_admin/rentals.checkout/'>Checkout Rentals</a></li>
+            <li><a href='/app_admin/rentals.late/'>Late Rentals</a></li>
+            <li><a href='/app_admin/rentals.report/'>Overdue Report</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
 </ul>
 <div class="nav-shoulder left hide-on-med-and-down"></div>
 

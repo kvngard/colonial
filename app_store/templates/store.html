@@ -1,4 +1,4 @@
-<%inherit file="app_base/templates/base.html" />
+<%inherit file="/app_base/templates/base.html" />
 
 <%block name="navigation_left">
   <ul class='left' layout horizontal>
@@ -34,6 +34,9 @@
 </%block>
 
 <main>
+  %if title:
+    <h1>${ title }</h1>
+  %endif
   <div class="row" layout horizontal center wrap>
     <%block name="main">
     </%block>

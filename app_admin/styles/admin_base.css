@@ -33,3 +33,27 @@ main{
 .row {
     padding-left: 250px;
 }
+.action-btn {
+    padding: 1rem;
+    margin-bottom: -2rem;
+}
+.side-nav .collapsible {
+    margin: 0;
+}
+ul.side-nav.fixed .collapsible li a{
+    font-size: 13px;
+    line-height: 44px;
+    height: 44px;
+}
+.side-nav.fixed a {
+    display: block;
+    padding: 0 15px;
+    color: #444;
+}
+.side-nav .collapsible li {
+    padding: 0;
+}
+.bold {
+    font-size: 1.2rem !important;
+    font-weight: bold;
+}

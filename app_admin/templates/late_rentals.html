@@ -1,78 +1,28 @@
 <%inherit file="admin_base.html" />
 
 <%block name="main">
-  <div class='row'>
-    <h4>>30 Days Late</h4>
-    %for rental in new:
-    %if dayslate[rental.rental_item.name] < 30:
-      <a href="/app_admin/rentals.return_rental/${ rental.id }">
-        <div class="store-item card col s12 l2">
-          <div class="card-content">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="${rental.rental_item.photo.image}">
-            </div>
-            <span class="card-title grey-text text-darken-4">${rental.rental_item.name}</span>
-            <p>Rented By: ${rental.transaction.customer}</p>
-            <p>Current Fee: <a href="#!">$${rental.rental_item.price_per_day*dayslate[rental.rental_item.name]}</a></p>
-            <p>Days late: ${dayslate[rental.rental_item.name]}</p>
-          </div>
-        </div>
-        </a>
-      %endif
-    %endfor
-    </div>
-    <div class='row'>
-      <h4>30 Days Late</h4>
-      %for rental in sixty:
-      <a href="/app_admin/rentals.return_rental/${ rental.id }">
-        <div class="store-item card col s12 l2">
-          <div class="card-content">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="${rental.rental_item.photo.image}">
-            </div>
-            <span class="card-title grey-text text-darken-4">${rental.rental_item.name}</span>
-            <p>Rented By: ${rental.transaction.customer}</p>
-            <p>Current Fee: <a href="#!">$${rental.rental_item.price_per_day*dayslate[rental.rental_item.name]}</a></p>
-            <p>Days late: ${dayslate[rental.rental_item.name]}</p>
-          </div>
-        </div>
-        </a>
+  <div class='container'>
+    <h1>Late Rentals</h1>
+    <table class="striped">
+    <tr>
+        <th>Item</th>
+        <th>Rented By</th>
+        <th>Current Fee</th>
+        <th>Days Late</th>
+        <th>Options</th>
+    </tr>
+      %for rental in rentals:
+          <tr>
+              <td> ${ rental.rental_item.name } </td>
+              <td> ${ rental.transaction.customer } </td>
+              <td> $${ rental.rental_item.price_per_day*dayslate[rental.rental_item.name] } </td>
+              <td> ${ dayslate[rental.rental_item.name] } </td>
+              <td layout veritcal>
+                  <a href="/app_admin/users.edit/${ user.id }/" class="btn btn-xs btn-default">Return</a>
+                  <a href="/app_admin/users.delete/${ user.id }/" class="btn red darken-3">Notify</a>
+              </td>
+          </tr>
       %endfor
-    </div>
-    <div class='row'>
-      <h4>60 Days Late</h4>
-      %for rental in thirty:
-      <a href="/app_admin/rentals.return_rental/${ rental.id }">
-        <div class="store-item card col s12 l2">
-          <div class="card-content">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="${rental.rental_item.photo.image}">
-            </div>
-            <span class="card-title grey-text text-darken-4">${rental.rental_item.name}</span>
-            <p>Rented By: ${rental.transaction.customer}</p>
-            <p>Current Fee: <a href="#!">$${rental.rental_item.price_per_day*dayslate[rental.rental_item.name]}</a></p>
-            <p>Days late: ${dayslate[rental.rental_item.name]}</p>
-          </div>
-        </div>
-        </a>
-      %endfor
-    </div>
-    <div class='row'>
-      <h4>90 Days Late</h4>
-      %for rental in ninety:
-      <a href="/app_admin/rentals.return_rental/${ rental.id }">
-        <div class="store-item card col s12 l2">
-          <div class="card-content">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="${rental.rental_item.photo.image}">
-            </div>
-            <span class="card-title grey-text text-darken-4">${rental.rental_item.name}</span>
-            <p>Rented By: ${rental.transaction.customer}</p>
-            <p>Current Fee: <a href="#!">$${rental.rental_item.price_per_day*dayslate[rental.rental_item.name]}</a></p>
-            <p>Days late: ${dayslate[rental.rental_item.name]}</p>
-          </div>
-        </div>
-        </a>
-      %endfor
-    </div>
+  </table>
+</div>
 </%block>
