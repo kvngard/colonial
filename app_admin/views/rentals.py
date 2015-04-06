@@ -9,7 +9,7 @@ import datetime
 
 
 @view_function
-@permission_required('manager_rights')
+
 def process_request(request):
     params = {}
     days_late_filter = request.urlparams[0]
@@ -55,7 +55,7 @@ def process_request(request):
     emailbody = templater.render(request, 'late_rentals_email.html', params)
     print(request.user.email)
     print(send_mail(
-        'Colonial Heritage Foundation - Receipt',
+        'Colonial Heritage Foundation',
         emailbody,
         'chfsite@gmail.com',
         [request.user.email],
@@ -66,7 +66,7 @@ def process_request(request):
     return templater.render_to_response(request, 'late_rentals.html', params)
 
 @view_function
-@permission_required('manager_rights')
+
 def return_rental(request):
     params = {}
     rental = request.urlparams[0]
