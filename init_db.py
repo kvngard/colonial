@@ -429,7 +429,6 @@ for data in [
 
     si = bmod.Sale()
     for k, v in data.items():
-        print(k,v)
         setattr(si, k, v)
     si.save()
 

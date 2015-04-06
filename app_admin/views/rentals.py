@@ -3,6 +3,7 @@ from django_mako_plus.controller import view_function
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 import app_base.models as mod
+from django import forms
 from . import templater
 import datetime
 
@@ -68,24 +69,27 @@ def process_request(request):
 @permission_required('manager_rights')
 def return_rental(request):
     params = {}
-    days_late_filter = request.urlparams[0]
+    rental = request.urlparams[0]
+
+    return_form = Return_Form()
+    damage_form = Damage_Form()
 
     try:
-        rentals = mod.Rental.objects.filter(
-            date_due__lt=datetime.date.today(),
-            return_instance__iexact=None)
+        rental = mod.Rental.objects.get(id=rental)
     except mod.Rental.DoesNotExist:
         return HttpResponseRedirect('/')
 
-    dayslate = {}
+    params['return_form'] = return_form
+    params['damage_form'] = damage_form
 
-    for rental in rentals:
-        today = datetime.datetime.today().replace(tzinfo=None)
-        due_date = rental.date_due.replace(tzinfo=None)
-        delta = today - due_date
-        dayslate[rental.rental_item.name] = delta.days
+    return templater.render_to_response(request, 'return_rental.html', params)
 
-    params['rentals'] = rentals
-    params['dayslate'] = dayslate
+class Return_Form(forms.ModelForm):
 
-    return templater.render_to_response(request, 'late_rentals.html', params)
+    class Meta:
+        model = mod.Rental_Return
+
+class Damage_Form(forms.ModelForm):
+
+    class Meta:
+        model = mod.Damage_Fee

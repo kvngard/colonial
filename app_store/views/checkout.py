@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django_mako_plus.controller import view_function
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
+from app_store.cart import get_cart
 import app_base.models as mod
 from . import templater
 import datetime
@@ -48,7 +49,7 @@ def receipt(request):
     params['t'] = t
     params['paid'] = paid
 
-    emailbody = templater.render(request, 'receipt_email.html', params)
+    '''emailbody = templater.render(request, 'receipt_email.html', params)
     print(request.user.email)
     print(send_mail(
         'Colonial Heritage Foundation - Receipt',
@@ -57,19 +58,14 @@ def receipt(request):
         [request.user.email],
         html_message=emailbody,
         fail_silently=False
-    ))
+    ))'''
 
     return templater.render_to_response(request, 'receipt.html', params)
 
 
 def create_transaction(request, response, amount, address):
 
-    cart = request.session['shopping_cart']
-    items = sort_items(mod.Store_Item.objects.filter(
-            id__in=cart.keys()))
-    rentals = [ i for i in items if i.__class__.__name__ is "Rental_Item" ]
-    sales = [ i for i in items if i.__class__.__name__ is "Sale_Item"
-                                  or i.__class__.__name__ is "Custom_Item" ]
+    cart = get_cart(request)
 
     t = mod.Transaction()
     t.ships_to = address
@@ -82,29 +78,19 @@ def create_transaction(request, response, amount, address):
     p.charge_id = response['ID']
     p.save()
 
-    for item in rentals:
-        r = mod.Rental()
+    for r in cart.rentals.values():
         r.transaction = t
-        r.duration = cart[str(item.id)]['duration']
-        r.amount = r.duration * item.price_per_day * reserve_percent
-        r.rental_item = item
-        r.checkout_by_date = datetime.date.today() + datetime.timedelta(14)
-        r.checkout_price = r.duration * item.price_per_day - r.amount
         r.save()
 
-        i = mod.Store_Item.objects.get(id=item.id)
+        i = mod.Store_Item.objects.get(id=r.rental_item.id)
         i.quantity_on_hand -= 1
         i.save()
 
-    for item in sales:
-        s = mod.Sale()
+    for s in cart.sales.values():
         s.transaction = t
-        s.quantity = cart[str(item.id)]['quantity']
-        s.amount = s.quantity * item.price
-        s.sale_item = item
         s.save()
 
-        i = mod.Store_Item.objects.get(id=item.id)
+        i = mod.Store_Item.objects.get(id=s.sale_item.id)
         i.quantity_on_hand -= s.quantity
         i.save()
 

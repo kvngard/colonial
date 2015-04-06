@@ -16,6 +16,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 # To install the imagefield field, run the command "pip install pillow".
 from localflavor.us.us_states import US_STATES
 from localflavor.us.models import USStateField, USZipCodeField, PhoneNumberField, USSocialSecurityNumberField
+from decimal import Decimal
 import datetime
 
 
@@ -307,7 +308,7 @@ class Transaction_Item(models.Model):
 
     amount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
 
-    transaction = models.ForeignKey('Transaction')
+    transaction = models.ForeignKey('Transaction', null=True, blank=True)
 
     class Meta:
         abstract = True
@@ -339,12 +340,22 @@ class Sale(Transaction_Item):
     def get_custom_item_info(self):
         return self.order_form.customer_info
 
+    def create_sale(item, quantity):
+        s = Sale()
+        s.quantity = quantity
+        s.amount = Decimal(quantity) * item.price
+        s.sale_item = item
+
+        return s
+
 
 class Rental(Transaction_Item):
 
     '''
         Represents the rental of a single article.
     '''
+    reserve_percent = Decimal('0.20')
+
     checkout_by_date = models.DateTimeField()
     duration = models.IntegerField()
     checkout_price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -354,6 +365,16 @@ class Rental(Transaction_Item):
         max_digits=3, decimal_places=2, null=True)
 
     rental_item = models.ForeignKey(Rental_Item)
+
+    def create_rental(item, duration):
+        r = Rental()
+        r.duration = duration
+        r.amount = Decimal(duration) * item.price_per_day * Rental.reserve_percent
+        r.rental_item = item
+        r.checkout_by_date = datetime.date.today() + datetime.timedelta(14)
+        r.checkout_price = Decimal(r.duration) * item.price_per_day - r.amount
+
+        return r
 
 
 class Rental_Return(models.Model):

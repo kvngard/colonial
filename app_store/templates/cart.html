@@ -22,20 +22,20 @@
           </tr>
         </thead>
         <tbody>
-          %for item in sales:
+          %for s in sales.values():
           <tr>
-            <td>${item.name}</td>
+            <td>${ s.sale_item.name }</td>
             <td>
               <select class="select-dropdown">
-                %for j in reversed(range(0,cart[str(item.id)]['quantity']+1)):
+                %for j in reversed( range( 0, s.quantity+1 ) ):
                   <option value="${j}"}>${j}</option>
                 %endfor
               </select>
             </td>
-            <td>$${cart[str(item.id)]['quantity'] * item.price}</td>
+            <td>$${ s.amount }</td>
             <td>
               <div class='options'>
-                <a rel="${item.id}" class="btn-flat waves-effect waves-light red accent-3 white-text delete-btn">Remove</a>
+                <a rel="${ s.sale_item.id }" class="btn-flat waves-effect waves-light red accent-3 white-text delete-btn">Remove</a>
               </div>
             </td>
           </tr>
@@ -58,16 +58,16 @@
           </tr>
         </thead>
         <tbody>
-          %for item in rentals:
+          %for r in rentals.values():
           <tr>
-            <td>${item.name}</td>
-            <td>${ cart[str(item.id)]['duration'] } Days</td>
-            <td>$${ round(cart[str(item.id)]['duration'] * item.price_per_day * reserve_percent,2) }</td>
-            <td>$${ round(cart[str(item.id)]['duration'] * item.price_per_day * checkout_percent,2) }</td>
-            <td>$${ round(cart[str(item.id)]['duration'] * item.price_per_day,2) }</td>
+            <td>${ r.rental_item.name }</td>
+            <td>${ r.duration } Days</td>
+            <td>$${ round(r.amount, 2) }</td>
+            <td>$${ round(r.checkout_price, 2) }</td>
+            <td>$${ round(r.amount + r.checkout_price, 2)  }</td>
             <td>
               <div class='options'>
-                <a rel="${item.id}" class="btn-flat waves-effect waves-light red accent-3 white-text delete-btn">Remove</a>
+                <a rel="${ r.rental_item.id }" class="btn-flat waves-effect waves-light red accent-3 white-text delete-btn">Remove</a>
               </div>
             </td>
           </tr>
@@ -77,7 +77,7 @@
       %endif
 
       <br />
-      <h5>Total Purchase Price: $${ total }</h5>
+      <h5>Total Purchase Price: $${ round(total,2) }</h5>
 
       <script type="text/javascript" src="${ STATIC_URL }app_store/scripts/cart.js"></script>
     </div>
