@@ -9,7 +9,10 @@ import datetime
 
 
 @view_function
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 def process_request(request):
     params = {}
     days_late_filter = request.urlparams[0]
@@ -66,7 +69,10 @@ def process_request(request):
     return templater.render_to_response(request, 'late_rentals.html', params)
 
 @view_function
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 def return_rental(request):
     params = {}
     rental = request.urlparams[0]
