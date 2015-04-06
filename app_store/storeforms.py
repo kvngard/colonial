@@ -31,9 +31,18 @@ class Credit_Card_Form(forms.Form):
         card_type = self.cleaned_data.get('cc_type')
         card_number = self.cleaned_data.get('number')
         cvc = self.cleaned_data.get('cvc')
-        exp_month = self.cleaned_data.get('exp_date').split('/')[0]
-        exp_year = self.cleaned_data.get('exp_date').split('/')[1]
+        if '/' in self.cleaned_data.get('exp_date'):
+            exp_month = self.cleaned_data.get('exp_date').split('/')[0]
+            exp_year = self.cleaned_data.get('exp_date').split('/')[1]
         full_name = self.cleaned_data.get('name')
+
+        #Test block
+        card_type = 'Visa'
+        card_number = '4732817300654'
+        cvc = '411'
+        exp_month = '10'
+        exp_year = '15'
+        full_name = 'Cosmo Limesandal'
 
         r = requests.post(API_URL, data={
                 'apiKey': API_KEY,

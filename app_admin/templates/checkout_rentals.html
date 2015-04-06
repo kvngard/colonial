@@ -1,0 +1,37 @@
+<%inherit file="admin_base.html" />
+
+<%block name="main">
+  <div class='container'>
+    <h1>Checkout Rentals</h1>
+    <form method="POST" action="/app_admin/rentals.checkout/">
+    <table class="striped">
+    <tr>
+        <th>Item</th>
+        <th>Rented By</th>
+        <th>Rental Duration</th>
+        <th>Check Out By</th>
+        <th>Check Out Price</th>
+        <th>Options</th>
+    </tr>
+      %for rental in rentals:
+          <tr>
+              <td> ${ rental.rental_item.name } </td>
+              <td> ${ rental.transaction.customer } </td>
+              <td> ${ rental.duration } Days</td>
+              <td> ${ '{:%m/%d/%y}'.format(rental.checkout_by_date.date()) } </td>
+              <td> $${ rental.checkout_price } </td>
+              <td>
+                <p>
+                  <input name='${rental.id}' type="checkbox" id="${rental.id}" />
+                  <label for="${rental.id}">Check Out</label>
+                </p>
+              </td>
+          </tr>
+      %endfor
+  </table>
+  <button class="btn waves-effect waves-light orange accent-3 " type="submit" name="action">
+    Finalize
+  </button>
+  </form>
+</div>
+</%block>

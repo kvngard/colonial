@@ -1,0 +1,94 @@
+<%inherit file="admin_base.html" />
+
+<%block name="main">
+  <div class='container'>
+    <h5>>30 Days Late</h5>
+    <table class="striped">
+      <tr>
+        <th>Item</th>
+        <th>Rented By</th>
+        <th>Current Fee</th>
+        <th>Days Late</th>
+        <th>Options</th>
+      </tr>
+      %for rental in new:
+        <tr>
+            <td> ${ rental.rental_item.name } </td>
+            <td> ${ rental.transaction.customer } </td>
+            <td> $${ rental.rental_item.price_per_day*dayslate[rental.rental_item.name] } </td>
+            <td> ${ dayslate[rental.rental_item.name] } </td>
+            <td layout veritcal>
+                <a href="/app_admin/users.edit/${ user.id }/" class="btn btn-xs btn-default">Return</a>
+                <a href="/app_admin/users.delete/${ user.id }/" class="btn red darken-3">Notify</a>
+            </td>
+        </tr>
+      %endfor
+    </table>
+    <h5>30 Days Late</h5>
+    <table class="striped">
+      <tr>
+        <th>Item</th>
+        <th>Rented By</th>
+        <th>Current Fee</th>
+        <th>Days Late</th>
+        <th>Options</th>
+      </tr>
+      %for rental in thirty:
+        <tr>
+            <td> ${ rental.rental_item.name } </td>
+            <td> ${ rental.transaction.customer } </td>
+            <td> $${ rental.rental_item.price_per_day*dayslate[rental.rental_item.name] } </td>
+            <td> ${ dayslate[rental.rental_item.name] } </td>
+            <td layout veritcal>
+                <a href="/app_admin/users.edit/${ user.id }/" class="btn btn-xs btn-default">Return</a>
+                <a href="/app_admin/users.delete/${ user.id }/" class="btn red darken-3">Notify</a>
+            </td>
+        </tr>
+      %endfor
+    </table>
+    <h5>60 Days Late</h5>
+    <table class="striped">
+      <tr>
+        <th>Item</th>
+        <th>Rented By</th>
+        <th>Current Fee</th>
+        <th>Days Late</th>
+        <th>Options</th>
+      </tr>
+      %for rental in sixty:
+        <tr>
+            <td> ${ rental.rental_item.name } </td>
+            <td> ${ rental.transaction.customer } </td>
+            <td> $${ rental.rental_item.price_per_day*dayslate[rental.rental_item.name] } </td>
+            <td> ${ dayslate[rental.rental_item.name] } </td>
+            <td layout veritcal>
+                <a href="/app_admin/users.edit/${ user.id }/" class="btn btn-xs btn-default">Return</a>
+                <a href="/app_admin/users.delete/${ user.id }/" class="btn red darken-3">Notify</a>
+            </td>
+        </tr>
+      %endfor
+    </table>
+    <h5>90 Days Late</h5>
+    <table class="striped">
+      <tr>
+        <th>Item</th>
+        <th>Rented By</th>
+        <th>Current Fee</th>
+        <th>Days Late</th>
+        <th>Options</th>
+      </tr>
+      %for rental in ninety:
+        <tr>
+            <td> ${ rental.rental_item.name } </td>
+            <td> ${ rental.transaction.customer } </td>
+            <td> $${ rental.rental_item.price_per_day*dayslate[rental.rental_item.name] } </td>
+            <td> ${ dayslate[rental.rental_item.name] } </td>
+            <td layout veritcal>
+                <a href="/app_admin/users.edit/${ user.id }/" class="btn btn-xs btn-default">Return</a>
+                <a href="/app_admin/users.delete/${ user.id }/" class="btn red darken-3">Notify</a>
+            </td>
+        </tr>
+      %endfor
+    </table>
+</div>
+</%block>

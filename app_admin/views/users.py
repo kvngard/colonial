@@ -17,6 +17,22 @@ def process_request(request):
 
 
 @view_function
+def create(request):
+    params = {}
+    form = CustomUserCreationForm()
+
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/app_admin/users/')
+
+    params['form'] = form
+    params['title'] = 'Create User'
+    return templater.render_to_response(request, 'create_user.html', params)
+
+
+@view_function
 def edit(request):
     try:
         user = User.objects.get(id=request.urlparams[0])
@@ -48,19 +64,3 @@ def delete(request):
     user.delete()
 
     return HttpResponseRedirect('/app_admin/users/')
-
-
-@view_function
-def create(request):
-    params = {}
-    form = CustomUserCreationForm()
-
-    if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/app_admin/users/')
-
-    params['form'] = form
-    params['title'] = 'Create User'
-    return templater.render_to_response(request, 'form.html', params)
