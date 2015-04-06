@@ -49,16 +49,16 @@ def receipt(request):
     params['t'] = t
     params['paid'] = paid
 
-    '''emailbody = templater.render(request, 'receipt_email.html', params)
+    emailbody = templater.render(request, 'receipt_email.html', params)
     print(request.user.email)
     print(send_mail(
         'Colonial Heritage Foundation - Receipt',
         emailbody,
-        'store@colonialheritagefoundation.org',
+        'chfsite@gmail.com',
         [request.user.email],
         html_message=emailbody,
         fail_silently=False
-    ))'''
+    ))
 
     return templater.render_to_response(request, 'receipt.html', params)
 

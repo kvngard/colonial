@@ -57,7 +57,7 @@ def process_request(request):
     print(send_mail(
         'Colonial Heritage Foundation - Receipt',
         emailbody,
-        'store@colonialheritagefoundation.org',
+        'chfsite@gmail.com',
         [request.user.email],
         html_message=emailbody,
         fail_silently=False
