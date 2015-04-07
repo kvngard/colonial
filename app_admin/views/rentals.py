@@ -3,7 +3,6 @@ from django_mako_plus.controller import view_function
 from app_base.widgets import RadioSelect
 from app_store.storeforms import Credit_Card_Form
 from django.http import HttpResponseRedirect
-from app_base.forms import site_model_form
 from django.core.mail import send_mail
 import app_base.models as mod
 from decimal import Decimal
@@ -17,14 +16,16 @@ def process_request(request):
     params = {}
 
     try:
-        late_rentals = mod.Rental.objects.filter(
-            date_due__lt=datetime.date.today(),
-            return_instance__iexact=None)
+        rentals = mod.Rental.objects.filter(
+            return_instance__iexact=None).filter(
+            date_due__gte=datetime.date.today())
     except mod.Rental.DoesNotExist:
         return HttpResponseRedirect('/')
 
     try:
-        rentals = mod.Rental.objects.exclude(id__in=late_rentals.values('id'))
+        late_rentals = mod.Rental.objects.filter(
+            return_instance__iexact=None).filter(
+            date_due__lt=datetime.date.today())
     except mod.Rental.DoesNotExist:
         return HttpResponseRedirect('/')
 
@@ -216,7 +217,7 @@ def check_in(request):
                 lf.amount = Decimal(lf.days_late * rental.rental_item.price_per_day)
                 lf.save()
 
-        return HttpResponseRedirect('/app_admin/rentals.summary/')
+        return HttpResponseRedirect('/app_admin/rentals/')
 
     params['rental'] = rental
     params['return_form'] = return_form
