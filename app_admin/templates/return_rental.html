@@ -1,10 +1,19 @@
 <%inherit file="admin_base.html" />
 
 <%block name="main">
-    <form>
-    <div class='row container'>
+    <form method="POST">
+    <div class='row container' action='/app_admin/rentals.check_in/${rental.id}'>
+        <h1>Return</h1>
+        <h5>Item: ${rental.rental_item.name}</h5>
+        <h5>Rented By: ${rental.transaction.customer}</h5>
+        <h5>Date Due: ${'{:%m/%d/%y}'.format(rental.checkout_by_date.date())}</h5>
         ${return_form}
+        <br />
+        <h4>Damages Fee (If Applicable)</h4>
         ${damage_form}
+        <button class="btn waves-effect waves-light" type="submit">
+            Submit
+        </button>
     </div>
     </form>
 </%block>

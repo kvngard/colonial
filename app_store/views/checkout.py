@@ -22,7 +22,7 @@ def process_request(request):
     params['total'] = total
 
     if request.method == 'POST':
-
+        print(request)
         address_form = Address_Form(request.POST)
         credit_card_form = Credit_Card_Form(request.POST, total=total, user=request.user)
 

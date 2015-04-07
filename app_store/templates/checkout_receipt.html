@@ -1,0 +1,38 @@
+<%inherit file="/app_base/templates/base.html" />
+
+<%block name="content">
+<div id='cart' class='container'>
+    <div id='table'>
+      <h3>Rentals Checked Out</h3>
+      %if len(rentals) > 0:
+      <br />
+      <table class="striped">
+        <caption><h4>Rentals</h4></caption>
+        <thead>
+          <tr>
+            <th data-field="id">Item Name</th>
+            <th data-field="checkout_by">Due Date</th>
+            <th data-field="price">Paid</th>
+          </tr>
+        </thead>
+        <tbody>
+          %for rental in rentals:
+          <tr>
+            <td>${ rental.rental_item.name }</td>
+            <td>${ '{:%m/%d/%y}'.format(rental.date_due) }</td>
+            <td>$${ rental.checkout_price }</td>
+          </tr>
+          %endfor
+        </tbody>
+      </table>
+      %endif
+
+      <br />
+      <h5>Total Paid: $${ total }</h5>
+      <br />
+    </div>
+    <a href='/app_admin/rentals.checkout/' class="btn waves-effect waves-light orange accent-3" type="submit" name="action">
+      Checkout More Rentals
+    </a>
+</div>
+</%block>

@@ -294,8 +294,6 @@ class Transaction(models.Model):
         'Address', related_name='+', null=True, blank=True)
     shipped_by = models.ForeignKey(
         'User', related_name='shippedby', null=True, blank=True)
-    handled_by = models.ForeignKey(
-        'User', related_name='handledby', null=True, blank=True)
     customer = models.ForeignKey('User', related_name='orders')
 
 
@@ -309,6 +307,7 @@ class Transaction_Item(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
 
     transaction = models.ForeignKey('Transaction', null=True, blank=True)
+    handled_by = models.ForeignKey('User', null=True, blank=True)
 
     class Meta:
         abstract = True
@@ -376,14 +375,26 @@ class Rental(Transaction_Item):
 
         return r
 
+    def __str__(self):
+        return '{} - {}, Due: {:%m/%d/%y}'.format(self.rental_item.name, self.transaction.customer, self.date_due.date())
+
 
 class Rental_Return(models.Model):
 
     '''
         Represents the return of one rented item.
     '''
-    return_condition = models.TextField(max_length=200, null=True)
-    date_returned = models.DateTimeField(null=True)
+    POOR = 'Poor'
+    GOOD = 'Good'
+    EXCELLENT = 'Excellent'
+    CONDITIONS = (
+        ('Poor', 'Poor'),
+        ('Good', 'Good'),
+        ('Excellent', 'Excellent'),
+    )
+
+    return_condition = models.CharField(max_length=14, choices=CONDITIONS, default=POOR)
+    date_in = models.DateTimeField(null=True)
 
     rental = models.ForeignKey(Rental, related_name='return_instance')
     handled_by = models.ForeignKey(

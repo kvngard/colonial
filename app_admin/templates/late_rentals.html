@@ -18,8 +18,8 @@
               <td> $${ rental.rental_item.price_per_day*dayslate[rental.rental_item.name] } </td>
               <td> ${ dayslate[rental.rental_item.name] } </td>
               <td layout veritcal>
-                  <a href="/app_admin/users.edit/${ user.id }/" class="btn btn-xs btn-default">Return</a>
-                  <a href="/app_admin/users.delete/${ user.id }/" class="btn red darken-3">Notify</a>
+                  <a href="/app_admin/rentals.check_in/${ rental.id }" class="btn btn-xs btn-default">Return</a>
+                  <a href="/app_admin/rentals.check_in/${ rental.id }" class="btn red darken-3">Notify</a>
               </td>
           </tr>
       %endfor

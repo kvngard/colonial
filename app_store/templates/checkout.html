@@ -7,19 +7,50 @@
 </%block>
 
 <%block name="main">
-<form method="POST" action="/app_store/checkout/">
+%if rentals is UNDEFINED:
+  <form method="POST" action="/app_store/checkout/">
+%else:
+  <form method="POST" action="/app_admin/rentals.charge/">
+%endif
 <div class="viewport" layout vertical>
   <core-animated-pages selected="0" transitions="slide-from-right" flex>
     <section id="first" flex>
-      <div class="box" id="cart">
-      </div>
+      %if rentals is UNDEFINED:
+        <div class="box" id="cart">
+        </div>
+      %else:
+        <div class="box">
+            <h1>Rentals to Check Out</h1>
+            <form method="POST" action="/app_admin/rentals.checkout/">
+            <table class="striped">
+            <tr>
+                <th>Item</th>
+                <th>Rented By</th>
+                <th>Rental Duration</th>
+                <th>Check Out Price</th>
+            </tr>
+            %for rental in rentals:
+                <tr>
+                    <td> ${ rental.rental_item.name } </td>
+                    <td> ${ rental.transaction.customer } </td>
+                    <td> ${ rental.duration } Days</td>
+                    <td> $${ rental.checkout_price } </td>
+                </tr>
+            %endfor
+          </table>
+          <br />
+          <h5>Total Purchase Price: $${ total }</h5>
+        </div>
+      %endif
     </section>
+    %if address_form is not UNDEFINED:
     <section id="second">
       <div class="box">
         <h2>Billing and Shipping Address</h2>
         ${address_form}
       </div>
     </section>
+    %endif
     <section id="third">
       <div class="box">
         <h2>Credit Card Information</h2>
@@ -38,7 +69,9 @@
     <li id="pag-left"><a><i class="mdi-navigation-chevron-left"></i></a></li>
     <li class="page waves-effect active" name = "0"><a href="#!">1</a></li>
     <li class="page waves-effect" name = "1"><a href="#!">2</a></li>
+    %if rentals is UNDEFINED:
     <li class="page waves-effect" name = "2"><a href="#!">3</a></li>
+    %endif
     <li id="pag-right"><a><i class="mdi-navigation-chevron-right"></i></a></li>
   </core-selector>
 </div>

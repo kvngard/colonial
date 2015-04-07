@@ -557,7 +557,7 @@ print('Rentals initialized')
 
 for data in [
     {'rental':              bmod.Rental.objects.get(date_due=datetime.date.today() - datetime.timedelta(2)),
-     'date_returned':       datetime.date.today() - datetime.timedelta(1),
+     'date_in':       datetime.date.today() - datetime.timedelta(1),
      'return_condition':    'It looks like someone lit it on fire.',
      'handled_by':          bmod.Employee.objects.get(username='Reverend')}
 ]:
@@ -572,7 +572,7 @@ print('Rental Returns initialized')
 
 #           CREATE FEES           #
 
-delta = bmod.Rental_Return.objects.first().date_returned - bmod.Rental.objects.get(id=bmod.Rental_Return.objects.first().rental.id).date_due
+delta = bmod.Rental_Return.objects.first().date_in - bmod.Rental.objects.get(id=bmod.Rental_Return.objects.first().rental.id).date_due
 
 for data in [
     {'transaction':     bmod.Transaction.objects.get(date=datetime.date.today()),
