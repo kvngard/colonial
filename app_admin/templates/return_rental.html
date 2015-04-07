@@ -2,7 +2,7 @@
 
 <%block name="main">
     <form method="POST">
-    <div class='row container' action='/app_admin/rentals.check_in/${rental.id}'>
+    <div class='container' action='/app_admin/rentals.check_in/${rental.id}'>
         <h1>Return</h1>
         <h5>Item: ${rental.rental_item.name}</h5>
         <h5>Rented By: ${rental.transaction.customer}</h5>

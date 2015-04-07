@@ -1,0 +1,50 @@
+<%inherit file="admin_base.html" />
+
+<%block name="main">
+<div class='container'>
+  <h1>Rentals</h1>
+  <table class="striped">
+    <tr>
+      <th>Item</th>
+      <th>Rented By</th>
+      <th>Days Remaining</th>
+      <th>Options</th>
+    </tr>
+    %for rental in rentals:
+      <tr>
+        <td> ${ rental.rental_item.name } </td>
+        <td> ${ rental.transaction.customer } </td>
+        <td> ${ (today - rental.date_due.date()).days } Days</td>
+        <td layout veritcal>
+            <a href="/app_admin/rentals.check_in/${ rental.id }" class="btn btn-xs btn-default">Return</a>
+            <a href="/app_admin/rentals.notify/${ rental.id }" class="btn red darken-3">Notify</a>
+        </td>
+      </tr>
+    %endfor
+  </table>
+</div>
+<div class='container'>
+  <h1>Late Rentals</h1>
+  <table class="striped">
+    <tr>
+        <th>Item</th>
+        <th>Rented By</th>
+        <th>Current Fee</th>
+        <th>Days Late</th>
+        <th>Options</th>
+    </tr>
+      %for rental in late_rentals:
+          <tr>
+              <td> ${ rental.rental_item.name } </td>
+              <td> ${ rental.transaction.customer } </td>
+              <td> $${ rental.rental_item.price_per_day*(today - rental.date_due.date()).days } </td>
+              <td> ${ (today - rental.date_due.date()).days } Days</td>
+              <td layout veritcal>
+                  <a href="/app_admin/rentals.check_in/${ rental.id }" class="btn btn-xs btn-default">Return</a>
+                  <a href="/app_admin/rentals.notify/${ rental.id }" class="btn red darken-3">Notify</a>
+              </td>
+          </tr>
+      %endfor
+  </table>
+</div>
+</%block>

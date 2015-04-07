@@ -387,13 +387,14 @@ class Rental_Return(models.Model):
     POOR = 'Poor'
     GOOD = 'Good'
     EXCELLENT = 'Excellent'
+
     CONDITIONS = (
         ('Poor', 'Poor'),
         ('Good', 'Good'),
         ('Excellent', 'Excellent'),
     )
 
-    return_condition = models.CharField(max_length=14, choices=CONDITIONS, default=POOR)
+    return_condition = models.CharField(max_length=10, choices=CONDITIONS, default=POOR)
     date_in = models.DateTimeField(null=True)
 
     rental = models.ForeignKey(Rental, related_name='return_instance')

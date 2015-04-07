@@ -1,14 +1,38 @@
 from django.contrib.auth.decorators import permission_required
 from django_mako_plus.controller import view_function
-from app_base.widgets import CheckboxSelectMultiple
+from app_base.widgets import RadioSelect
 from app_store.storeforms import Credit_Card_Form
 from django.http import HttpResponseRedirect
 from app_base.forms import site_model_form
 from django.core.mail import send_mail
 import app_base.models as mod
+from decimal import Decimal
 from django import forms
 from . import templater
 import datetime
+
+
+@view_function
+def process_request(request):
+    params = {}
+
+    try:
+        late_rentals = mod.Rental.objects.filter(
+            date_due__lt=datetime.date.today(),
+            return_instance__iexact=None)
+    except mod.Rental.DoesNotExist:
+        return HttpResponseRedirect('/')
+
+    try:
+        rentals = mod.Rental.objects.exclude(id__in=late_rentals.values('id'))
+    except mod.Rental.DoesNotExist:
+        return HttpResponseRedirect('/')
+
+    params['rentals'] = rentals
+    params['late_rentals'] = late_rentals
+    params['today'] = datetime.date.today()
+
+    return templater.render_to_response(request, 'rentals.html', params)
 
 
 @view_function
@@ -100,31 +124,6 @@ def charge(request):
 
 
 @view_function
-def late(request):
-    params = {}
-
-    try:
-        rentals = mod.Rental.objects.filter(
-            date_due__lt=datetime.date.today(),
-            return_instance__iexact=None)
-    except mod.Rental.DoesNotExist:
-        return HttpResponseRedirect('/')
-
-    dayslate = {}
-
-    for rental in rentals:
-        today = datetime.date.today()
-        due_date = rental.date_due.date()
-        delta = today - due_date
-        dayslate[rental.rental_item.name] = delta.days
-
-    params['rentals'] = rentals
-    params['dayslate'] = dayslate
-
-    return templater.render_to_response(request, 'late_rentals.html', params)
-
-
-@view_function
 def report(request):
 
     params = {}
@@ -141,9 +140,7 @@ def report(request):
     dayslate = {}
 
     for rental in rentals:
-        today = datetime.date.today()
-        due_date = rental.date_due.date()
-        delta = today - due_date
+        delta = datetime.date.today() - rental.date_due.date()
         dayslate[rental.rental_item.name] = delta.days
 
         if delta.days < 30:
@@ -193,21 +190,33 @@ def check_in(request):
         return_form = Return_Form(request.POST)
         damage_form = Damage_Form(request.POST)
 
-        if damage_form.is_valid():
-            damange_form.save()
-
         if return_form.is_valid():
-            rr = hmod.Rental_Return()
-            rr.return_condition = return_form.cleaned_data['return_condition'],
+            rr = return_form.save(commit=False)
             rr.date_in = datetime.date.today()
-            rr.rental= rental
+            rr.rental = rental
             rr.handled_by = request.user
             rr.save()
 
-            if rr.date_in > rental.date_due:
-                print(rr.date_in - rental.date_due)
+            i = mod.Store_Item.objects.get(id=rental.rental_item.id)
+            i.quantity_on_hand += 1
+            i.save()
 
-        HttpResponseRedirect('/app_admin/rentals.late/')
+            if damage_form.is_valid():
+                df = damage_form.save(commit=False)
+                df.rental_return = rr
+                df.handled_by = request.user
+                df.transaction = rental.transaction
+                df.save()
+
+            if rr.date_in > rental.date_due.date():
+                lf = mod.Late_Fee()
+                lf.days_late = (rr.date_in - rental.date_due.date()).days
+                lf.rental_return = rr
+                lf.transaction = rental.transaction
+                lf.amount = Decimal(lf.days_late * rental.rental_item.price_per_day)
+                lf.save()
+
+        return HttpResponseRedirect('/app_admin/rentals.summary/')
 
     params['rental'] = rental
     params['return_form'] = return_form
@@ -216,17 +225,17 @@ def check_in(request):
     return templater.render_to_response(request, 'return_rental.html', params)
 
 
-class Return_Form(site_model_form):
+class Return_Form(forms.ModelForm):
 
     class Meta:
         model = mod.Rental_Return
         fields = ['return_condition']
         widgets = {
-            'return_condition': CheckboxSelectMultiple(),
+            'return_condition': RadioSelect(),
         }
 
 
-class Damage_Form(site_model_form):
+class Damage_Form(forms.ModelForm):
 
     class Meta:
         model = mod.Damage_Fee

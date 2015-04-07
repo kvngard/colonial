@@ -2,6 +2,12 @@
 
 <%block name="main">
   <div class='container'>
+    %if len(rentals) == 0:
+      <div id='prompt'>
+        <h2>No Items To Check Out</h2>
+        <p>It looks like all rentals have either been returned or checked out. Good Job!</a></p>
+      </div>
+    %else:
     <h1>Checkout Rentals</h1>
     <form method="POST" action="/app_admin/rentals.checkout/">
     <table class="striped">
@@ -33,5 +39,6 @@
     Finalize
   </button>
   </form>
+  %endif
 </div>
 </%block>
