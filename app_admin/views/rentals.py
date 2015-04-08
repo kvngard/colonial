@@ -14,7 +14,7 @@ import datetime
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def process_request(request):
     params = {}
 
@@ -40,7 +40,7 @@ def process_request(request):
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def checkout(request):
     params = {}
 
@@ -82,7 +82,7 @@ def checkout(request):
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def charge(request):
 
     if request.method == "POST":
@@ -130,7 +130,7 @@ def charge(request):
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def report(request):
 
     params = {}
@@ -181,7 +181,7 @@ def report(request):
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def check_in(request):
     params = {}
     id = request.urlparams[0]

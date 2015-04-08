@@ -1,6 +1,6 @@
 from django_mako_plus.controller import view_function
 from django.http import HttpResponseRedirect
-from app_store.cart import Cart, get_cart, save_cart
+from app_store.cart import get_cart, save_cart
 from django.db.models import Q
 import app_base.models as mod
 from decimal import Decimal
@@ -110,7 +110,6 @@ def add_to_cart(request):
 @view_function
 def delete_from_cart(request):
 
-    params = {}
     cart = get_cart(request)
     item_id = int(request.REQUEST.get('i'))
 

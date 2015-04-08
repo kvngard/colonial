@@ -47,7 +47,7 @@
 
                 <ul class="right" id="account-mgmt">
                 <%block name="navigation_right">
-                  %if request.user.groups.filter(name='Manager'):
+                  %if request.user.groups.filter(name='Manager') or request.user.groups.filter(name='Admin'):
                     <li><a href="/app_admin/" class="grey-text text-darken-3">Manage</a></li>
                   %endif
                   <li><a href="/app_events/" class="grey-text text-darken-3">Events</a></li>

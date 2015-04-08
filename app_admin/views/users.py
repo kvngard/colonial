@@ -8,7 +8,7 @@ from . import templater
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def process_request(request):
     users = User.objects.all()
     params = {}
@@ -17,7 +17,7 @@ def process_request(request):
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def create(request):
     params = {}
     form = CustomUserCreationForm()
@@ -34,7 +34,7 @@ def create(request):
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def edit(request):
     try:
         user = User.objects.get(id=request.urlparams[0])
@@ -56,7 +56,7 @@ def edit(request):
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def delete(request):
 
     try:

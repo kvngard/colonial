@@ -5,7 +5,7 @@ from . import templater
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def process_request(request):
     users = User.objects.all()
     params = {}
