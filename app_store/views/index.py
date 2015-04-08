@@ -92,10 +92,23 @@ def show_cart(request):
 
 
 @view_function
+def show_mobile_cart(request):
+    params = {}
+    cart = get_cart(request)
+
+    params['rentals'] = cart.rentals
+    params['sales'] = cart.sales
+    params['total'] = calculate_total(request)
+
+    return templater.render_to_response(request, 'cart_mobile.html', params)
+
+
+@view_function
 def add_to_cart(request):
     item_id = request.REQUEST.get('i')
     duration = request.REQUEST.get('d')
     quantity = request.REQUEST.get('q')
+    mobile = request.REQUEST.get('m')
 
     item = mod.Item.cast(mod.Store_Item.objects.get(id=item_id))
 
@@ -103,6 +116,9 @@ def add_to_cart(request):
     cart.add_to_cart(item, duration=duration, quantity=quantity)
 
     save_cart(request, cart)
+
+    if mobile == 'mobile':
+        return show_mobile_cart(request)
 
     return show_cart(request)
 

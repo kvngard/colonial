@@ -11,12 +11,47 @@
   </ul>
 </%block>
 
-<%block name="content">
+<%block name="navigation_right"></%block>
+
+<%block name='mobile_nav'>
 <ul id="slide-out" class="side-nav fixed">
-  <li><a href="/">
-      <img src="${ STATIC_URL }app_home/media/logo.svg" alt='profile_image' class='nav-logo' />
-  </a></li>
+  <li>
+    <a href="/">
+        <img src="${ STATIC_URL }app_home/media/logo.svg" alt='profile_image' class='nav-logo' />
+    </a>
+  </li>
+  <a id='cart-btn' class="btn btn-large waves-effect waves-light text-white orange accent-3 hide-on-med-and-up" href='/app_store/index.show_mobile_cart/'>
+      <i class="mdi-action-shopping-cart"></i>
+  </a>
+  <ul class="collapsible" data-collapsible="accordion">
+  %if request.user.is_authenticated():
+    <li class='hide-on-med-and-up'>
+      <a class="collapsible-header bold">
+        ${ request.user.get_full_name() }
+         <img src='${ request.user.profile_image }' alt='profile_image' class='circle profile-sm responsive-img' />
+      </a>
+      <div class="collapsible-body">
+        <ul>
+          <li class='hide-on-med-and-up'><a href='/app_account/manage/'>Edit Profile</a></li>
+          <li class='hide-on-med-and-up'><a href='/app_account/login.logoutUser/'>Log Out</a></li>
+        </ul>
+      </div>
+    </li>
+  %else:
+      <li><a class="collapsible-header bold" href="/app_account/login/" >Log In</a></li>
+      <li><a class="collapsible-header bold"  href="/app_account/signup/">Sign Up</a></li>
+  %endif
+    <li>
+      <a class="collapsible-header bold">Events</a>
+    </li>
+    <li>
+      <a class="collapsible-header bold" href='/app_store/'>Market</a>
+    </li>
+  </ul>
 </ul>
+</%block>
+
+<%block name="content">
 
 <%block name="cart">
 <div class="fixed-action-btn hide-on-med-and-down">

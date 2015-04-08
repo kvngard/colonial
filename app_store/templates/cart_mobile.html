@@ -1,6 +1,6 @@
-<%inherit file="app_base/templates/base_ajax.html" />
+<%inherit file="store.html" />
 
-<%block name="content">
+<%block name="main">
 <div id='cart'>
     %if len(rentals) == 0 and len(sales) == 0:
       <div id='prompt' layout vertical center>
@@ -12,7 +12,6 @@
       <h3>Shopping Cart</h3>
       %if len(sales) > 0:
       <table class="striped">
-        <caption><h4>Purchases</h4></caption>
         <thead>
           <tr>
             <th data-field="id">Item Name</th>
@@ -46,13 +45,10 @@
       %if len(rentals) > 0:
       <br />
       <table class="striped">
-        <caption><h4>Rentals</h4></caption>
         <thead>
           <tr>
             <th data-field="id">Item Name</th>
             <th data-field="duration">Rental Duration</th>
-            <th data-field="price">Reservation Payment</th>
-            <th data-field="price">Pick Up Payment</th>
             <th data-field="price">Cost to Rent</th>
             <th>Options</th>
           </tr>
@@ -62,9 +58,7 @@
           <tr>
             <td>${ r.rental_item.name }</td>
             <td>${ r.duration } Days</td>
-            <td>$${ round(r.amount, 2) }</td>
-            <td>$${ round(r.checkout_price, 2) }</td>
-            <td>$${ round(r.amount + r.checkout_price, 2)  }</td>
+            <td>$${ round(r.amount + r.checkout_price, 2) }</td>
             <td>
               <div class='options'>
                 <a rel="${ r.rental_item.id }" class="btn-flat waves-effect waves-light red accent-3 white-text delete-btn">Remove</a>
@@ -79,7 +73,7 @@
       <br />
       <h5>*Total Purchase Price: $${ round(total,2) }</h5>
       %if len(rentals) > 0:
-        <h6>*This price only includes the cost to <strong>reserve</strong> the rentals in your cart.<br /> You will need to pay the remainder when you check out the items.</h6>
+      <h6>This price only reflects the cost to reserve the rentals in your cart. You will need to pay the remainder when you check out the items.</h6>
       %endif
 
       <script type="text/javascript" src="${ STATIC_URL }app_store/scripts/cart.js"></script>

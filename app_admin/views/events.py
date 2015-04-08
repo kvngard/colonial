@@ -22,9 +22,10 @@ def create(request):
     form = EventEditForm()
     if request.method == 'POST':
         form = EventEditForm(request.POST, request.FILES)
+        print(form)
         if form.is_valid():
             newimg = form.save(commit=False)
-            newimg.map_file_name = request.FILES['map_file_name']
+            newimg.map_file = request.FILES['map_file']
             newimg.save()
             return HttpResponseRedirect('/app_admin/events/')
 

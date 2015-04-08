@@ -10,7 +10,7 @@ main{
 }
 @media only screen and (max-width: 992px) {
     .store-item {
-        margin: 2rem 0 0 2rem !important;
+        margin: 2rem 0 0 0 !important;
     }
 }
 .cart-display{
@@ -24,7 +24,7 @@ main{
     left: 0;
 }
 .fixed-action-btn {
-    right: 2rem;
+    right: 3rem;
     bottom: 5rem;
 }
 .cart-icon {
@@ -34,4 +34,33 @@ main{
 .nav-shoulder {
     width: 250px;
     min-height: 200px;
+}
+.action-btn {
+    padding: 1rem;
+    margin-bottom: -2rem;
+}
+.side-nav .collapsible {
+    margin: 0;
+}
+ul.side-nav.fixed .collapsible li a{
+    font-size: 1rem;
+    line-height: 3rem;
+    height: 3rem;
+}
+.side-nav.fixed a {
+    display: block;
+    padding: 0 15px;
+    color: #444;
+}
+.side-nav .collapsible li {
+    padding: 0;
+}
+.bold {
+    font-size: 1.2rem !important;
+    font-weight: bold;
+}
+#cart-btn {
+    color: white;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
