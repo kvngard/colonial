@@ -469,8 +469,8 @@ class Event(Public_Event):
     '''
     start_date = models.DateField()
     end_date = models.DateField()
-    map_file_name = models.TextField(max_length=200)
-    venue_name = models.TextField(max_length=200)
+    map_file_name = models.ImageField(upload_to='maps/')
+    venue_name = models.CharField(max_length=200)
     address = models.ForeignKey(Address, related_name='+')
     discount_code = models.CharField(max_length=7)
 
