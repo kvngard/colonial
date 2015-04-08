@@ -2,4 +2,21 @@
 
 <%block name="main">
   <h1>Manage Site Content</h1>
+
+<div class="row" layout horizontal center wrap>
+%for user in users:
+	<div class="col s12 m3">
+	  <div class="card">
+	    <div class="card-image">
+	      <img src="${ user.profile_image }">
+	      <span class="card-title"></span>
+	    </div>
+	    <div class="card-content">
+	      ${user.first_name} ${user.last_name}<br>
+	    </div>
+	  </div>
+	</div>
+%endfor
+</div>
+
 </%block>

@@ -8,4 +8,5 @@ from . import templater
 def process_request(request):
     params = {}
 
+
     return templater.render_to_response(request, 'index.html', params)

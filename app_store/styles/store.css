@@ -8,6 +8,11 @@ main{
 .store-item{
     margin: 2rem 0 0 2rem !important;
 }
+@media only screen and (max-width: 992px) {
+    .store-item {
+        margin: 2rem 0 0 2rem !important;
+    }
+}
 .cart-display{
     width: 4rem !important;
     height: 4rem !important;

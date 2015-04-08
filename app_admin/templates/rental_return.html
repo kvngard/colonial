@@ -7,9 +7,12 @@
         <h5>Rented By: ${rental.transaction.customer}</h5>
         <h5>Date Due: ${'{:%m/%d/%y}'.format(rental.checkout_by_date.date())}</h5>
         ${ return_form }
-        %if late_form:
+        %if days_late:
             <h4>Late Fee</h4>
-            ${ late_form }
+            <h6>Days Late: ${ days_late } Days</h6>
+            <h6>Amount Due: $${ amount }</h6>
+                <input name='waived' type="checkbox" id="waived" />
+                <label for="waived">Waived</label>
         %endif
         <br />
         <h4>Damages Fee (If Applicable)</h4>

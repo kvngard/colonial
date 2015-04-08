@@ -4,8 +4,8 @@ from django.forms.widgets import CheckboxInput
 from django.http import HttpResponseRedirect
 from app_base.admin import group_required
 from app_base.widgets import RadioSelect
-from app_base.forms import site_model_form
 from django.core.mail import send_mail
+from app_base.forms import site_model_form
 import app_base.models as mod
 from decimal import Decimal
 from django import forms
@@ -199,10 +199,11 @@ def check_in(request):
         lf.days_late = (datetime.date.today() - rental.date_due.date()).days
         lf.amount = Decimal(
             lf.days_late * rental.rental_item.price_per_day)
-        late_form = Late_Form(instance=lf)
-        params['late_form'] = late_form
+        params['days_late'] = lf.days_late
+        params['amount'] = lf.amount
 
     if request.method == "POST":
+        print(request.POST)
         return_form = Return_Form(request.POST)
         damage_form = Damage_Form(request.POST)
 
@@ -225,22 +226,13 @@ def check_in(request):
                 df.save()
 
             if rr.date_in > rental.date_due.date():
-                late_form = Late_Form(instance=late_form)
-                if late_form.is_valid():
-                    lf = late_form.save(commit=False)
-                    print(lf.waived)
-                    if lf.waived is False:
-                        lf.rental_return = rr
-                        lf.transaction = rental.transaction
-                        lf.amount = Decimal(
-                            lf.days_late * rental.rental_item.price_per_day)
-                        lf.save()
-                else:
-                    params['rental'] = rental
-                    params['late_form'] = late_form
-                    params['return_form'] = return_form
-                    params['damage_form'] = damage_form
-                    return templater.render_to_response(request, 'rental_return.html', params)
+                print(dict(request.POST).get('waived')[0] != 'on')
+                if dict(request.POST).get('waived')[0] != 'on':
+                    lf.rental_return = rr
+                    lf.transaction = rental.transaction
+                    lf.amount = Decimal(
+                        lf.days_late * rental.rental_item.price_per_day)
+                    lf.save()
 
         return HttpResponseRedirect('/app_admin/rentals/')
 
@@ -258,16 +250,6 @@ class Return_Form(forms.ModelForm):
         fields = ['return_condition']
         widgets = {
             'return_condition': RadioSelect(),
-        }
-
-
-class Late_Form(site_model_form):
-
-    class Meta:
-        model = mod.Late_Fee
-        fields = ['days_late', 'amount', 'waived']
-        widgets = {
-            'waived': CheckboxInput()
         }
 
 

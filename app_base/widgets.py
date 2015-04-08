@@ -1,7 +1,8 @@
-from django.forms.widgets import ChoiceInput, ChoiceFieldRenderer, RendererMixin, SelectMultiple, Select
+from django.forms.widgets import ChoiceInput, ChoiceFieldRenderer, RendererMixin, SelectMultiple, Select, FileInput
+from django.utils.html import conditional_escape, format_html
+from django.utils.translation import ugettext_lazy
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_text
-from django.utils.html import format_html
 
 
 class MaterializeChoiceInput(ChoiceInput):
@@ -135,3 +136,76 @@ class RadioSelect(RendererMixin, Select):
 class CheckboxSelectMultiple(RendererMixin, SelectMultiple):
     renderer = CheckboxFieldRenderer
     _empty_value = []
+
+
+class ClearableFileInput(FileInput):
+    initial_text = ugettext_lazy('Currently')
+    input_text = ugettext_lazy('Change')
+    clear_checkbox_label = ugettext_lazy('Clear')
+
+    template_with_initial = '''<div class="file-field input-field"><input class="file-path validate"
+        type="text"/><div class="btn"><span>File</span><input type="file" /></div></div>'''
+
+    template_with_clear = '%(clear)s <label for="%(clear_checkbox_id)s">%(clear_checkbox_label)s</label>'
+
+    url_markup_template = '<a href="{0}">{1}</a>'
+
+    def clear_checkbox_name(self, name):
+        """
+        Given the name of the file input, return the name of the clear checkbox
+        input.
+        """
+        return name + '-clear'
+
+    def clear_checkbox_id(self, name):
+        """
+        Given the name of the clear checkbox input, return the HTML id for it.
+        """
+        return name + '_id'
+
+    def render(self, name, value, attrs=None):
+        substitutions = {
+            'initial_text': self.initial_text,
+            'input_text': self.input_text,
+            'clear_template': '',
+            'clear_checkbox_label': self.clear_checkbox_label,
+        }
+        template = '''<div class="file-field input-field"><input class="file-path validate"
+        type="text"/><div class="btn"><span>File</span><input type="file" /></div></div>'''
+        substitutions['input'] = super(
+            ClearableFileInput, self).render(name, value, attrs)
+
+        if value and hasattr(value, "url"):
+            template = self.template_with_initial
+            substitutions['initial'] = format_html(self.url_markup_template,
+                                                   value.url,
+                                                   force_text(value))
+            if not self.is_required:
+                checkbox_name = self.clear_checkbox_name(name)
+                checkbox_id = self.clear_checkbox_id(checkbox_name)
+                substitutions['clear_checkbox_name'] = conditional_escape(
+                    checkbox_name)
+                substitutions['clear_checkbox_id'] = conditional_escape(
+                    checkbox_id)
+                substitutions['clear'] = CheckboxInput().render(
+                    checkbox_name, False, attrs={'id': checkbox_id})
+                substitutions[
+                    'clear_template'] = self.template_with_clear % substitutions
+
+        return mark_safe(template % substitutions)
+
+    def value_from_datadict(self, data, files, name):
+        upload = super(ClearableFileInput, self).value_from_datadict(
+            data, files, name)
+        if not self.is_required and CheckboxInput().value_from_datadict(
+                data, files, self.clear_checkbox_name(name)):
+
+            if upload:
+                # If the user contradicts themselves (uploads a new file AND
+                # checks the "clear" checkbox), we return a unique marker
+                # object that FileField will turn into a ValidationError.
+                return FILE_INPUT_CONTRADICTION
+            # False signals to clear any existing value, as opposed to just
+            # None
+            return False
+        return upload

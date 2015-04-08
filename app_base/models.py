@@ -98,7 +98,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True, null=False)
     is_staff = models.BooleanField(default=False, null=False)
 
-    profile_image = models.ImageField(upload_to='/user/uploads/profile', blank=False, null=False,
+    profile_image = models.ImageField(upload_to='/users/profile_images', blank=False, null=False,
                                       default="/static/app_account/media/default_profile.jpg")
     security_question = models.CharField(max_length=60, null=True)
     security_answer = models.CharField(max_length=30, null=True)
@@ -469,7 +469,7 @@ class Event(Public_Event):
     '''
     start_date = models.DateField()
     end_date = models.DateField()
-    map_file_name = models.ImageField(upload_to='maps/')
+    map_file = models.ImageField(upload_to='maps/')
     venue_name = models.CharField(max_length=200)
     address = models.ForeignKey(Address, related_name='+')
     discount_code = models.CharField(max_length=7)

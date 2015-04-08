@@ -1,6 +1,7 @@
-from app_base.widgets import CheckboxSelectMultiple
+from app_base.widgets import CheckboxSelectMultiple, ClearableFileInput
 from app_base.forms import site_model_form
 from app_base.models import User, Event
+from django import forms
 
 
 class ManagerUserEditForm(site_model_form):
@@ -13,11 +14,12 @@ class ManagerUserEditForm(site_model_form):
         }
 
 
-class EventEditForm(site_model_form):
+class EventEditForm(forms.ModelForm):
 
     class Meta:
         model = Event
-        fields = ['start_date', 'end_date', 'venue_name', 'map_file_name', 'address', 'discount_code']
+        fields = ['start_date', 'end_date', 'venue_name',
+                  'map_file', 'address', 'discount_code']
         widgets = {
-            'groups': CheckboxSelectMultiple(),
+            'map_file': ClearableFileInput(),
         }

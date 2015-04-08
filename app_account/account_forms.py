@@ -1,8 +1,9 @@
 from ldap3 import Server, Connection, AUTH_SIMPLE, STRATEGY_SYNC, GET_ALL_INFO
 from ldap3.core.exceptions import LDAPBindError, LDAPPasswordIsMandatoryError, LDAPSocketOpenError
-from app_base.forms import site_model_form, site_form
+from app_base.widgets import ClearableFileInput
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import Group
+from app_base.forms import site_form
 from app_base.models import User
 from django import forms
 
@@ -75,8 +76,12 @@ class LoginForm(site_form):
             print(e)
 
 
-class UserEditForm(site_model_form):
+class UserEditForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'email']
+        fields = ['first_name', 'last_name',
+                  'username', 'email', 'profile_image']
+        widgets = {
+            'profile_image': ClearableFileInput(),
+        }
