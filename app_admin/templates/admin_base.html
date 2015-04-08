@@ -11,9 +11,6 @@
   </ul>
 </%block>
 
-<%block name="navigation_right">
-</%block>
-
 <%block name="content">
 <ul id="slide-out" class="side-nav fixed">
   <li><a href="/">
@@ -27,7 +24,7 @@
         <a class="collapsible-header bold">Rentals</a>
         <div class="collapsible-body">
           <ul>
-            <li><a href='/app_admin/rentals/'>Rentals Summary</a></li>
+            <li><a href='/app_admin/rentals/'>View Rentals</a></li>
             <li><a href='/app_admin/rentals.checkout/'>Check Out Rentals</a></li>
             <li><a href='/app_admin/rentals.report/'>Overdue Rental Report</a></li>
           </ul>
@@ -37,8 +34,17 @@
         <a class="collapsible-header bold">Inventory</a>
         <div class="collapsible-body">
           <ul>
+            <li><a href='/app_admin/rentals.checkout/'>View Inventory</a></li>
             <li><a href='/app_admin/rentals/'>Add Inventory</a></li>
-            <li><a href='/app_admin/rentals.checkout/'>Edit Inventory</a></li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <a class="collapsible-header bold">Events</a>
+        <div class="collapsible-body">
+          <ul>
+            <li><a href='/app_admin/rentals.checkout/'>View Events</a></li>
+            <li><a href='/app_admin/rentals/'>Create An Event</a></li>
           </ul>
         </div>
       </li>

@@ -1,8 +1,10 @@
-from django.contrib.auth.decorators import permission_required
 from django_mako_plus.controller import view_function
-from app_base.widgets import RadioSelect
 from app_store.storeforms import Credit_Card_Form
+from django.forms.widgets import CheckboxInput
 from django.http import HttpResponseRedirect
+from app_base.admin import group_required
+from app_base.widgets import RadioSelect
+from app_base.forms import site_model_form
 from django.core.mail import send_mail
 import app_base.models as mod
 from decimal import Decimal
@@ -12,6 +14,7 @@ import datetime
 
 
 @view_function
+@group_required('Manager')
 def process_request(request):
     params = {}
 
@@ -37,19 +40,19 @@ def process_request(request):
 
 
 @view_function
+@group_required('Manager')
 def checkout(request):
     params = {}
 
     try:
         rentals = mod.Rental.objects.filter(
-            date_due__lte=datetime.date.today(),
+            checkout_by_date__gte=datetime.date.today(),
             date_out__exact=None)
     except mod.Rental.DoesNotExist:
         return HttpResponseRedirect('/')
 
     rentals_to_check_out = []
     request.session['rentals_to_check_out'] = []
-    user = None
     total = 0
 
     if request.method == 'POST':
@@ -61,17 +64,16 @@ def checkout(request):
                 if data.get(str(rental.id))[0] == 'on':
 
                     rentals_to_check_out.append(rental)
-                    request.session['rentals_to_check_out'].append(str(rental.id))
+                    request.session['rentals_to_check_out'].append(
+                        str(rental.id))
 
                     total += rental.checkout_price
-                    user = rental.transaction.customer
 
         params['total'] = total
         params['rentals'] = rentals_to_check_out
         params['credit_card_form'] = Credit_Card_Form()
 
         return templater.render_to_response(request, '/app_store/templates/checkout.html', params)
-
 
     params['title'] = "Checkout Rentals"
     params['rentals'] = rentals
@@ -80,33 +82,36 @@ def checkout(request):
 
 
 @view_function
+@group_required('Manager')
 def charge(request):
 
     if request.method == "POST":
         params = {}
 
         try:
-            rentals = mod.Rental.objects.filter(id__in=request.session['rentals_to_check_out'])
+            rentals = mod.Rental.objects.filter(
+                id__in=request.session['rentals_to_check_out'])
         except mod.Rental.DoesNotExist:
             return HttpResponseRedirect('/')
 
         request.session['rentals_to_check_out'] = []
 
-        data = dict(request.POST)
         total = 0
 
         for rental in rentals:
             total += rental.checkout_price
             user = rental.transaction.customer
 
-        credit_card_form = Credit_Card_Form(request.POST, total=total, user=user)
+        credit_card_form = Credit_Card_Form(
+            request.POST, total=total, user=user)
 
         if credit_card_form.is_valid():
             for r in rentals:
 
                 t = r.transaction
                 r.date_out = datetime.date.today()
-                r.date_due = datetime.date.today() + datetime.timedelta(r.duration)
+                r.date_due = datetime.date.today() + \
+                    datetime.timedelta(r.duration)
                 r.handled_by = request.user
                 r.save()
 
@@ -125,6 +130,7 @@ def charge(request):
 
 
 @view_function
+@group_required('Manager')
 def report(request):
 
     params = {}
@@ -175,6 +181,7 @@ def report(request):
 
 
 @view_function
+@group_required('Manager')
 def check_in(request):
     params = {}
     id = request.urlparams[0]
@@ -186,6 +193,14 @@ def check_in(request):
         rental = mod.Rental.objects.get(id=id)
     except mod.Rental.DoesNotExist:
         return HttpResponseRedirect('/')
+
+    if datetime.date.today() > rental.date_due.date():
+        lf = mod.Late_Fee()
+        lf.days_late = (datetime.date.today() - rental.date_due.date()).days
+        lf.amount = Decimal(
+            lf.days_late * rental.rental_item.price_per_day)
+        late_form = Late_Form(instance=lf)
+        params['late_form'] = late_form
 
     if request.method == "POST":
         return_form = Return_Form(request.POST)
@@ -210,12 +225,13 @@ def check_in(request):
                 df.save()
 
             if rr.date_in > rental.date_due.date():
-                lf = mod.Late_Fee()
-                lf.days_late = (rr.date_in - rental.date_due.date()).days
-                lf.rental_return = rr
-                lf.transaction = rental.transaction
-                lf.amount = Decimal(lf.days_late * rental.rental_item.price_per_day)
-                lf.save()
+                lf = Late_Form(request.POST).save(commit=False)
+                if lf.waived is False:
+                    lf.rental_return = rr
+                    lf.transaction = rental.transaction
+                    lf.amount = Decimal(
+                        lf.days_late * rental.rental_item.price_per_day)
+                    lf.save()
 
         return HttpResponseRedirect('/app_admin/rentals/')
 
@@ -223,7 +239,7 @@ def check_in(request):
     params['return_form'] = return_form
     params['damage_form'] = damage_form
 
-    return templater.render_to_response(request, 'return_rental.html', params)
+    return templater.render_to_response(request, 'rental_return.html', params)
 
 
 class Return_Form(forms.ModelForm):
@@ -236,8 +252,18 @@ class Return_Form(forms.ModelForm):
         }
 
 
+class Late_Form(site_model_form):
+
+    class Meta:
+        model = mod.Late_Fee
+        fields = ['days_late', 'amount', 'waived']
+        widgets = {
+            'waived': CheckboxInput()
+        }
+
+
 class Damage_Form(forms.ModelForm):
 
     class Meta:
         model = mod.Damage_Fee
-        fields = ['description','amount']
+        fields = ['description', 'amount']

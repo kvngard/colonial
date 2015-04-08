@@ -3,10 +3,10 @@
 <%block name="content">
 <div id='cart' class='container'>
     <div id='table'>
-      <h3>Your Purchase</h3>
+      <h2>Your Order Has Been Placed</h2>
       %if len(t.sale_set.all()) > 0:
+      <h4>Purchases</h4>
       <table class="striped">
-        <caption><h4>Purchases</h4></caption>
         <thead>
           <tr>
             <th data-field="id">Item Name</th>
@@ -27,8 +27,8 @@
       %endif
       %if len(t.rental_set.all()) > 0:
       <br />
+      <h4>Rentals</h4>
       <table class="striped">
-        <caption><h4>Rentals</h4></caption>
         <thead>
           <tr>
             <th data-field="id">Item Name</th>

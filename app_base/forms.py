@@ -1,5 +1,5 @@
 from django.forms.forms import DeclarativeFieldsMetaclass, BaseForm, NON_FIELD_ERRORS
-from django.utils.translation import ugettext, ugettext_lazy as _ 
+from django.utils.translation import ugettext, ugettext_lazy as _
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.forms import UserCreationForm
 from django.forms.utils import ErrorList
@@ -11,7 +11,7 @@ from django import forms
 from app_base.models import User
 
 '''
-So this is a hack that was designed to rearrange the default html 
+So this is a hack that was designed to rearrange the default html
 for the different form classes so that it would work with materialize.
 The main change was made to the "normal_row" line in the as_table function
 of the MaterializeBaseForm. The rest is just there to bridge the gap

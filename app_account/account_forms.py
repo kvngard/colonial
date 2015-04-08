@@ -1,7 +1,6 @@
 from ldap3 import Server, Connection, AUTH_SIMPLE, STRATEGY_SYNC, GET_ALL_INFO
 from ldap3.core.exceptions import LDAPBindError, LDAPPasswordIsMandatoryError
 from app_base.forms import site_model_form, site_form
-from app_base.widgets import CheckboxSelectMultiple
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import Group
 from app_base.models import User
@@ -75,7 +74,4 @@ class UserEditForm(site_model_form):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'email', 'groups']
-        widgets = {
-            'groups': CheckboxSelectMultiple(),
-        }
+        fields = ['first_name', 'last_name', 'username', 'email']

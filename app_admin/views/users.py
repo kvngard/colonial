@@ -1,14 +1,14 @@
-from django.contrib.auth.decorators import permission_required
 from django_mako_plus.controller import view_function
-from app_account.account_forms import UserEditForm
 from app_base.forms import CustomUserCreationForm
+from app_admin.forms import ManagerUserEditForm
 from django.http import HttpResponseRedirect
+from app_base.admin import group_required
 from app_base.models import User
-from django import forms
 from . import templater
 
 
 @view_function
+@group_required('Manager')
 def process_request(request):
     users = User.objects.all()
     params = {}
@@ -17,6 +17,7 @@ def process_request(request):
 
 
 @view_function
+@group_required('Manager')
 def create(request):
     params = {}
     form = CustomUserCreationForm()
@@ -33,6 +34,7 @@ def create(request):
 
 
 @view_function
+@group_required('Manager')
 def edit(request):
     try:
         user = User.objects.get(id=request.urlparams[0])
@@ -40,10 +42,10 @@ def edit(request):
         return HttpResponseRedirect('/')
 
     params = {}
-    form = UserEditForm(instance=user)
+    form = ManagerUserEditForm(instance=user)
 
     if request.method == 'POST':
-        form = UserEditForm(request.POST, instance=user)
+        form = ManagerUserEditForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/')
@@ -54,6 +56,7 @@ def edit(request):
 
 
 @view_function
+@group_required('Manager')
 def delete(request):
 
     try:
