@@ -1,44 +1,42 @@
 <%inherit file="admin_base.html" />
 
 <%block name="main">
-  <div class='container'>
-    %if len(rentals) == 0:
-      <div id='prompt'>
-        <h2>No Rentals To Check Out</h2>
-        <p>It looks like all rentals have either been returned or checked out. Good Job!</a></p>
-      </div>
-    %else:
-    <h1>Checkout Rentals</h1>
-    <form method="POST" action="/app_admin/rentals.checkout/">
-    <table class="striped">
-    <tr>
-        <th>Item</th>
-        <th>Rented By</th>
-        <th>Rental Duration</th>
-        <th>Check Out By</th>
-        <th>Check Out Price</th>
-        <th>Option</th>
-    </tr>
-      %for rental in rentals:
-          <tr>
-              <td> ${ rental.rental_item.name } </td>
-              <td> ${ rental.transaction.customer } </td>
-              <td> ${ rental.duration } Days</td>
-              <td> ${ '{:%m/%d/%y}'.format(rental.checkout_by_date.date()) } </td>
-              <td> $${ rental.checkout_price } </td>
-              <td>
-                <p>
-                  <input name='${rental.id}' type="checkbox" id="${rental.id}" />
-                  <label for="${rental.id}">Check Out</label>
-                </p>
-              </td>
-          </tr>
-      %endfor
+%if len(rentals) == 0:
+  <div id='prompt'>
+    <h2>No Rentals To Check Out</h2>
+    <p>It looks like all rentals have either been returned or checked out. Good Job!</a></p>
+  </div>
+%else:
+  <h1>Checkout Rentals</h1>
+  <form method="POST" action="/app_admin/rentals.checkout/">
+  <table class="striped">
+  <tr>
+      <th>Item</th>
+      <th>Rented By</th>
+      <th>Rental Duration</th>
+      <th>Check Out By</th>
+      <th>Check Out Price</th>
+      <th>Option</th>
+  </tr>
+    %for rental in rentals:
+        <tr>
+            <td> ${ rental.rental_item.name } </td>
+            <td> ${ rental.transaction.customer } </td>
+            <td> ${ rental.duration } Days</td>
+            <td> ${ '{:%m/%d/%y}'.format(rental.checkout_by_date.date()) } </td>
+            <td> $${ rental.checkout_price } </td>
+            <td>
+              <p>
+                <input name='${rental.id}' type="checkbox" id="${rental.id}" />
+                <label for="${rental.id}">Check Out</label>
+              </p>
+            </td>
+        </tr>
+    %endfor
   </table>
   <button class="btn waves-effect waves-light orange accent-3 " type="submit">
     Finalize
   </button>
   </form>
-  %endif
-</div>
+%endif
 </%block>

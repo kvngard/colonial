@@ -34,12 +34,10 @@
 </%block>
 
 <main>
-  %if title:
-    <h1>${ title }</h1>
-  %endif
-  <div class="row" layout horizontal center wrap>
+    %if title:
+      <h1>${ title }</h1>
+    %endif
     <%block name="main">
     </%block>
-  </div>
 </main>
 </%block>

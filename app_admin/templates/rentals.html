@@ -2,61 +2,55 @@
 
 <%block name="main">
 %if len(rentals) == 0 and len(late_rentals) == 0:
-  <div id='prompt'>
-    <h2>No Rentals To Check Out</h2>
-    <p>It looks like all rentals have either been returned. Good Job!</a></p>
-  </div>
+  <h2>No Rentals To Check Out</h2>
+  <p>It looks like all rentals have either been returned. Good Job!</a></p>
 %endif
 %if len(rentals) > 0:
-  <div class='container'>
-    <h1>Rentals</h1>
-    <table class="striped">
+  <h1>Rentals</h1>
+  <table class="striped">
+    <tr>
+      <th>Item</th>
+      <th>Rented By</th>
+      <th>Days Remaining</th>
+      <th>Options</th>
+    </tr>
+    %for rental in rentals:
       <tr>
-        <th>Item</th>
-        <th>Rented By</th>
-        <th>Days Remaining</th>
-        <th>Options</th>
+        <td> ${ rental.rental_item.name } </td>
+        <td> ${ rental.transaction.customer } </td>
+        <td> ${ (rental.date_due.date() - today).days } Days</td>
+        <td layout veritcal>
+            <a href="/app_admin/rentals.check_in/${ rental.id }" class="btn btn-xs btn-default">Return</a>
+            <a href="/app_admin/rentals.notify/${ rental.id }" class="btn red darken-3 tooltipped"
+               data-position="right" data-delay="50" data-tooltip="Send Email">Notify</a>
+        </td>
       </tr>
-      %for rental in rentals:
-        <tr>
-          <td> ${ rental.rental_item.name } </td>
-          <td> ${ rental.transaction.customer } </td>
-          <td> ${ (rental.date_due.date() - today).days } Days</td>
-          <td layout veritcal>
-              <a href="/app_admin/rentals.check_in/${ rental.id }" class="btn btn-xs btn-default">Return</a>
-              <a href="/app_admin/rentals.notify/${ rental.id }" class="btn red darken-3 tooltipped"
-                 data-position="right" data-delay="50" data-tooltip="Send Email">Notify</a>
-          </td>
-        </tr>
-      %endfor
-    </table>
-  </div>
+    %endfor
+  </table>
 %endif
 %if len(late_rentals) > 0:
-  <div class='container'>
-    <h1>Late Rentals</h1>
-    <table class="striped">
-      <tr>
-          <th>Item</th>
-          <th>Rented By</th>
-          <th>Current Fee</th>
-          <th>Days Late</th>
-          <th>Options</th>
-      </tr>
-        %for rental in late_rentals:
-            <tr>
-                <td> ${ rental.rental_item.name } </td>
-                <td> ${ rental.transaction.customer } </td>
-                <td> $${ rental.rental_item.price_per_day*(today - rental.date_due.date()).days } </td>
-                <td> ${ (today - rental.date_due.date()).days } Days</td>
-                <td layout veritcal>
-                    <a href="/app_admin/rentals.check_in/${ rental.id }" class="btn btn-xs btn-default">Return</a>
-                    <a href="/app_admin/rentals.notify/${ rental.id }" class="btn red darken-3 tooltipped"
-                       data-position="right" data-delay="50" data-tooltip="Send Email">Notify</a>
-                </td>
-            </tr>
-        %endfor
-    </table>
-  </div>
+  <h1>Late Rentals</h1>
+  <table class="striped">
+    <tr>
+        <th>Item</th>
+        <th>Rented By</th>
+        <th>Current Fee</th>
+        <th>Days Late</th>
+        <th>Options</th>
+    </tr>
+      %for rental in late_rentals:
+          <tr>
+              <td> ${ rental.rental_item.name } </td>
+              <td> ${ rental.transaction.customer } </td>
+              <td> $${ rental.rental_item.price_per_day*(today - rental.date_due.date()).days } </td>
+              <td> ${ (today - rental.date_due.date()).days } Days</td>
+              <td layout veritcal>
+                  <a href="/app_admin/rentals.check_in/${ rental.id }" class="btn btn-xs btn-default">Return</a>
+                  <a href="/app_admin/rentals.notify/${ rental.id }" class="btn red darken-3 tooltipped"
+                     data-position="right" data-delay="50" data-tooltip="Send Email">Notify</a>
+              </td>
+          </tr>
+      %endfor
+  </table>
 %endif
 </%block>

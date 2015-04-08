@@ -1,15 +1,11 @@
 <%inherit file="/app_admin/templates/admin_base.html" />
 
 <%block name="main">
-    <div class='container'>
-        <h3>${ title }</h3>
-        <div class='valign'>
-            <form method="POST">
-                ${ form }
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                    <i class="mdi-content-send right"></i>
-                </button>
-            </form>
-        </div>
-    </div>
+    <h3>${ title }</h3>
+    <form method="POST">
+        ${ form }
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="mdi-content-send right"></i>
+        </button>
+    </form>
 </%block>

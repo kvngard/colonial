@@ -225,13 +225,22 @@ def check_in(request):
                 df.save()
 
             if rr.date_in > rental.date_due.date():
-                lf = Late_Form(request.POST).save(commit=False)
-                if lf.waived is False:
-                    lf.rental_return = rr
-                    lf.transaction = rental.transaction
-                    lf.amount = Decimal(
-                        lf.days_late * rental.rental_item.price_per_day)
-                    lf.save()
+                late_form = Late_Form(instance=late_form)
+                if late_form.is_valid():
+                    lf = late_form.save(commit=False)
+                    print(lf.waived)
+                    if lf.waived is False:
+                        lf.rental_return = rr
+                        lf.transaction = rental.transaction
+                        lf.amount = Decimal(
+                            lf.days_late * rental.rental_item.price_per_day)
+                        lf.save()
+                else:
+                    params['rental'] = rental
+                    params['late_form'] = late_form
+                    params['return_form'] = return_form
+                    params['damage_form'] = damage_form
+                    return templater.render_to_response(request, 'rental_return.html', params)
 
         return HttpResponseRedirect('/app_admin/rentals/')
 

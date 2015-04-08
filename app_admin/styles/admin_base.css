@@ -2,9 +2,6 @@
     padding: 1rem;
     width: 12rem;
 }
-main{
-    position: relative;
-}
 .store-item{
     margin: 2rem 0 0 2rem !important;
 }
@@ -27,11 +24,7 @@ main{
     font-size: 2rem !important;
 }
 .nav-shoulder {
-    width: 250px;
-    min-height: 64px;
-}
-.row {
-    padding-left: 250px;
+
 }
 .action-btn {
     padding: 1rem;

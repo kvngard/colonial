@@ -83,3 +83,14 @@
     height: 1px;
     padding-bottom: .25rem;
 }
+main{
+    position: relative;
+    padding-left: 270px;
+    min-height: 100vh;
+}
+@media only screen and (max-width: 992px) {
+    header, main, footer {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}

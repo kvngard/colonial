@@ -1,5 +1,5 @@
 from ldap3 import Server, Connection, AUTH_SIMPLE, STRATEGY_SYNC, GET_ALL_INFO
-from ldap3.core.exceptions import LDAPBindError, LDAPPasswordIsMandatoryError
+from ldap3.core.exceptions import LDAPBindError, LDAPPasswordIsMandatoryError, LDAPSocketOpenError
 from app_base.forms import site_model_form, site_form
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import Group
@@ -45,6 +45,8 @@ class LoginForm(site_form):
                     # dictionary.
                     user_info = c.response[0]['attributes']
 
+                    c.unbind()
+
                     if user is None:
 
                         user = User()
@@ -65,6 +67,9 @@ class LoginForm(site_form):
                         "Sorry, that's not an existing email-password combination.")
                 except LDAPPasswordIsMandatoryError as ldape:
                     print(ldape)
+                except LDAPSocketOpenError as e:
+                    print(e)
+                    c.unbind()
 
         except KeyError as e:
             print(e)
