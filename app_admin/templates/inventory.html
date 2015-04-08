@@ -1,0 +1,37 @@
+<%inherit file="admin_base.html" />
+
+<%block name="main">
+
+
+  <div layout horizontal center>
+    <h1>Events</h1>
+    <div class="action-btn">
+      <a href="/app_admin/items.create/" class="btn-floating btn-large waves-effect waves-light"><i class="mdi-content-add"></i></a>
+    </div>
+  </div>
+
+  <table class="striped">
+    <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Value</th>
+        <th>Options</th>
+    </tr>
+      %for item in items:
+          <tr>
+              <td>
+                  <img src="/static/${ item.photograph.image }"/>
+              </td>
+              <td> ${ item.name} </td>
+              <td> ${ item.description} </td>
+              <td> ${ item.value} </td>
+              <td>
+                  <a href="/app_admin/items.edit/${ item.id }/" class="btn btn-xs btn-default"><i class='mdi-editor-mode-edit'></i></a>
+                  <a href="/app_admin/items.delete/${ item.id }/" class="btn red darken-3"><i class='mdi-action-highlight-remove'></i></a>
+              </td>
+          </tr>
+      %endfor
+  </table>
+
+</%block>
