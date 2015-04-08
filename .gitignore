@@ -5,6 +5,7 @@ cached_templates
 *.pyc
 
 # Database
+*.sqlite3
 
 # C extensions
 *.so
