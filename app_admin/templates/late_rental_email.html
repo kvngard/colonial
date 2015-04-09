@@ -1,10 +1,20 @@
 
-	<h3>Hello ${rental.transaction.customer}!</h3>
-		<p>The ${rental.rental_item.name} you rented from The Colonial Heritage Foundation was due ${ duedate }.</p>
-		<p>You rental is <strong>${dayslate1}</strong> day(s) late.<br>
-		Your current fees are $${current_fee}.</p>
+	<h3>Hello ${user}!</h3>
+        %if len(rentals) == 1:
+            %for rental in rentals:
+    		  <p>Your rental of ${rental.rental_item.name} you rented from The Colonial Heritage Foundation was due ${ '{:%m/%d/%y}'.format(rental.date_due.date()) } and is
+              <strong>${ (today - rental.date_due.date()).days }</strong> day(s) late.<br>
+    		  As a result you owe $${ rental.rental_item.price_per_day * (today - rental.date_due.date()).days} in late fees.</p>
+            %endfor
+        %elif len(rentals) > 1:
+            %for rental in rentals:
+                <p>Your rental of ${rental.rental_item.name} was due on ${ '{:%m/%d/%y}'.format(rental.date_due.date()) } and is
+                <strong>${ (today - rental.date_due.date()).days }</strong> day(s) late.<br>
+                As a result you owe $${ rental.rental_item.price_per_day * (today - rental.date_due.date()).days }.</p>
+            %endfor
+        %endif
 
-		You can return the item you rented at any of our locations. Feel free to contact us at (801) 867-5309<br>
+		You can return the item(s) you rented at any of our locations. Feel free to contact us at (801) 867-5309<br>
 	<h4>Thank you for renting with The Colonial Heritage Foundation!</h4>
 
-	*THIS WAS AN AUTOMATED MESSAGE DO NOT REPLY*
+	*THIS IS AN AUTOMATED MESSAGE; DO NOT REPLY*

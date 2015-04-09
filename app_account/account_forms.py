@@ -39,16 +39,19 @@ class LoginForm(site_form):
                     c.search(
                         search_base='CN=Users,DC=colonialheritagefoundation,DC=local',
                         search_filter='(samAccountName={})'.format(username),
-                        attributes=['samAccountName', 'givenName', 'sn', 'mail', ]
+                        attributes=[
+                            'samAccountName', 'givenName', 'sn', 'mail', ]
                     )
 
                     # Parse the LDAP query response to get the user_info
                     # dictionary.
                     user_info = c.response[0]['attributes']
 
+                    # samAccountName is case insensitive, and this check was
+                    # added to prevent usernames with the incorrect case.
                     if user_info['samAccountName'] != username:
                         raise forms.ValidationError(
-                        "Sorry, that's not an existing email-password combination.")
+                            "Sorry, that's not an existing email-password combination.")
 
                     c.unbind()
 

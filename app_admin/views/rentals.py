@@ -128,77 +128,6 @@ def charge(request):
 
 @view_function
 @group_required('Manager', 'Admin')
-def report(request):
-
-    params = {}
-
-    try:
-        rentals = mod.Rental.objects.filter(
-            date_due__lt=datetime.date.today(),
-            return_instance__iexact=None)
-    except mod.Rental.DoesNotExist:
-        return HttpResponseRedirect('/')
-
-    ninety, sixty, thirty, new = [], [], [], []
-
-    dayslate = {}
-
-    for rental in rentals:
-        delta = datetime.date.today() - rental.date_due.date()
-        dayslate[rental.rental_item.name] = delta.days
-
-        if delta.days < 30:
-            new.append(rental)
-        elif delta.days >= 30 and delta.days < 60:
-            thirty.append(rental)
-        elif delta.days >= 60 and delta.days < 90:
-            sixty.append(rental)
-        else:
-            ninety.append(rental)
-
-        email = rental.transaction.customer.email
-        duedate = rental.date_due.date()
-        delta = datetime.date.today() - rental.date_due.date()
-        dayslate1 = delta.days
-        currfee = rental.rental_item.price_per_day * dayslate1
-        params['current_fee'] = currfee
-        params['dayslate1'] = dayslate1
-        params['duedate'] = duedate
-        params['rental'] = rental
-        emailbody = templater.render(request, 'late_rental_email.html', params)
-        send_mail(
-            'Colonial Heritage Foundation - Your Rental(s) are late!',
-            emailbody,
-            'chfsite@gmail.com',
-            [email],
-            html_message=emailbody,
-            fail_silently=False
-        )
-
-
-    params['rentals'] = rentals
-    params['dayslate'] = dayslate
-    params['ninety'] = ninety
-    params['sixty'] = sixty
-    params['thirty'] = thirty
-    params['new'] = new
-
-    emailbody = templater.render(request, 'rental_report_email.html', params)
-
-    send_mail(
-        'Colonial Heritage Foundation - Overdue Report',
-        emailbody,
-        'chfsite@gmail.com',
-        [request.user.email],
-        html_message=emailbody,
-        fail_silently=False
-    )
-
-    return templater.render_to_response(request, 'rental_report.html', params)
-
-
-@view_function
-@group_required('Manager', 'Admin')
 def check_in(request):
     params = {}
     id = request.urlparams[0]
@@ -267,23 +196,110 @@ def notify(request):
     params = {}
 
     try:
-        rentals = mod.Rental.objects.filter(id=request.urlparams[0])
+        rental = mod.Rental.objects.get(id=request.urlparams[0])
     except mod.Rental.DoesNotExist:
         return HttpResponseRedirect('/')
 
-    
+    email = rental.transaction.customer.email
+
+    params['user'] = rental.transaction.customer
+    params['today'] = datetime.date.today()
+    params['rentals'] = [rental]
+
+    emailbody = templater.render(request, 'late_rental_email.html', params)
+
+    send_mail(
+        'Colonial Heritage Foundation - Your Rental(s) are late!',
+        emailbody,
+        'chfsite@gmail.com',
+        [email],
+        html_message=emailbody,
+        fail_silently=False
+    )
+
+    return templater.render_to_response(request, 'notify.html', params)
+
+
+@view_function
+@group_required('Manager', 'Admin')
+def report(request):
+
+    params = {}
+
+    try:
+        rentals = mod.Rental.objects.filter(
+            date_due__lt=datetime.date.today(),
+            return_instance__iexact=None)
+    except mod.Rental.DoesNotExist:
+        return HttpResponseRedirect('/')
+
+    ninety, sixty, thirty, new = [], [], [], []
+    debtors = {}
+
+    dayslate = {}
+
     for rental in rentals:
-        print(rental.transaction.customer.email)
-        email = rental.transaction.customer.email
-        duedate = rental.date_due.date()
+
+        if rental.transaction.customer in debtors.keys():
+            debtors[rental.transaction.customer].append(rental)
+        else:
+            debtors[rental.transaction.customer] = []
+            debtors[rental.transaction.customer].append(rental)
+
         delta = datetime.date.today() - rental.date_due.date()
-        dayslate = delta.days
-        currfee = rental.rental_item.price_per_day * dayslate
-        params['current_fee'] = currfee
-        params['dayslate1'] = dayslate
-        params['duedate'] = duedate
-        params['rental'] = rental
+        dayslate[rental.rental_item.name] = delta.days
+
+        if delta.days < 30:
+            new.append(rental)
+        elif delta.days >= 30 and delta.days < 60:
+            thirty.append(rental)
+        elif delta.days >= 60 and delta.days < 90:
+            sixty.append(rental)
+        else:
+            ninety.append(rental)
+
+    params['dayslate'] = dayslate
+    params['ninety'] = ninety
+    params['sixty'] = sixty
+    params['thirty'] = thirty
+    params['new'] = new
+
+    return templater.render_to_response(request, 'rental_report.html', params)
+
+
+@view_function
+@group_required('Manager', 'Admin')
+def send_mass_overdue_emails(request):
+
+    params = {}
+    debtors = {}
+
+    try:
+        rentals = mod.Rental.objects.filter(
+            date_due__lt=datetime.date.today(),
+            return_instance__iexact=None)
+    except mod.Rental.DoesNotExist:
+        return HttpResponseRedirect('/')
+
+    # Sort rentals for individual and manager report emails.
+    for rental in rentals:
+
+        if rental.transaction.customer in debtors.keys():
+            debtors[rental.transaction.customer].append(rental)
+        else:
+            debtors[rental.transaction.customer] = []
+            debtors[rental.transaction.customer].append(rental)
+
+    # Sends individual overdue emails.
+    for debtor in debtors.keys():
+        email = debtor.email
+
+        params['user'] = debtor
+        params['today'] = datetime.date.today()
+        params['rentals'] = debtors[debtor]
+
         emailbody = templater.render(request, 'late_rental_email.html', params)
+
         send_mail(
             'Colonial Heritage Foundation - Your Rental(s) are late!',
             emailbody,
@@ -293,5 +309,56 @@ def notify(request):
             fail_silently=False
         )
 
+    return templater.render_to_response(request, 'rental_report.html', params)
 
-    return templater.render_to_response(request, 'notify.html', params)
+
+@view_function
+@group_required('Manager', 'Admin')
+def send_manager_report_email(request):
+
+    params = {}
+
+    try:
+        rentals = mod.Rental.objects.filter(
+            date_due__lt=datetime.date.today(),
+            return_instance__iexact=None)
+    except mod.Rental.DoesNotExist:
+        return HttpResponseRedirect('/')
+
+    ninety, sixty, thirty, new = [], [], [], []
+    dayslate = {}
+
+    # Sort rentals for individual and manager report emails.
+    for rental in rentals:
+        delta = datetime.date.today() - rental.date_due.date()
+        dayslate[rental.rental_item.name] = delta.days
+
+        if delta.days < 30:
+            new.append(rental)
+        elif delta.days >= 30 and delta.days < 60:
+            thirty.append(rental)
+        elif delta.days >= 60 and delta.days < 90:
+            sixty.append(rental)
+        else:
+            ninety.append(rental)
+
+    # Sends manager email to currently logged-in user.
+    params['rentals'] = rentals
+    params['dayslate'] = dayslate
+    params['ninety'] = ninety
+    params['sixty'] = sixty
+    params['thirty'] = thirty
+    params['new'] = new
+
+    emailbody = templater.render(request, 'rental_report_email.html', params)
+
+    send_mail(
+        'Colonial Heritage Foundation - Overdue Report',
+        emailbody,
+        'chfsite@gmail.com',
+        [request.user.email],
+        html_message=emailbody,
+        fail_silently=False
+    )
+
+    return templater.render_to_response(request, 'rental_report.html', params)

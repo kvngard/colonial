@@ -1,7 +1,7 @@
 <%inherit file="admin_base.html" />
 
 <%block name="main">
-<h3>The following rentals are late and the rentees have been notified:</h3>
+<h1>Overdue Rental Report</h1>
 <h5>>30 Days Late</h5>
 <table class="striped">
   <tr>
@@ -70,4 +70,18 @@
     </tr>
   %endfor
 </table>
+<br>
+<div layout horizontal>
+  <div id='notify'>
+    <a id='notify-btn' class="btn btn-large waves-effect waves-light red darken-1">
+      Send Overdue Notifications
+    </a>
+  </div>
+  &nbsp;&nbsp;
+  <div id='manager'>
+    <a id='mng-btn' class="btn btn-large waves-effect waves-light green darken-1">
+      Get Manager Report
+    </a>
+  </div>
+</div>
 </%block>
