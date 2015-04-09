@@ -17,5 +17,15 @@ $(function () {
           }
       }
   });
-
+  
+  $('.signup-trigger').leanModal({
+    ready: function() {
+      $.ajax({
+        url: '/app_account/new.validate_form/',
+        success: function(data) {
+          $('#signup_modal').find('.modal-content').html(data);
+        },
+      });
+    }
+  });
 });
