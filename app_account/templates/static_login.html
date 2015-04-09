@@ -1,0 +1,29 @@
+<%inherit file="/app_base/templates/base.html" />
+
+<%block name="content">
+<div class="container">
+    <h1>${ title }</h1>
+    <div class='valign'>
+        %if redirect_func is not '':
+        <form id="account_form" method="POST" action="/app_account/${ function }/${redirect_app}/${redirect_func}">
+        %elif redirect_app is not '':
+        <form id="account_form" method="POST" action="/app_account/${ function }/${redirect_app}/">
+        %endif
+            ${ form }
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <i class="mdi-content-send right"></i>
+            </button>
+        %if option is not None and option is not UNDEFINED:
+            <a class="btn-flat waves-effect waves-light btn-option" name="${ option_link }">
+                ${ option }
+            </a>
+        %endif
+        %if option2 is not None and option2 is not UNDEFINED:
+            <a class="btn-flat waves-effect waves-light btn-option" href="/password_reset/">
+                ${ option2 }
+            </a>
+        %endif
+        </form>
+    </div>
+</div>
+</%block>

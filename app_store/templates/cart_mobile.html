@@ -71,9 +71,11 @@
       %endif
 
       <br />
-      <h5>*Total Purchase Price: $${ round(total,2) }</h5>
       %if len(rentals) > 0:
-      <h6>This price only reflects the cost to reserve the rentals in your cart. You will need to pay the remainder when you check out the items.</h6>
+        <h5>*Total Purchase Price: $${ round(total,2) }</h5>
+        <h6>*This price only includes the cost to <strong>reserve</strong> the rentals in your cart.<br /> You will need to pay the remainder when you check out the items.</h6>
+      %else:
+        <h5>Total Purchase Price: $${ round(total,2) }</h5>
       %endif
 
       <script type="text/javascript" src="${ STATIC_URL }app_store/scripts/cart.js"></script>
@@ -84,7 +86,7 @@
         %if request.user.is_authenticated():
         <a href="/app_store/checkout/">
         %else:
-        <a class="login-btn">
+        <a href="/app_account/login/app_store/checkout/">
         %endif
           <button class="btn waves-effect waves-light orange accent-3" type="submit" name="action">
             Checkout
