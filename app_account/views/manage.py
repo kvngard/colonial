@@ -16,9 +16,12 @@ def process_request(request):
     form = UserEditForm(instance=user)
 
     if request.method == 'POST':
-        form = UserEditForm(request.POST, instance=user)
+        form = UserEditForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
-            form.save()
+            user = form.save(commit=False)
+            print(request.FILES)
+            user.profile_image = request.FILES['profile_image']
+            user.save()
             return HttpResponseRedirect('/')
 
     params['form'] = form

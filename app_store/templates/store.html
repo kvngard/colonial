@@ -28,7 +28,7 @@
     <li class='hide-on-med-and-up'>
       <a class="collapsible-header bold">
         ${ request.user.get_full_name() }
-         <img src='${ request.user.profile_image }' alt='profile_image' class='circle profile-sm responsive-img' />
+         <img src='${ STATIC_URL }media/${ request.user.profile_image }' alt='profile_image' class='circle profile-sm responsive-img' />
       </a>
       <div class="collapsible-body">
         <ul>

@@ -1,7 +1,26 @@
 from app_base.widgets import CheckboxSelectMultiple, MaterializeClearableFileInput
-from app_base.forms import site_model_form
 from app_base.models import User, Event, Area, Item
+from app_base.forms import site_model_form
+from app_base.widgets import RadioSelect
+import app_base.models as mod
 from django import forms
+
+
+class Return_Form(forms.ModelForm):
+
+    class Meta:
+        model = mod.Rental_Return
+        fields = ['return_condition']
+        widgets = {
+            'return_condition': RadioSelect(),
+        }
+
+
+class Damage_Form(forms.ModelForm):
+
+    class Meta:
+        model = mod.Damage_Fee
+        fields = ['description', 'amount']
 
 
 class ManagerUserEditForm(site_model_form):
@@ -21,7 +40,7 @@ class EventEditForm(forms.ModelForm):
         fields = ['name', 'description', 'start_date', 'end_date', 'venue_name',
                   'map_file', 'address', 'discount_code']
         widgets = {
-            'map_file': forms.widgets.ClearableFileInput(attrs={'class': 'upload-btn'}),
+            'map_file': MaterializeClearableFileInput(attrs={'class': 'upload-btn'}),
         }
 
 

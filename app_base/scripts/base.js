@@ -1,4 +1,6 @@
 $(function(){
+  $('.button-collapse').sideNav();
+
   $('.signup-trigger').leanModal({
     ready: function() {
       $.ajax({

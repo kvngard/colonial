@@ -50,8 +50,11 @@
               <div class="nav-wrapper">
 
                 <%block name="navigation_left">
-                  <a href="/" class="left" id="logo">
-                      <img src="${ STATIC_URL }app_home/media/logo.svg" alt='profile_image' class='logo responsive-img' />
+                  <a href="/" class="left hide-on-med-and-down" id="logo">
+                      <img src="${ STATIC_URL }app_home/media/logo.svg" alt='feather logo' class='logo responsive-img' />
+                  </a>
+                  <a href="#" data-activates="slide-out" class="button-collapse">
+                      <img src="${ STATIC_URL }app_home/media/logo.svg" alt='feather logo' class='logo responsive-img' />
                   </a>
                 </%block>
 
@@ -67,7 +70,7 @@
                   <li>
                     <a href="#user_modal" class='grey-text text-darken-3 user-trigger'>
                        ${ request.user.get_full_name() }
-                       <img src='${ request.user.profile_image }' alt='profile_image' class='circle profile-sm responsive-img' />
+                       <img src='${ STATIC_URL }media/${ request.user.profile_image }' alt='profile_image' class='circle profile-sm responsive-img' />
                     </a>
                   </li>
                 %else:
@@ -80,7 +83,41 @@
                   <li><a href="#">Navbar Link</a></li>
                 </ul>
                 <%block name='mobile_nav'>
-                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+                  <ul id="slide-out" class="side-nav">
+                    <li>
+                      <a href="/">
+                          <img src="${ STATIC_URL }app_home/media/logo.svg" alt='profile_image' class='nav-logo' />
+                      </a>
+                    </li>
+                    <ul class="collapsible" data-collapsible="accordion">
+                    %if request.user.is_authenticated():
+                      <li class='hide-on-med-and-up'>
+                        <a class="collapsible-header bold">
+                          ${ request.user.get_full_name() }
+                           <img src='${ STATIC_URL }media/${ request.user.profile_image }' alt='profile_image' class='circle profile-sm responsive-img' />
+                        </a>
+                        <div class="collapsible-body">
+                          <ul>
+                            <li class='hide-on-med-and-up'><a href='/app_account/manage/'>Edit Profile</a></li>
+                            <li class='hide-on-med-and-up'><a href='/app_account/login.logoutUser/'>Log Out</a></li>
+                          </ul>
+                        </div>
+                      </li>
+                    %else:
+                        <li class='hide-on-med-and-up'><a class="collapsible-header bold" href="/app_account/login/app_store/">Log In</a></li>
+                        <li class='hide-on-med-and-up'><a class="collapsible-header bold"  href="/app_account/signup/">Sign Up</a></li>
+                    %endif
+                      <li>
+                        <a class="collapsible-header bold" href='/app_events/'>Events</a>
+                      </li>
+                      <li>
+                        <a class="collapsible-header bold" href='/app_store/'>Market</a>
+                      </li>
+                      %if request.user.groups.filter(name='Manager') or request.user.groups.filter(name='Admin'):
+                        <li><a class="collapsible-header bold" href="/app_admin/">Manage</a></li>
+                      %endif
+                    </ul>
+                  </ul>
                 </%block>
               </div>
           </nav>
@@ -95,7 +132,7 @@
               </div>
               <div class='account-right'>
                 <span class='helper'></span>
-                <img src='${ request.user.profile_image }' alt='profile_image' class='profile' />
+                <img src='${ STATIC_URL }media/${ request.user.profile_image }' alt='profile_image' class='profile' />
               </div>
             </div>
           </div>

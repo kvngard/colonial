@@ -9,7 +9,9 @@
       <div class="card green darken-2">
         <div class="card-content" layout vertical center-center>
           <img class='circle d-card responsive-img' src="${ STATIC_URL }app_account/media/default_profile.jpg ">
-          <h5 class='white-text'><strong> ${ total_users }</strong> registered users</h5>
+          <a href="/app_admin/users/" class="tooltipped" data-position="bottom" data-delay="80" data-tooltip="View and Edit Users">
+            <h5 class='white-text'><strong> ${ total_users }</strong> registered users</h5>
+          </a>
         </div>
       </div>
     </div>
@@ -18,7 +20,9 @@
       <div class="card light-blue darken-1">
         <div class="card-content" layout vertical center-center>
           <img class='circle d-card responsive-img' src="${ STATIC_URL }app_events/media/transaction2.jpg">
-          <h5 class='white-text'><strong>${ total_transactions }</strong> new sales</h5>
+          <a href="/app_admin/inventory/" class="tooltipped" data-position="bottom" data-delay="80" data-tooltip="View All">
+            <h5 class='white-text'><strong>${ total_transactions }</strong> new sales</h5>
+          </a>
         </div>
       </div>
     </div>
@@ -27,7 +31,9 @@
       <div class="card red darken-1">
         <div class="card-content" layout vertical center-center>
           <img class='circle d-card responsive-img'  src="${ STATIC_URL }app_events/media/money.jpg">
-          <h5 class='white-text'><strong>$${ payment_total }</strong> in weekly sales</h5>
+          <a href="/app_admin/inventory/" class="tooltipped" data-position="bottom" data-delay="80" data-tooltip="View All">
+            <h5 class='white-text'><strong>$${ payment_total }</strong> in weekly sales</h5>
+          </a>
         </div>
       </div>
     </div>
@@ -36,7 +42,9 @@
       <div class="card teal darken-1">
         <div class="card-content" layout vertical center-center>
           <img class='circle d-card responsive-img'  src="${ STATIC_URL }app_events/media/rentals.jpg">
-          <h5 class='white-text'><strong>${ total_rentals }</strong> current rentals</h5>
+          <a href="/app_admin/rentals/" class="tooltipped" data-position="bottom" data-delay="80" data-tooltip="Check In Rentals">
+            <h5 class='white-text'><strong>${ total_rentals }</strong> current rentals</h5>
+          </a>
         </div>
       </div>
     </div>
@@ -45,10 +53,13 @@
       <div class="card orange  darken-1">
         <div class="card-content" layout vertical center-center>
           <img class='circle d-card responsive-img'  src="${ STATIC_URL }app_events/media/laterentals.jpg">
+          <a href="/app_admin/rentals.report/" class="tooltipped" data-position="bottom" data-delay="80" data-tooltip="View Overdue Rental Report">
           <h5 class='white-text'><strong>${ total_late_rentals }</strong> overdue rentals</h5>
+          </a>
         </div>
       </div>
     </div>
+
     <%include file='graph_example.html' />
 </div>
 

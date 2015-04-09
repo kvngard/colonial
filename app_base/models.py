@@ -98,8 +98,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True, null=False)
     is_staff = models.BooleanField(default=False, null=False)
 
-    profile_image = models.ImageField(upload_to='/users/profile_images', blank=False, null=False,
-                                      default="/static/app_account/media/default_profile.jpg")
+    profile_image = models.ImageField(upload_to='profile_images/', blank=False, null=False,
+                                      default="profile_images/default_profile.jpg")
     security_question = models.CharField(max_length=60, null=True)
     security_answer = models.CharField(max_length=30, null=True)
     requires_reset = models.BooleanField(default=False)

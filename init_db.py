@@ -116,14 +116,14 @@ print('Photos initialized')
 #           CREATE USERS           #
 
 for data in [
-    {'username':        'TyCool4School',
-     'email':           'ty@ty.com',
-     'first_name':      'Ty',
-     'last_name':       'Anderson'},
-    {'username':        'CodyingAllNight',
-     'email':           'cdy@cdy.com',
-     'first_name':      'Cody',
-     'last_name':       'Booher'},
+    {'username':        'Gustavus',
+     'email':           'turncoat@uk.us',
+     'first_name':      'Benedict',
+     'last_name':       'Arnold'},
+    {'username':        'Fabius',
+     'email':           'CannotLie@America.us',
+     'first_name':      'George',
+     'last_name':       'Washington'},
 ]:
 
     u = bmod.User()
@@ -140,17 +140,17 @@ print('Users initialized')
 #           CREATE EMPLOYEES            #
 
 for data in [
-    {'username':        'Kevbo',
-     'email':           'pedantfool@gmail.com',
-     'first_name':      'Kevin',
-     'last_name':       'Gardner',
+    {'username':        'SwampFox',
+     'email':           'Marion@gmail.com',
+     'first_name':      'Francis',
+     'last_name':       'Marion',
      'is_superuser':    'TRUE',
      'date_hired':      datetime.datetime.now(),
      'salary':          65400.00},
-    {'username':        'Reverend',
-     'email':           'r@k.com',
-     'first_name':      'Rebecca',
-     'last_name':       'Gardner',
+    {'username':        'LittleLion',
+     'email':           'duelist@gmail.com',
+     'first_name':      'Alexander',
+     'last_name':       'Hamilton',
      'is_superuser':    'FALSE',
      'date_hired':      datetime.datetime.now(),
      'wage':            32.45}
@@ -162,7 +162,7 @@ for data in [
     e.set_password('Password1')
     e.address_id = bmod.Address.objects.get(address1='143 Ethyl Ct. #3').id
     e.save()
-    if e.username == 'Kevbo':
+    if e.username == 'SwampFox':
         Group.objects.get(name='Admin').user_set.add(e)
     else:
         Group.objects.get(name='Manager').user_set.add(e)
@@ -173,17 +173,17 @@ print('Employees initialized')
 #           CREATE VENDORS            #
 
 for data in [
-    {'username':        '2Tyler2Quit',
-     'email':           'tyler@ty.ty',
-     'first_name':      'Tyler',
-     'last_name':       'White',
+    {'username':        'WizardOwl',
+     'email':           'MajorGeneral@army.us',
+     'first_name':      'Andrew',
+     'last_name':       'Pickens',
      'SSN':             '234-45-6789',
      'EIN':             '12-3456789',
      'UTTaxID':         'AF-2345'},
-    {'username':        'GoveByDaPound',
-     'email':           'gove@love.com',
-     'first_name':      'Gove',
-     'last_name':       'Allen',
+    {'username':        'Hannibal',
+     'email':           '2Sick2Surrender@army.uk',
+     'first_name':      'Charles',
+     'last_name':       'Cornwallis',
      'SSN':             '224-45-6789',
      'EIN':             '12-3456789',
      'UTTaxID':         'AF-2345'}
@@ -207,27 +207,27 @@ for data in [
      'date_packed':             datetime.date.today() - datetime.timedelta(1),
      'date_shipped':            datetime.date.today(),
      'tracking_number':         '12324356u5634',
-     'customer':                bmod.User.objects.get(username='2Tyler2Quit'),
-     'shipped_by':              bmod.User.objects.get(username='Reverend'),
-     'handled_by':              bmod.User.objects.get(username='Reverend'),
-     'ships_to':                bmod.User.objects.get(username='2Tyler2Quit').address,
-     'payment_processed_by':    bmod.User.objects.get(username='Reverend')},
+     'customer':                bmod.User.objects.get(username='WizardOwl'),
+     'shipped_by':              bmod.User.objects.get(username='LittleLion'),
+     'handled_by':              bmod.User.objects.get(username='LittleLion'),
+     'ships_to':                bmod.User.objects.get(username='WizardOwl').address,
+     'payment_processed_by':    bmod.User.objects.get(username='LittleLion')},
     {'date':                    datetime.date.today() - datetime.timedelta(3),
      'phone':                   '801-245-5678',
-     'customer':                bmod.User.objects.get(username='CodyingAllNight'),
-     'payment_processed_by':    bmod.User.objects.get(username='Reverend')},
+     'customer':                bmod.User.objects.get(username='Fabius'),
+     'payment_processed_by':    bmod.User.objects.get(username='LittleLion')},
     {'date':                    datetime.date.today() - datetime.timedelta(3),
      'phone':                   '801-456-6456',
-     'customer_id':             bmod.User.objects.get(username='Kevbo').id,
-     'payment_processed_by':    bmod.User.objects.get(username='Kevbo')},
+     'customer_id':             bmod.User.objects.get(username='SwampFox').id,
+     'payment_processed_by':    bmod.User.objects.get(username='SwampFox')},
     {'date':                    datetime.date.today() - datetime.timedelta(4),
      'phone':                   '801-345-1122',
-     'customer':                bmod.User.objects.get(username='TyCool4School'),
-     'payment_processed_by':    bmod.User.objects.get(username='Kevbo')},
+     'customer':                bmod.User.objects.get(username='Gustavus'),
+     'payment_processed_by':    bmod.User.objects.get(username='SwampFox')},
     {'date':                    datetime.date.today(),
      'phone':                   '801-345-1122',
-     'customer':                bmod.User.objects.get(username='TyCool4School'),
-     'payment_processed_by':    bmod.User.objects.get(username='Kevbo')}
+     'customer':                bmod.User.objects.get(username='Gustavus'),
+     'payment_processed_by':    bmod.User.objects.get(username='SwampFox')}
 
 ]:
 
@@ -270,7 +270,7 @@ for data in [
      'description':         "A scale model of the goodship Mayflower.",
      'serial_number':       "M0001",
      'value':               4000.00,
-     'creator':             bmod.User.objects.get(username='TyCool4School'),
+     'creator':             bmod.User.objects.get(username='Gustavus'),
      'photo_id':            14}
 ]:
 
@@ -385,7 +385,7 @@ for data in [
      'description':         "A finely made cotton hankerchief that can be decorated with a monogram or message.",
      'serial_number':       "C9349",
      'value':               4.00,
-     'creator':             bmod.Vendor.objects.get(username='2Tyler2Quit'),
+     'creator':             bmod.Vendor.objects.get(username='WizardOwl'),
      'required_info':       'The message to be sewn into the hankerchief',
      'photo_id':            8}
 ]:
@@ -416,12 +416,12 @@ print('Order Forms initialized')
 #           CREATE SALE           #
 
 for data in [
-    {'transaction':  bmod.Transaction.objects.get(customer_id=bmod.User.objects.get(username='CodyingAllNight')),
+    {'transaction':  bmod.Transaction.objects.get(customer_id=bmod.User.objects.get(username='Fabius')),
      'amount':          35.00,
      'quantity':        1,
      'sale_item':       bmod.Custom_Item.objects.first(),
      'order_form':      bmod.Order_Form.objects.first()},
-    {'transaction':     bmod.Transaction.objects.get(customer_id=bmod.User.objects.get(username='2Tyler2Quit')),
+    {'transaction':     bmod.Transaction.objects.get(customer_id=bmod.User.objects.get(username='WizardOwl')),
      'amount':          15.00,
      'quantity':        3,
      'sale_item':       bmod.Sale_Item.objects.get(name='Quill')}
@@ -444,7 +444,7 @@ for data in [
      'description':         "Professor Gove's very own robe.",
      'serial_number':       "R4516",
      'value':               20.99,
-     'owner':               bmod.User.objects.get(username='GoveByDaPound'),
+     'owner':               bmod.User.objects.get(username='Hannibal'),
      'photo_id':            2,
      'clothing_detail_id':  bmod.Clothing_Detail.objects.first().id,
      'price_per_day':       5.99},
@@ -454,7 +454,7 @@ for data in [
      'description':         "Authentic. Appears to have been dropped. Never fired.",
      'serial_number':       "R3256",
      'value':               2304.00,
-     'owner':               bmod.User.objects.get(username='GoveByDaPound'),
+     'owner':               bmod.User.objects.get(username='Hannibal'),
      'photo_id':            7,
      'price_per_day':       20.99},
     {'quantity_on_hand':    "0",
@@ -463,7 +463,7 @@ for data in [
      'description':         "Taste that sweet dill goodness. Do not consume.",
      'serial_number':       "R5678",
      'value':               12.00,
-     'owner':               bmod.User.objects.get(username='GoveByDaPound'),
+     'owner':               bmod.User.objects.get(username='Hannibal'),
      'photo_id':            16,
      'price_per_day':       15.00},
     {'quantity_on_hand':    "0",
@@ -472,7 +472,7 @@ for data in [
      'description':         "Taste that sweet okra goodness. Do not consume.",
      'serial_number':       "R8905",
      'value':               12.00,
-     'owner':               bmod.User.objects.get(username='GoveByDaPound'),
+     'owner':               bmod.User.objects.get(username='Hannibal'),
      'photo_id':            17,
      'price_per_day':       1.00},
     {'quantity_on_hand':    "0",
@@ -481,7 +481,7 @@ for data in [
      'description':         "Actually disgusting. Should have been thrown out a long time ago.",
      'serial_number':       "R7890",
      'value':               15.00,
-     'owner':               bmod.User.objects.get(username='GoveByDaPound'),
+     'owner':               bmod.User.objects.get(username='Hannibal'),
      'photo_id':            18,
      'price_per_day':       16.00}
 ]:
@@ -497,12 +497,12 @@ print('Rental Items initialized')
 #           CREATE RENTALS         #
 
 for data in [
-    {'transaction_id':          bmod.Transaction.objects.get(customer_id=bmod.User.objects.get(username='Kevbo')).id,
+    {'transaction_id':          bmod.Transaction.objects.get(customer_id=bmod.User.objects.get(username='SwampFox')).id,
      'amount':                  bmod.Rental_Item.objects.get(serial_number='R3256').price_per_day*4,
      'rental_item':             bmod.Rental_Item.objects.get(serial_number='R3256'),
-     'checkout_by_date':        bmod.Transaction.objects.get(customer_id=bmod.User.objects.get(username='Kevbo')).date + datetime.timedelta(14),
+     'checkout_by_date':        bmod.Transaction.objects.get(customer_id=bmod.User.objects.get(username='SwampFox')).date + datetime.timedelta(14),
      'checkout_price':          0,
-     'date_out':                bmod.Transaction.objects.get(customer_id=bmod.User.objects.get(username='Kevbo')).date,
+     'date_out':                bmod.Transaction.objects.get(customer_id=bmod.User.objects.get(username='SwampFox')).date,
      'date_due':                datetime.date.today() - datetime.timedelta(1),
      'duration':                4,
      'discount_percent':        1.00},
@@ -533,7 +533,7 @@ for data in [
      'date_due':                datetime.date.today() - datetime.timedelta(64),
      'duration':                1,
      'discount_percent':        0},
-    {'transaction_id':          bmod.Transaction.objects.get(customer_id=bmod.User.objects.get(username='Kevbo')).id,
+    {'transaction_id':          bmod.Transaction.objects.get(customer_id=bmod.User.objects.get(username='SwampFox')).id,
      'amount':                  bmod.Rental_Item.objects.get(serial_number='R7890').price_per_day*1*Decimal('0.20'),
      'rental_item':             bmod.Rental_Item.objects.get(serial_number='R7890'),
      'checkout_by_date':        datetime.date.today() - datetime.timedelta(40) + datetime.timedelta(14),
@@ -559,7 +559,7 @@ for data in [
     {'rental':              bmod.Rental.objects.get(date_due=datetime.date.today() - datetime.timedelta(2)),
      'date_in':       datetime.date.today() - datetime.timedelta(1),
      'return_condition':    'It looks like someone lit it on fire.',
-     'handled_by':          bmod.Employee.objects.get(username='Reverend')}
+     'handled_by':          bmod.Employee.objects.get(username='LittleLion')}
 ]:
 
     rr = bmod.Rental_Return()

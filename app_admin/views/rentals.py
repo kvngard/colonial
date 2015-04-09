@@ -1,14 +1,11 @@
 from django_mako_plus.controller import view_function
+from app_admin.forms import Return_Form, Damage_Form
 from app_store.storeforms import Credit_Card_Form
-from django.forms.widgets import CheckboxInput
 from django.http import HttpResponseRedirect
 from app_base.admin import group_required
-from app_base.widgets import RadioSelect
 from django.core.mail import send_mail
-from app_base.forms import site_model_form
 import app_base.models as mod
 from decimal import Decimal
-from django import forms
 from . import templater
 import datetime
 
@@ -241,20 +238,3 @@ def check_in(request):
     params['damage_form'] = damage_form
 
     return templater.render_to_response(request, 'rental_return.html', params)
-
-
-class Return_Form(forms.ModelForm):
-
-    class Meta:
-        model = mod.Rental_Return
-        fields = ['return_condition']
-        widgets = {
-            'return_condition': RadioSelect(),
-        }
-
-
-class Damage_Form(forms.ModelForm):
-
-    class Meta:
-        model = mod.Damage_Fee
-        fields = ['description', 'amount']

@@ -1,9 +1,16 @@
-.d-card{
+.d-card {
     width: 12rem;
     border-color: white;
     border-style: double;
     border-width: 2px;
 }
-.d-card h5{
+.tooltipped {
+    margin-right: 0 !important;
+}
+.white-text {
     text-align: center;
+    text-transform: initial !important;
+}
+.graph {
+      margin-top: 2rem;
 }

@@ -76,7 +76,8 @@ def view(request):
     params = {}
     try:
         params['event'] = Event.objects.get(id=request.urlparams[0])
-        params['areas'] = Area.objects.all().filter(event_id=request.urlparams[0])
+        params['areas'] = Area.objects.all().filter(
+            event_id=request.urlparams[0])
     except Event.DoesNotExist:
         return HttpResponseRedirect('/')
 

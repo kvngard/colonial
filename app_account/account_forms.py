@@ -1,6 +1,6 @@
 from ldap3 import Server, Connection, AUTH_SIMPLE, STRATEGY_SYNC, GET_ALL_INFO
 from ldap3.core.exceptions import LDAPBindError, LDAPPasswordIsMandatoryError, LDAPSocketOpenError
-from app_base.widgets import ClearableFileInput
+from app_base.widgets import MaterializeClearableFileInput
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import Group
 from app_base.forms import site_form
@@ -83,5 +83,5 @@ class UserEditForm(forms.ModelForm):
         fields = ['first_name', 'last_name',
                   'username', 'email', 'profile_image']
         widgets = {
-            'profile_image': ClearableFileInput(),
+            'profile_image': MaterializeClearableFileInput(attrs={'class': 'upload-btn'}),
         }

@@ -139,36 +139,13 @@ class CheckboxSelectMultiple(RendererMixin, SelectMultiple):
 
 class MaterializeClearableFileInput(ClearableFileInput):
 
-    template_with_initial = '''<div class="file-field input-field"><input class="file-path validate"
-        type="text"/><div class="btn"><span>File</span><input type="file" /></div></div>'''
-
     def render(self, name, value, attrs=None):
         substitutions = {
-            'initial_text': self.initial_text,
             'input_text': self.input_text,
-            'clear_template': '',
-            'clear_checkbox_label': self.clear_checkbox_label,
         }
         template = '''<div class="file-field input-field"><input class="file-path validate"
-        type="text"/><div class="btn"><span>File</span><input type="file" /></div></div>'''
+        type="text"/><div class="btn"><span>File</span>%(input)s</div></div>'''
         substitutions['input'] = super(
-            MaterializeClearableFileInput, self).render(name, value, attrs)
-
-        if value and hasattr(value, "url"):
-            template = self.template_with_initial
-            substitutions['initial'] = format_html(self.url_markup_template,
-                                                   value.url,
-                                                   force_text(value))
-            if not self.is_required:
-                checkbox_name = self.clear_checkbox_name(name)
-                checkbox_id = self.clear_checkbox_id(checkbox_name)
-                substitutions['clear_checkbox_name'] = conditional_escape(
-                    checkbox_name)
-                substitutions['clear_checkbox_id'] = conditional_escape(
-                    checkbox_id)
-                substitutions['clear'] = CheckboxInput().render(
-                    checkbox_name, False, attrs={'id': checkbox_id})
-                substitutions[
-                    'clear_template'] = self.template_with_clear % substitutions
+            ClearableFileInput, self).render(name, value, attrs)
 
         return mark_safe(template % substitutions)
