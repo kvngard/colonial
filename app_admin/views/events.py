@@ -9,7 +9,7 @@ from . import templater
 @view_function
 @group_required('Manager', 'Admin')
 def process_request(request):
-    events = Event.objects.all()
+    events = Event.objects.all().order_by('start_date')
     params = {}
     params['events'] = events
     return templater.render_to_response(request, 'events.html', params)
@@ -21,7 +21,6 @@ def create(request):
     params = {}
     form = EventEditForm()
     if request.method == 'POST':
-        print(request.FILES)
         form = EventEditForm(request.POST, request.FILES)
         if form.is_valid():
             newimg = form.save(commit=False)
@@ -41,16 +40,23 @@ def edit(request):
     try:
         event = Event.objects.get(id=request.urlparams[0])
     except Event.DoesNotExist:
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/app_admin/events/')
 
     params = {}
     form = EventEditForm(instance=event)
 
     if request.method == 'POST':
-        form = EventEditForm(request.POST, instance=event)
+        form = EventEditForm(request.POST, request.FILES, instance=event)
         if form.is_valid():
+
+            newform = form.save(commit=False)
+            newform.map_file = request.FILES['map_file']
+            newform.save()
+
+
+
             form.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/app_admin/events/')
 
     params['form'] = form
     params['event'] = event

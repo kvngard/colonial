@@ -4,9 +4,9 @@
 
 
   <div layout horizontal center>
-    <h1>Events</h1>
+    <h1>Items</h1>
     <div class="action-btn">
-      <a href="/app_admin/items.create/" class="btn-floating btn-large waves-effect waves-light"><i class="mdi-content-add"></i></a>
+      <a href="/app_admin/inventory.create/" class="btn-floating btn-large waves-effect waves-light"><i class="mdi-content-add"></i></a>
     </div>
   </div>
 
@@ -21,14 +21,14 @@
       %for item in items:
           <tr>
               <td>
-                  <img src="/static/${ item.photograph.image }"/>
+                  <img class="materialboxed" src="${ item.photo.image }" width="75"/>
               </td>
               <td> ${ item.name} </td>
               <td> ${ item.description} </td>
-              <td> ${ item.value} </td>
+              <td> $${ item.value} </td>
               <td>
-                  <a href="/app_admin/items.edit/${ item.id }/" class="btn btn-xs btn-default"><i class='mdi-editor-mode-edit'></i></a>
-                  <a href="/app_admin/items.delete/${ item.id }/" class="btn red darken-3"><i class='mdi-action-highlight-remove'></i></a>
+                  <a href="/app_admin/inventory.edit/${ item.id }/" class="btn btn-xs btn-default"><i class='mdi-editor-mode-edit'></i></a>
+                  <a href="/app_admin/inventory.delete/${ item.id }/" class="btn red darken-3"><i class='mdi-action-highlight-remove'></i></a>
               </td>
           </tr>
       %endfor

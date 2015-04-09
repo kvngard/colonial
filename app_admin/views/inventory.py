@@ -1,58 +1,58 @@
 from django_mako_plus.controller import view_function
 from django.http import HttpResponseRedirect
 from app_base.admin import group_required
-from app_base.models import Event, Area
-from app_admin.forms import EventEditForm
+from app_base.models import Item
+from app_admin.forms import ItemEditForm
 from . import templater
 
 
 @view_function
 @group_required('Manager', 'Admin')
 def process_request(request):
-    events = Event.objects.all()
+    items = Item.objects.all().order_by('name')
     params = {}
-    params['events'] = events
-    return templater.render_to_response(request, 'events.html', params)
+    params['items'] = items
+    return templater.render_to_response(request, 'inventory.html', params)
 
 
 @view_function
 @group_required('Manager', 'Admin')
 def create(request):
     params = {}
-    form = EventEditForm()
+    form = ItemEditForm()
     if request.method == 'POST':
-        form = EventEditForm(request.POST, request.FILES)
+        form = ItemEditForm(request.POST, request.FILES)
         if form.is_valid():
             newimg = form.save(commit=False)
             newimg.map_file_name = request.FILES['map_file_name']
             newimg.save()
-            return HttpResponseRedirect('/app_admin/events/')
+            return HttpResponseRedirect('/app_admin/inventory/')
 
     params['form'] = form
-    params['title'] = 'Create Event'
-    return templater.render_to_response(request, 'create_event.html', params)
+    params['title'] = 'Create Item'
+    return templater.render_to_response(request, 'create_item.html', params)
 
 
 @view_function
 @group_required('Manager', 'Admin')
 def edit(request):
     try:
-        event = Event.objects.get(id=request.urlparams[0])
-    except Event.DoesNotExist:
-        return HttpResponseRedirect('/')
+        item = Item.objects.get(id=request.urlparams[0])
+    except Item.DoesNotExist:
+        return HttpResponseRedirect('/app_admin/inventory/')
 
     params = {}
-    form = EventEditForm(instance=event)
+    form = ItemEditForm(instance=item)
 
     if request.method == 'POST':
-        form = EventEditForm(request.POST, request.FILES, instance=event)
+        form = ItemEditForm(request.POST, request.FILES, instance=item)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/app_admin/inventory/')
 
     params['form'] = form
-    params['title'] = 'Edit Event'
-    return templater.render_to_response(request, 'create_event.html', params)
+    params['title'] = 'Edit Item'
+    return templater.render_to_response(request, 'create_item.html', params)
 
 
 @view_function
@@ -60,26 +60,10 @@ def edit(request):
 def delete(request):
 
     try:
-        event = Event.objects.get(id=request.urlparams[0])
-    except Event.DoesNotExist:
-        return HttpResponseRedirect('/app_admin/events/')
+        item = Item.objects.get(id=request.urlparams[0])
+    except Item.DoesNotExist:
+        return HttpResponseRedirect('/app_admin/inventory/')
 
-    event.delete()
+    item.delete()
 
-    return HttpResponseRedirect('/app_admin/events/')
-
-
-@view_function
-@group_required('Manager', 'Admin')
-def view(request):
-    params = {}
-    try:
-        event = Event.objects.get(id=request.urlparams[0])
-        areas = Area.objects.all().filter(
-            event_id=request.urlparams[0]).order_by('id')
-    except Event.DoesNotExist:
-        return HttpResponseRedirect('/app_admin/events/')
-
-    params['event'] = event
-    params['areas'] = areas
-    return templater.render_to_response(request, 'view_event.html', params)
+    return HttpResponseRedirect('/app_admin/inventory/')

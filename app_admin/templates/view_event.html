@@ -4,12 +4,11 @@
 
 
   <div layout horizontal center>
-    <h1>Event</h1>
+    <h1>${event.name}</h1>
   </div>
 
   <table class="striped">
     <tr>
-        <th>Event ID</th>
         <th>Start Date</th>
         <th>End Date</th>
         <th>Venue Name</th>
@@ -17,9 +16,8 @@
         <th>Options</th>
     </tr>
       <tr>
-          <td> ${ event.id} </td>
-          <td> ${ event.start_date} </td>
-          <td> ${ event.end_date} </td>
+          <td> ${ '{:%m/%d/%y}'.format(event.start_date)} </td>
+          <td> ${ '{:%m/%d/%y}'.format(event.end_date)} </td>
           <td> ${ event.venue_name} </td>
           <td>
               <img class="materialboxed" width="75" src="/static/media/${ event.map_file}" />
