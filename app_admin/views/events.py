@@ -48,13 +48,6 @@ def edit(request):
     if request.method == 'POST':
         form = EventEditForm(request.POST, request.FILES, instance=event)
         if form.is_valid():
-
-            newform = form.save(commit=False)
-            newform.map_file = request.FILES['map_file']
-            newform.save()
-
-
-
             form.save()
             return HttpResponseRedirect('/app_admin/events/')
 
@@ -71,9 +64,12 @@ def delete(request):
 
     try:
         event = Event.objects.get(id=request.urlparams[0])
+        areas = Area.objects.all().filter(event_id=request.urlparams[0])
     except Event.DoesNotExist:
         return HttpResponseRedirect('/app_admin/events/')
 
+    for area in areas:
+        area.delete()
     event.delete()
 
     return HttpResponseRedirect('/app_admin/events/')
