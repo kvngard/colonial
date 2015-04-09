@@ -1,0 +1,9 @@
+.d-card{
+    width: 12rem;
+    border-color: white;
+    border-style: double;
+    border-width: 2px;
+}
+h5{
+    text-align: center;
+}

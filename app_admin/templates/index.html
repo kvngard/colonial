@@ -1,70 +1,60 @@
 <%inherit file="admin_base.html" />
 
+<%block name="style">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</%block>
+
 <%block name="main">
-  <h1>Manage Site Content</h1>
+  <h2>Dashboard</h2>
 
 <div class="row" layout horizontal center wrap>
 
-	<div class="col s12 m3">
-      <div class="card">
-        <div class="card-image">
-          <img src="${ STATIC_URL }app_account/media/default_profile.jpg ">
-          <span class="card-title"></span>
-        </div>
-        <div class="card-content">
-          <p>There are currently<strong> ${ total_users }</strong> registered users!</p>
+    <div class="col s6 m2">
+      <div class="card green darken-2">
+        <div class="card-content" layout vertical center-center>
+          <img class='circle d-card responsive-img' src="${ STATIC_URL }app_account/media/default_profile.jpg ">
+          <h5 class='white-text'><strong> ${ total_users }</strong> registered users</h5>
         </div>
       </div>
     </div>
 
-    <div class="col s12 m3">
-      <div class="card">
-        <div class="card-image">
-          <img src="${ STATIC_URL }app_events/media/transaction2.jpg">
-          <span class="card-title"></span>
-        </div>
-        <div class="card-content">
-          <p>You have processed <strong>${ total_transactions }</strong> transcations!</p>
+    <div class="col s6 m2">
+      <div class="card light-blue darken-1">
+        <div class="card-content" layout vertical center-center>
+          <img class='circle d-card responsive-img' src="${ STATIC_URL }app_events/media/transaction2.jpg">
+          <h5 class='white-text'><strong>${ total_transactions }</strong> new sales</h5>
         </div>
       </div>
     </div>
 
-    <div class="col s12 m3">
-      <div class="card">
-        <div class="card-image">
-          <img src="${ STATIC_URL }app_events/media/money.jpg">
-          <span class="card-title"></span>
-        </div>
-        <div class="card-content">
-          <p>You have sold <strong>$${ payment_total }</strong> worth of products!</p>
+    <div class="col s6 m2">
+      <div class="card red darken-1">
+        <div class="card-content" layout vertical center-center>
+          <img class='circle d-card responsive-img'  src="${ STATIC_URL }app_events/media/money.jpg">
+          <h5 class='white-text'><strong>$${ payment_total }</strong> in weekly sales</h5>
         </div>
       </div>
     </div>
 
-    <div class="col s12 m3">
-      <div class="card">
-        <div class="card-image">
-          <img src="${ STATIC_URL }app_events/media/rentals.jpg">
-          <span class="card-title"></span>
-        </div>
-        <div class="card-content">
-          <p>You have <strong>${ total_rentals }</strong> item(s) being rented!</p>
+    <div class="col s6 m2">
+      <div class="card teal darken-1">
+        <div class="card-content" layout vertical center-center>
+          <img class='circle d-card responsive-img'  src="${ STATIC_URL }app_events/media/rentals.jpg">
+          <h5 class='white-text'><strong>${ total_rentals }</strong> current rentals</h5>
         </div>
       </div>
     </div>
 
-    <div class="col s12 m3">
-      <div class="card">
-        <div class="card-image">
-          <img src="${ STATIC_URL }app_events/media/laterentals.jpg">
-          <span class="card-title"></span>
-        </div>
-        <div class="card-content">
-          <p>You have <strong>${ total_late_rentals }</strong> item(s) that are late and need to be returned!</p>
+    <div class="col s6 m2">
+      <div class="card orange  darken-1">
+        <div class="card-content" layout vertical center-center>
+          <img class='circle d-card responsive-img'  src="${ STATIC_URL }app_events/media/laterentals.jpg">
+          <h5 class='white-text'><strong>${ total_late_rentals }</strong> overdue rentals</h5>
         </div>
       </div>
     </div>
-
+    <br />
+    <%include file='graph_example.html' />
 </div>
 
 </%block>
