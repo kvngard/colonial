@@ -39,12 +39,16 @@ class LoginForm(site_form):
                     c.search(
                         search_base='CN=Users,DC=colonialheritagefoundation,DC=local',
                         search_filter='(samAccountName={})'.format(username),
-                        attributes=['givenName', 'sn', 'mail', ]
+                        attributes=['samAccountName', 'givenName', 'sn', 'mail', ]
                     )
 
                     # Parse the LDAP query response to get the user_info
                     # dictionary.
                     user_info = c.response[0]['attributes']
+
+                    if user_info['samAccountName'] != username:
+                        raise forms.ValidationError(
+                        "Sorry, that's not an existing email-password combination.")
 
                     c.unbind()
 
@@ -68,6 +72,8 @@ class LoginForm(site_form):
                         "Sorry, that's not an existing email-password combination.")
                 except LDAPPasswordIsMandatoryError as ldape:
                     print(ldape)
+                    raise forms.ValidationError(
+                        "Please include as password.")
                 except LDAPSocketOpenError as e:
                     print(e)
                     c.unbind()
