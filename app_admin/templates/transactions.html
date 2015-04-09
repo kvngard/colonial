@@ -1,0 +1,25 @@
+<%inherit file="admin_base.html" />
+
+<%block name="main">
+<div layout horizontal center>
+    <h1>Transactions</h1>
+  </div>
+
+  <table class="striped">
+    <tr>
+    	<th>ID</th>
+        <th>Customer Name</th>
+        <th>Sale Date</th>
+        <th>Phone Number</th>
+
+    </tr>
+      %for transaction in transactions:
+          <tr>
+          	  <td> ${ transaction.id} </td>
+              <td> ${ transaction.customer.get_full_name()} </td>
+              <td> ${ transaction.date.date()} </td>
+              <td>${ transaction.phone}</td>
+          </tr>
+      %endfor
+  </table>
+</%block>

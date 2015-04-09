@@ -1,0 +1,22 @@
+<%inherit file="admin_base.html" />
+
+<%block name="main">
+<div layout horizontal center>
+    <h1>Payments</h1>
+  </div>
+
+  <table class="striped">
+    <tr>
+        <th>Customer Name</th>
+        <th>Payment Date</th>
+        <th>Amount Paid</th>
+    </tr>
+      %for payment in payments:
+          <tr>
+              <td> ${ payment.transaction.customer.get_full_name()} </td>
+              <td> ${ payment.date_paid.date()} </td>
+              <td> $${ payment.amount }</td>
+          </tr>
+      %endfor
+  </table>
+</%block>
