@@ -156,6 +156,26 @@ def report(request):
         else:
             ninety.append(rental)
 
+        email = rental.transaction.customer.email
+        duedate = rental.date_due.date()
+        delta = datetime.date.today() - rental.date_due.date()
+        dayslate1 = delta.days
+        currfee = rental.rental_item.price_per_day * dayslate1
+        params['current_fee'] = currfee
+        params['dayslate1'] = dayslate1
+        params['duedate'] = duedate
+        params['rental'] = rental
+        emailbody = templater.render(request, 'late_rental_email.html', params)
+        send_mail(
+            'Colonial Heritage Foundation - Your Rental(s) are late!',
+            emailbody,
+            'chfsite@gmail.com',
+            [email],
+            html_message=emailbody,
+            fail_silently=False
+        )
+
+
     params['rentals'] = rentals
     params['dayslate'] = dayslate
     params['ninety'] = ninety
@@ -247,33 +267,31 @@ def notify(request):
     params = {}
 
     try:
-        rental = mod.Rental.objects.filter(id=request.urlparams[0])
+        rentals = mod.Rental.objects.filter(id=request.urlparams[0])
     except mod.Rental.DoesNotExist:
         return HttpResponseRedirect('/')
 
-    print(rental[0].transaction.customer.email)
-    email = rental[0].transaction.customer.email
     
-    duedate = rental[0].date_due.date()
-    
-    delta = datetime.date.today() - rental[0].date_due.date()
-    dayslate= delta.days
-    
-    currfee = rental[0].rental_item.price_per_day * dayslate
-    params['current_fee'] = currfee
-    params['dayslate'] = dayslate
-    params['duedate'] = duedate
-    params['rentals'] = rental
+    for rental in rentals:
+        print(rental.transaction.customer.email)
+        email = rental.transaction.customer.email
+        duedate = rental.date_due.date()
+        delta = datetime.date.today() - rental.date_due.date()
+        dayslate = delta.days
+        currfee = rental.rental_item.price_per_day * dayslate
+        params['current_fee'] = currfee
+        params['dayslate1'] = dayslate
+        params['duedate'] = duedate
+        params['rental'] = rental
+        emailbody = templater.render(request, 'late_rental_email.html', params)
+        send_mail(
+            'Colonial Heritage Foundation - Your Rental(s) are late!',
+            emailbody,
+            'chfsite@gmail.com',
+            [email],
+            html_message=emailbody,
+            fail_silently=False
+        )
 
-    emailbody = templater.render(request, 'late_rental_email.html', params)
-
-    send_mail(
-        'Colonial Heritage Foundation - Your Rental(s) are late!',
-        emailbody,
-        'chfsite@gmail.com',
-        [email],
-        html_message=emailbody,
-        fail_silently=False
-    )
 
     return templater.render_to_response(request, 'notify.html', params)
