@@ -21,7 +21,11 @@
     </tr>
       %for event in events:
           <tr>
-              <td> ${ event.id} </td>
+              <td>
+                  <a href="/app+admin/events.view/${event.id}">
+                      ${ event.id}
+                  </a>
+              </td>
               <td> ${ event.start_date} </td>
               <td> ${ event.end_date} </td>
               <td> ${ event.venue_name} </td>
