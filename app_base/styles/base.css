@@ -75,14 +75,11 @@
     top: 50%;
     left: 50%;
 }
+
 .fade {
   opacity: 0;
 }
-.form-padd {
-    padding-top: .25rem;
-    height: 1px;
-    padding-bottom: .25rem;
-}
+
 main{
     position: relative;
     padding-left: 270px;
@@ -93,4 +90,9 @@ main{
         padding-left: 2rem;
         padding-right: 2rem;
     }
+}
+
+.upload-btn {
+  display: block;
+  margin: 1rem 0;
 }

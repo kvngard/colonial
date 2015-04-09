@@ -458,7 +458,7 @@ class Public_Event(models.Model):
     '''
         A public event such as "The Colonial Heritage Festival".
     '''
-    name = models.TextField(max_length=200)
+    name = models.CharField(max_length=200)
     description = models.TextField(max_length=1000)
 
 

@@ -12,29 +12,31 @@
 
   <table class="striped">
     <tr>
-        <th>Event ID</th>
+        <th>Event Name</th>
         <th>Start Date</th>
         <th>End Date</th>
         <th>Venue Name</th>
-        <th>Map Image</th>
+        <th>Venue Map</th>
         <th>Options</th>
     </tr>
       %for event in events:
           <tr>
               <td>
-                  <a href="/app_admin/events.view/${event.id}">
-                      ${ event.id}
+                  <a href="/app_admin/events.view/${event.id}" class="tooltipped"
+                     data-position="right" data-delay="80" data-tooltip="Add Event Areas">
+                      <strong>${ event.name}</strong>
                   </a>
               </td>
-              <td> ${ event.start_date} </td>
-              <td> ${ event.end_date} </td>
+              <td> ${ '{:%m/%d/%y}'.format(event.start_date) } </td>
+              <td> ${ '{:%m/%d/%y}'.format(event.end_date) } </td>
               <td> ${ event.venue_name} </td>
               <td>
                   <img class="materialboxed" width="75" src="${ STATIC_URL }media/${ event.map_file }" />
               </td>
               <td>
                   <a href="/app_admin/events.edit/${ event.id }/" class="btn btn-xs btn-default"><i class='mdi-editor-mode-edit'></i></a>
-                  <a href="/app_admin/events.delete/${ event.id }/" class="btn red darken-3"><i class='mdi-action-highlight-remove'></i></a>
+                  <a href="/app_admin/events.delete/${ event.id }/" class="btn red darken-3 tooltipped"
+                     data-position="bottom" data-delay="80" data-tooltip="Delete"><i class='mdi-action-highlight-remove'></i></a>
               </td>
           </tr>
       %endfor

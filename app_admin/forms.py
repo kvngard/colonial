@@ -18,8 +18,11 @@ class EventEditForm(forms.ModelForm):
 
     class Meta:
         model = Event
-        fields = ['start_date', 'end_date', 'venue_name',
+        fields = ['name', 'description', 'start_date', 'end_date', 'venue_name',
                   'map_file', 'address', 'discount_code']
+        widgets = {
+            'map_file': forms.widgets.ClearableFileInput(attrs={'class': 'upload-btn'}),
+        }
 
 
 class AreaEditForm(forms.ModelForm):
