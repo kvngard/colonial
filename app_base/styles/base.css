@@ -97,6 +97,11 @@ main{
   margin: 1rem 0;
 }
 
+
+.nav-logo{
+    padding: 1rem;
+    width: 12rem;
+}
 .side-nav .collapsible {
     margin: 0;
 }

@@ -453,20 +453,13 @@ class Expected_Sale_Item(models.Model):
     event = models.ForeignKey('Event')
 
 
-class Public_Event(models.Model):
+class Event(models.Model):
 
     '''
-        A public event such as "The Colonial Heritage Festival".
+         A public event such as "The Colonial Heritage Festival".
     '''
     name = models.CharField(max_length=200)
     description = models.TextField(max_length=1000)
-
-
-class Event(Public_Event):
-
-    '''
-        An instance of a public event, such as "The 2015 Colonial Heritage Festival at Orem".
-    '''
     start_date = models.DateField()
     end_date = models.DateField()
     map_file = models.ImageField(upload_to='maps/')

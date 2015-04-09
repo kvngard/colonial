@@ -5,8 +5,9 @@ from app_base.models import Event, Area
 from app_admin.forms import AreaEditForm
 from . import templater
 
+
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def create(request):
     params = {}
     form = AreaEditForm()
@@ -25,7 +26,7 @@ def create(request):
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def edit(request):
     try:
         area = Area.objects.get(id=request.urlparams[0])
@@ -47,7 +48,7 @@ def edit(request):
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def delete(request):
 
     try:
@@ -61,12 +62,13 @@ def delete(request):
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def view(request):
     params = {}
     try:
         area = Area.objects.get(id=request.urlparams[0])
-        areas = Area.objects.all().filter(area_id=request.urlparams[0]).order_by('id')
+        areas = Area.objects.all().filter(
+            area_id=request.urlparams[0]).order_by('id')
     except Area.DoesNotExist:
         return HttpResponseRedirect('/app_admin/areas/')
 

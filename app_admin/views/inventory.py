@@ -7,7 +7,7 @@ from . import templater
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def process_request(request):
     events = Event.objects.all()
     params = {}
@@ -16,7 +16,7 @@ def process_request(request):
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def create(request):
     params = {}
     form = EventEditForm()
@@ -34,7 +34,7 @@ def create(request):
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def edit(request):
     try:
         event = Event.objects.get(id=request.urlparams[0])
@@ -56,7 +56,7 @@ def edit(request):
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def delete(request):
 
     try:
@@ -70,12 +70,13 @@ def delete(request):
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def view(request):
     params = {}
     try:
         event = Event.objects.get(id=request.urlparams[0])
-        areas = Area.objects.all().filter(event_id=request.urlparams[0]).order_by('id')
+        areas = Area.objects.all().filter(
+            event_id=request.urlparams[0]).order_by('id')
     except Event.DoesNotExist:
         return HttpResponseRedirect('/app_admin/events/')
 

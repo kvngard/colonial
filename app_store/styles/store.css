@@ -1,14 +1,10 @@
-.nav-logo{
-    padding: 1rem;
-    width: 12rem;
-}
 main{
     position: relative;
 }
 .store-item{
     margin: 2rem 0 0 2rem !important;
 }
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 680px) {
     .store-item {
         margin: 2rem 0 0 0 !important;
     }

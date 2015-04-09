@@ -7,7 +7,7 @@ from . import templater
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def process_request(request):
     events = Event.objects.all()
     params = {}
@@ -16,7 +16,7 @@ def process_request(request):
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def create(request):
     params = {}
     form = EventEditForm()
@@ -30,12 +30,13 @@ def create(request):
             return HttpResponseRedirect('/app_admin/events/')
 
     params['form'] = form
+    params['function'] = 'events.create'
     params['title'] = 'Create Event'
     return templater.render_to_response(request, 'create_event.html', params)
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def edit(request):
     try:
         event = Event.objects.get(id=request.urlparams[0])
@@ -52,12 +53,14 @@ def edit(request):
             return HttpResponseRedirect('/')
 
     params['form'] = form
+    params['event'] = event
+    params['function'] = 'events.edit'
     params['title'] = 'Edit Event'
     return templater.render_to_response(request, 'create_event.html', params)
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def delete(request):
 
     try:
@@ -71,7 +74,7 @@ def delete(request):
 
 
 @view_function
-@group_required('Manager')
+@group_required('Manager', 'Admin')
 def view(request):
     params = {}
     try:
