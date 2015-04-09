@@ -196,8 +196,8 @@ class Item(models.Model):
         that is held by the foundation, even if it is not for sale or rent.
     '''
     name = models.CharField(max_length=100, null=True)
-    description = models.TextField(max_length=300, null=True)
-    serial_number = models.TextField(max_length=100, null=True)
+    description = models.CharField(max_length=300, null=True)
+    serial_number = models.CharField(max_length=100, null=True)
     value = models.DecimalField(max_digits=10, decimal_places=2, null=True)
 
     owner = models.ForeignKey(User, related_name='+', null=True)
@@ -481,8 +481,8 @@ class Area(models.Model):
         An area of an event may represent an exhibit, a first aid station, or some other
         distinct element within the event.
     '''
-    name = models.TextField(max_length=200)
-    description = models.TextField(max_length=1000)
+    name = models.CharField(max_length=200)
+    description = models.CharField(max_length=1000)
     place_number = models.PositiveIntegerField()
 
     coordinator = models.ForeignKey(User, related_name='coordinates')

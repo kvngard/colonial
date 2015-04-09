@@ -4,10 +4,7 @@
 
 
   <div layout horizontal center>
-    <h1>Events</h1>
-    <div class="action-btn">
-      <a href="/app_admin/events.create/" class="btn-floating btn-large waves-effect waves-light"><i class="mdi-content-add"></i></a>
-    </div>
+    <h1>Event</h1>
   </div>
 
   <table class="striped">
@@ -19,21 +16,48 @@
         <th>Map Image</th>
         <th>Options</th>
     </tr>
-      %for event in events:
-          <tr>
-              <td><a href="#"> ${ event.id} </a></td>
-              <td> ${ event.start_date} </td>
-              <td> ${ event.end_date} </td>
-              <td> ${ event.venue_name} </td>
-              <td>
-                  <img class="materialboxed" width="75" src="/static/media/${ event.map_file_name}" />
-              </td>
-              <td>
-                  <a href="/app_admin/events.edit/${ event.id }/" class="btn btn-xs btn-default"><i class='mdi-editor-mode-edit'></i></a>
-                  <a href="/app_admin/events.delete/${ event.id }/" class="btn red darken-3"><i class='mdi-action-highlight-remove'></i></a>
-              </td>
-          </tr>
-      %endfor
+      <tr>
+          <td> ${ event.id} </td>
+          <td> ${ event.start_date} </td>
+          <td> ${ event.end_date} </td>
+          <td> ${ event.venue_name} </td>
+          <td>
+              <img class="materialboxed" width="75" src="/static/media/${ event.map_file}" />
+          </td>
+          <td>
+              <a href="/app_admin/events.edit/${ event.id }/" class="btn btn-xs btn-default"><i class='mdi-editor-mode-edit'></i></a>
+              <a href="/app_admin/events.delete/${ event.id }/" class="btn red darken-3"><i class='mdi-action-highlight-remove'></i></a>
+          </td>
+      </tr>
   </table>
 
+
+<div layout horizontal center>
+    <h1>Areas</h1>
+    <div class="action-btn">
+      <a href="/app_admin/areas.create/${event.id}" class="btn-floating btn-large waves-effect waves-light"><i class="mdi-content-add"></i></a>
+    </div>
+  </div>
+
+  <table class="striped">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Coordinator</th>
+        <th>Supervisor</th>
+        <th>Options</th>
+    </tr>
+      %for area in areas:
+      <tr>
+          <td> ${ area.name} </td>
+          <td> ${ area.description} </td>
+          <td> ${ area.coordinator.first_name } ${ area.coordinator.last_name }</td>
+          <td> ${ area.supervisor.first_name } ${ area.supervisor.last_name }</td>
+          <td>
+              <a href="/app_admin/areas.edit/${ area.id }/" class="btn btn-xs btn-default"><i class='mdi-editor-mode-edit'></i></a>
+              <a href="/app_admin/areas.delete/${ area.id }/" class="btn red darken-3"><i class='mdi-action-highlight-remove'></i></a>
+          </td>
+      </tr>
+      %endfor
+  </table>
 </%block>
