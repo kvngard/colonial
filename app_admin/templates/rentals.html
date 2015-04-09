@@ -21,8 +21,6 @@
         <td> ${ (rental.date_due.date() - today).days } Days</td>
         <td layout veritcal>
             <a href="/app_admin/rentals.check_in/${ rental.id }" class="btn btn-xs btn-default">Return</a>
-            <a href="/app_admin/rentals.notify/${ rental.id }" class="btn red darken-3 tooltipped"
-               data-position="right" data-delay="50" data-tooltip="Send Email">Notify</a>
         </td>
       </tr>
     %endfor
