@@ -16,7 +16,6 @@ def create(request):
         if form.is_valid():
             a = form.save(commit=False)
             a.event_id = request.urlparams[0]
-
             a.save()
             return HttpResponseRedirect('/app_admin/events.view/' + str(request.urlparams[0]))
 
@@ -31,16 +30,18 @@ def edit(request):
     try:
         area = Area.objects.get(id=request.urlparams[0])
     except Area.DoesNotExist:
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/app_admin/events.view/' + str(request.urlparams[0]))
 
     params = {}
     form = AreaEditForm(instance=area)
 
     if request.method == 'POST':
-        form = AreaEditForm(request.POST, request.FILES, instance=area)
+        form = AreaEditForm(request.POST, instance=area)
         if form.is_valid():
+            newform = form.save(commit=False)
+            event_id = newform.event_id
             form.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/app_admin/events.view/' + str(event_id))
 
     params['form'] = form
     params['title'] = 'Edit Area'
@@ -55,23 +56,7 @@ def delete(request):
         area = Area.objects.get(id=request.urlparams[0])
         event_id = area.event_id
     except Area.DoesNotExist:
-        return HttpResponseRedirect('/app_admin/events/')
+        return HttpResponseRedirect('/app_admin/events.view/' + str(request.urlparams[0]))
 
     area.delete()
     return HttpResponseRedirect('/app_admin/events.view/' + str(event_id))
-
-
-@view_function
-@group_required('Manager', 'Admin')
-def view(request):
-    params = {}
-    try:
-        area = Area.objects.get(id=request.urlparams[0])
-        areas = Area.objects.all().filter(
-            area_id=request.urlparams[0]).order_by('id')
-    except Area.DoesNotExist:
-        return HttpResponseRedirect('/app_admin/areas/')
-
-    params['area'] = area
-    params['areas'] = areas
-    return templater.render_to_response(request, 'view_area.html', params)

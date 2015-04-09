@@ -1,0 +1,11 @@
+%for rental in rentals:
+	<h3>Hello ${rental.transaction.customer}!</h3>
+		<p>The ${rental.rental_item.name} you rented from The Colonial Heritage Foundation is due ${ duedate }.</p>
+		<p>You rental is <strong>${dayslate}</strong> day(s) late.<br>
+		Your current fees are $${current_fee}.</p>
+
+		You can return the item you rented at any of our locations. Feel free to contact us at (801) 867-5309<br>
+	<h4>Thank you for renting with The Colonial Heritage Foundation!</h4>
+
+	*THIS WAS AN AUTOMATED MESSAGE DO NOT REPLY*
+%endfor
