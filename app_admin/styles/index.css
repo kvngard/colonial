@@ -12,5 +12,10 @@
     text-transform: initial !important;
 }
 .graph {
-      margin-top: 2rem;
+    align-self: baseline;
+    margin-top: 1rem;
+}
+.card {
+    margin-top: 1rem;
+    padding: 0 !important;
 }

@@ -1,14 +1,14 @@
 <%inherit file="admin_base.html" />
 
 <%block name="main">
-  <h2>Dashboard</h2>
+<h2>The State of the Foundation</h2>
 
 <div class="row" layout horizontal center wrap>
 
     <div class="col s6 m2">
       <div class="card green darken-2">
         <div class="card-content" layout vertical center-center>
-          <img class='circle d-card responsive-img' src="${ STATIC_URL }app_account/media/default_profile.jpg ">
+          <img class='circle d-card responsive-img' src="${ STATIC_URL }media/profile_images/default_profile.jpg ">
           <a href="/app_admin/users/" class="tooltipped" data-position="bottom" data-delay="80" data-tooltip="View and Edit Users">
             <h5 class='white-text'><strong> ${ total_users }</strong> registered users</h5>
           </a>
@@ -59,8 +59,20 @@
         </div>
       </div>
     </div>
-
     <%include file='graph_example.html' />
+       <div class="card col s12 l4">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="${ STATIC_URL }app_admin/media/cannon.jpg">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Card Title <i class="mdi-navigation-more-vert right"></i></span>
+          <p><a href="#">This is a link</a></p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Card Title <i class="mdi-navigation-close right"></i></span>
+          <p>Here is some more information about this product that is only revealed once clicked on.</p>
+        </div>
+      </div>
 </div>
 
 </%block>
