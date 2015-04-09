@@ -1,4 +1,4 @@
-from app_base.widgets import CheckboxSelectMultiple, ClearableFileInput
+from app_base.widgets import CheckboxSelectMultiple, MaterializeClearableFileInput
 from app_base.forms import site_model_form
 from app_base.models import User, Event
 from django import forms
@@ -20,6 +20,3 @@ class EventEditForm(forms.ModelForm):
         model = Event
         fields = ['start_date', 'end_date', 'venue_name',
                   'map_file', 'address', 'discount_code']
-        widgets = {
-            'map_file': ClearableFileInput(),
-        }

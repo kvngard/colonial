@@ -26,7 +26,7 @@
               <td> ${ event.end_date} </td>
               <td> ${ event.venue_name} </td>
               <td>
-                  <img class="materialboxed" width="75" src="${ event.map_file }" />
+                  <img class="materialboxed" width="75" src="${ STATIC_URL }media/${ event.map_file }" />
               </td>
               <td>
                   <a href="/app_admin/events.edit/${ event.id }/" class="btn btn-xs btn-default"><i class='mdi-editor-mode-edit'></i></a>

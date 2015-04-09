@@ -21,8 +21,8 @@ def create(request):
     params = {}
     form = EventEditForm()
     if request.method == 'POST':
+        print(request.FILES)
         form = EventEditForm(request.POST, request.FILES)
-        print(form)
         if form.is_valid():
             newimg = form.save(commit=False)
             newimg.map_file = request.FILES['map_file']
@@ -43,17 +43,17 @@ def edit(request):
         return HttpResponseRedirect('/')
 
     params = {}
-    form = EventEditForm()
+    form = EventEditForm(instance=event)
 
     if request.method == 'POST':
-        form = EventEditForm(request.POST)
+        form = EventEditForm(request.POST, instance=event)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/')
 
     params['form'] = form
     params['title'] = 'Edit Event'
-    return templater.render_to_response(request, 'edit_event.html', params)
+    return templater.render_to_response(request, 'create_event.html', params)
 
 
 @view_function
