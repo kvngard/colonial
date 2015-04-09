@@ -4,19 +4,43 @@
   <h1>Manage Site Content</h1>
 
 <div class="row" layout horizontal center wrap>
-%for user in users:
+
 	<div class="col s12 m3">
-	  <div class="card">
-	    <div class="card-image">
-	      <img src="${ user.profile_image }">
-	      <span class="card-title"></span>
-	    </div>
-	    <div class="card-content">
-	      ${user.first_name} ${user.last_name}<br>
-	    </div>
-	  </div>
-	</div>
-%endfor
+      <div class="card">
+        <div class="card-image">
+          <img src="${ STATIC_URL }app_events/media/volunteer.jpg">
+          <span class="card-title">Users</span>
+        </div>
+        <div class="card-content">
+          <p>There are currently<strong> ${ total_users }</strong> registered users!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m3">
+      <div class="card">
+        <div class="card-image">
+          <img src="${ STATIC_URL }app_events/media/volunteer.jpg">
+          <span class="card-title">Transcations</span>
+        </div>
+        <div class="card-content">
+          <p>You have processed <strong>${ total_transactions }</strong> transcations!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m3">
+      <div class="card">
+        <div class="card-image">
+          <img src="${ STATIC_URL }app_events/media/volunteer.jpg">
+          <span class="card-title">Payments</span>
+        </div>
+        <div class="card-content">
+          <p>You have sold <strong>$${ payment_total }</strong> worth of products and services!</p>
+        </div>
+      </div>
+    </div>
+
 </div>
 
 </%block>
