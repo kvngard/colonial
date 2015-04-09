@@ -1,7 +1,7 @@
 from django_mako_plus.controller import view_function
 from django.http import HttpResponseRedirect
 from app_base.admin import group_required
-from app_base.models import Event
+from app_base.models import Event, Area
 from app_admin.forms import EventEditForm
 from . import templater
 
@@ -68,3 +68,16 @@ def delete(request):
     event.delete()
 
     return HttpResponseRedirect('/app_admin/events/')
+
+
+@view_function
+@group_required('Manager')
+def view(request):
+    params = {}
+    try:
+        params['event'] = Event.objects.get(id=request.urlparams[0])
+        params['areas'] = Area.objects.all().filter(event_id=request.urlparams[0])
+    except Event.DoesNotExist:
+        return HttpResponseRedirect('/')
+
+    return templater.render_to_response(request, 'view_event.html', params)

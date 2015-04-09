@@ -2,57 +2,48 @@ from django_mako_plus.controller import view_function
 from django.http import HttpResponseRedirect
 from app_base.admin import group_required
 from app_base.models import Event, Area
-from app_admin.forms import EventEditForm
+from app_admin.forms import AreaEditForm
 from . import templater
-
-
-@view_function
-@group_required('Manager')
-def process_request(request):
-    events = Event.objects.all()
-    params = {}
-    params['events'] = events
-    return templater.render_to_response(request, 'events.html', params)
-
 
 @view_function
 @group_required('Manager')
 def create(request):
     params = {}
-    form = EventEditForm()
+    form = AreaEditForm()
     if request.method == 'POST':
-        form = EventEditForm(request.POST, request.FILES)
+        form = AreaEditForm(request.POST)
         if form.is_valid():
-            newimg = form.save(commit=False)
-            newimg.map_file_name = request.FILES['map_file_name']
-            newimg.save()
-            return HttpResponseRedirect('/app_admin/events/')
+            a = form.save(commit=False)
+            a.event_id = request.urlparams[0]
+
+            a.save()
+            return HttpResponseRedirect('/app_admin/events.view/' + str(request.urlparams[0]))
 
     params['form'] = form
-    params['title'] = 'Create Event'
-    return templater.render_to_response(request, 'create_event.html', params)
+    params['title'] = 'Create Area'
+    return templater.render_to_response(request, 'create_area.html', params)
 
 
 @view_function
 @group_required('Manager')
 def edit(request):
     try:
-        event = Event.objects.get(id=request.urlparams[0])
-    except Event.DoesNotExist:
+        area = Area.objects.get(id=request.urlparams[0])
+    except Area.DoesNotExist:
         return HttpResponseRedirect('/')
 
     params = {}
-    form = EventEditForm(instance=event)
+    form = AreaEditForm(instance=area)
 
     if request.method == 'POST':
-        form = EventEditForm(request.POST, request.FILES, instance=event)
+        form = AreaEditForm(request.POST, request.FILES, instance=area)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/')
 
     params['form'] = form
-    params['title'] = 'Edit Event'
-    return templater.render_to_response(request, 'create_event.html', params)
+    params['title'] = 'Edit Area'
+    return templater.render_to_response(request, 'create_area.html', params)
 
 
 @view_function
@@ -60,13 +51,13 @@ def edit(request):
 def delete(request):
 
     try:
-        event = Event.objects.get(id=request.urlparams[0])
-    except Event.DoesNotExist:
+        area = Area.objects.get(id=request.urlparams[0])
+        event_id = area.event_id
+    except Area.DoesNotExist:
         return HttpResponseRedirect('/app_admin/events/')
 
-    event.delete()
-
-    return HttpResponseRedirect('/app_admin/events/')
+    area.delete()
+    return HttpResponseRedirect('/app_admin/events.view/' + str(event_id))
 
 
 @view_function
@@ -74,11 +65,11 @@ def delete(request):
 def view(request):
     params = {}
     try:
-        event = Event.objects.get(id=request.urlparams[0])
-        areas = Area.objects.all().filter(event_id=request.urlparams[0]).order_by('id')
-    except Event.DoesNotExist:
-        return HttpResponseRedirect('/app_admin/events/')
+        area = Area.objects.get(id=request.urlparams[0])
+        areas = Area.objects.all().filter(area_id=request.urlparams[0]).order_by('id')
+    except Area.DoesNotExist:
+        return HttpResponseRedirect('/app_admin/areas/')
 
-    params['event'] = event
+    params['area'] = area
     params['areas'] = areas
-    return templater.render_to_response(request, 'view_event.html', params)
+    return templater.render_to_response(request, 'view_area.html', params)
