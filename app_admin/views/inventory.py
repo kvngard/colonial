@@ -1,7 +1,7 @@
 from django_mako_plus.controller import view_function
 from django.http import HttpResponseRedirect
 from app_base.admin import group_required
-from app_base.models import Item
+from app_base.models import Item, Sale_Item, Rental_Item
 from app_admin.forms import ItemEditForm
 from . import templater
 
@@ -9,9 +9,20 @@ from . import templater
 @view_function
 @group_required('Manager', 'Admin')
 def process_request(request):
-    items = Item.objects.all().order_by('name')
     params = {}
-    params['items'] = items
+    if request.urlparams[0] == "true_false":
+        params['items'] = Sale_Item.objects.all().order_by('name')
+        return templater.render_to_response(request, 'inventory_ajax.html', params)
+
+    if request.urlparams[0] == "false_true":
+        params['items'] = Rental_Item.objects.all().order_by('name')
+        return templater.render_to_response(request, 'inventory_ajax.html', params)
+
+    if request.urlparams[0] == "false_false" or request.urlparams[0] == "true_true":
+        params['items'] = Rental_Item.objects.all().order_by('name')
+        return templater.render_to_response(request, 'inventory_ajax.html', params)
+
+    params['items'] = Item.objects.all().order_by('name')
     return templater.render_to_response(request, 'inventory.html', params)
 
 

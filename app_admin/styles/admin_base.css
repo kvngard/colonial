@@ -27,3 +27,14 @@
     padding: 1rem;
     margin-bottom: -2rem;
 }
+
+div.filter {
+    border: 1px solid black;
+    padding: 5px 10px;
+    margin-left: 10px;
+    margin-top: 18px;
+}
+
+p.filter {
+    margin: 0px;
+}

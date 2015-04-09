@@ -1,28 +1,6 @@
-<%inherit file="admin_base.html" />
+<%inherit file="app_base/templates/base_ajax.html" />
 
-<%block name="main">
-
-
-  <div layout horizontal center>
-    <h1>Items</h1>
-    <div class="action-btn">
-      <a href="/app_admin/inventory.create/" class="btn-floating btn-large waves-effect waves-light"><i class="mdi-content-add"></i></a>
-    </div>
-    <div class="filter">
-        <p class="filter">
-            <input type="checkbox" id="sale_items_filter" checked="true"/>
-            <label for="sale_items_filter">Sale Items</label>
-        </p>
-    </div>
-    <div class="filter">
-        <p class="filter">
-            <input type="checkbox" id="rental_items_filter" checked="true"/>
-            <label for="rental_items_filter">Rental Items</label>
-        </p>
-    </div>
-  </div>
-
-  <table class="striped" id="item_table">
+<%block name="content">
     <tr>
         <th>Image</th>
         <th>Name</th>
@@ -44,6 +22,5 @@
               </td>
           </tr>
       %endfor
-  </table>
 
 </%block>
