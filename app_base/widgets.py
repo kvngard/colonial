@@ -138,6 +138,9 @@ class CheckboxSelectMultiple(RendererMixin, SelectMultiple):
 
 
 class MaterializeClearableFileInput(ClearableFileInput):
+    template_with_initial = '<div class="file-field input-field"><input class="file-path validate" type="text" value="%(initial)s"/><div class="btn"><span>File</span>%(input)s</div></div>'
+
+    url_markup_template = '{0}'
 
     def render(self, name, value, attrs=None):
         substitutions = {
@@ -145,7 +148,13 @@ class MaterializeClearableFileInput(ClearableFileInput):
         }
         template = '''<div class="file-field input-field"><input class="file-path validate"
         type="text"/><div class="btn"><span>File</span>%(input)s</div></div>'''
+
         substitutions['input'] = super(
             ClearableFileInput, self).render(name, value, attrs)
+
+        if value and hasattr(value, "url"):
+            template = self.template_with_initial
+            substitutions['initial'] = format_html(self.url_markup_template,
+                                                   value.url)
 
         return mark_safe(template % substitutions)
