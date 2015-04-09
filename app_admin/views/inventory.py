@@ -24,7 +24,7 @@ def create(request):
         form = ItemEditForm(request.POST, request.FILES)
         if form.is_valid():
             newimg = form.save(commit=False)
-            newimg.map_file_name = request.FILES['map_file_name']
+            newimg.photo = request.FILES['photo']
             newimg.save()
             return HttpResponseRedirect('/app_admin/inventory/')
 

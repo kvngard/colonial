@@ -48,13 +48,14 @@ class AreaEditForm(forms.ModelForm):
 
     class Meta:
         model = Area
-        fields = ['name', 'description', 'coordinator',
-                  'supervisor', 'place_number']
+        fields = ['name', 'description', 'coordinator', 'supervisor', 'place_number']
 
 
 class ItemEditForm(forms.ModelForm):
 
     class Meta:
         model = Item
-        fields = ['name', 'description', 'serial_number',
-                  'value', 'owner', 'photo', 'clothing_detail']
+        fields = ['name', 'description', 'serial_number', 'value', 'owner', 'photo']
+        widgets = {
+            'photo': MaterializeClearableFileInput(attrs={'class': 'upload-btn'}),
+        }

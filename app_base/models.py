@@ -201,10 +201,13 @@ class Item(models.Model):
     value = models.DecimalField(max_digits=10, decimal_places=2, null=True)
 
     owner = models.ForeignKey(User, related_name='+', null=True)
-    photo = models.ForeignKey(Photograph, related_name='+')
+    photo = models.ImageField(upload_to='items/', blank=False, null=False)
     category = models.ManyToManyField(Category, related_name='+', null=True)
     clothing_detail = models.ForeignKey(
         Clothing_Detail, related_name='+', null=True)
+
+    other_photos = models.ForeignKey(
+        Photograph, related_name='+', blank=True, null=True)
 
     real_type = models.ForeignKey(ContentType, editable=False)
 
@@ -449,7 +452,7 @@ class Expected_Sale_Item(models.Model):
     low_price = models.DecimalField(max_digits=10, decimal_places=2)
     high_price = models.DecimalField(max_digits=10, decimal_places=2)
 
-    photo = models.ForeignKey(Photograph, related_name='+', null=True)
+    photo = models.ImageField(upload_to='items/')
     event = models.ForeignKey('Event')
 
 

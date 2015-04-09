@@ -83,24 +83,24 @@ print('Addresses initialized')
 #           CREATE PHOTOS          #
 
 for data in [
-    ["Wand", "/static/app_store/media/wand.jpg"],
-    ["GoveRobes", "/static/app_store/media/gove.jpg"],
-    ["Quill", "/static/app_store/media/quill.jpg"],
-    ["Cards", "/static/app_store/media/cards.jpg"],
-    ["Drum", "/static/app_store/media/drum.jpg"],
-    ["Fife", "/static/app_store/media/fife.jpg"],
-    ["Gun", "/static/app_store/media/gun.jpg"],
-    ["Handkerchief", "/static/app_store/media/handkerchief.jpg"],
-    ["Map", "/static/app_store/media/map.jpg"],
-    ["Teapot", "/static/app_store/media/teapot.jpg"],
-    ["Top", "/static/app_store/media/top.jpg"],
-    ["Wallet", "/static/app_store/media/wallet.jpg"],
-    ["Lavender Water", "/static/app_store/media/water.jpg"],
-    ["Mayflower", "/static/app_store/media/mayflower.jpg"],
-    ["Towel", "/static/app_store/media/flagtowel.jpg"],
-    ["Dill", "/static/app_store/media/pickles.jpg"],
-    ["Okra", "/static/app_store/media/okra.jpg"],
-    ["Syrup", "/static/app_store/media/syrup.jpg"]
+    ["Wand", "items/wand.jpg"],
+    ["GoveRobes", "items/gove.jpg"],
+    ["Quill", "items/quill.jpg"],
+    ["Cards", "items/cards.jpg"],
+    ["Drum", "items/drum.jpg"],
+    ["Fife", "items/fife.jpg"],
+    ["Gun", "items/gun.jpg"],
+    ["Handkerchief", "items/handkerchief.jpg"],
+    ["Map", "items/map.jpg"],
+    ["Teapot", "items/teapot.jpg"],
+    ["Top", "items/top.jpg"],
+    ["Wallet", "items/wallet.jpg"],
+    ["Lavender Water", "items/water.jpg"],
+    ["Mayflower", "items/mayflower.jpg"],
+    ["Towel", "items/flagtowel.jpg"],
+    ["Dill", "items/pickles.jpg"],
+    ["Okra", "items/okra.jpg"],
+    ["Syrup", "items/syrup.jpg"]
 ]:
     # Create new Sale Item
     p = bmod.Photograph()
@@ -271,7 +271,7 @@ for data in [
      'serial_number':       "M0001",
      'value':               4000.00,
      'creator':             bmod.User.objects.get(username='Gustavus'),
-     'photo_id':            14}
+     'photo':               "items/mayflower.jpg"}
 ]:
 
     i = bmod.Item()
@@ -282,7 +282,7 @@ for data in [
 print('Items initialized')
 
 
-#           CREATE Sale ItemS            #
+#           CREATE Sale Items            #
 
 for data in [
     {'quantity_on_hand':    "30",
@@ -293,7 +293,7 @@ for data in [
      'description':         "A fine feathered font-formatting device.",
      'serial_number':       "C4111",
      'value':               0.99,
-     'photo_id':            3},
+     'photo':               "items/quill.jpg"},
     {'quantity_on_hand':    "40",
      'shelf_location':      "T-32.1",
      'price':               7.00,
@@ -302,7 +302,7 @@ for data in [
      'description':         "Colonial cards with a variety of alligorical faces.",
      'serial_number':       "T4445",
      'value':               2.50,
-     'photo_id':            4},
+     'photo':               "items/cards.jpg"},
     {'quantity_on_hand':    "15",
      'shelf_location':      "T-33.1",
      'price':               35.00,
@@ -311,7 +311,7 @@ for data in [
      'description':         "A fine continental drum that is modeled after those used by the revolutionaries.",
      'serial_number':       "T4345",
      'value':               10.00,
-     'photo_id':            5},
+     'photo':               "items/drum.jpg"},
     {'quantity_on_hand':    "50",
      'shelf_location':      "M-12.1",
      'price':               23.00,
@@ -320,7 +320,7 @@ for data in [
      'description':         "A map drawn up in 1734 showing the coast of colonial Virigina.",
      'serial_number':       "M3949",
      'value':               3.00,
-     'photo_id':            9},
+     'photo':               "items/map.jpg"},
     {'quantity_on_hand':    "4",
      'shelf_location':      "M-23.1",
      'price':               129.00,
@@ -329,7 +329,7 @@ for data in [
      'description':         "A piece of fine china created to celebrate the colonist's definace.",
      'serial_number':       "M5278",
      'value':               20.00,
-     'photo_id':            10},
+     'photo':               "items/teapot.jpg"},
     {'quantity_on_hand':    "100",
      'shelf_location':      "T-28.9",
      'price':               7.50,
@@ -338,7 +338,7 @@ for data in [
      'description':         "A colonial toy designed for hours of fun.",
      'serial_number':       "T2050",
      'value':               0.50,
-     'photo_id':            11},
+     'photo':               "items/top.jpg"},
     {'quantity_on_hand':    "15",
      'shelf_location':      "C-34.2",
      'price':               125.50,
@@ -347,7 +347,7 @@ for data in [
      'description':         "A woman's wallet with a finely hand-stitched pattern.",
      'serial_number':       "C3050",
      'value':               30.00,
-     'photo_id':            12},
+     'photo':               "items/wallet.jpg"},
     {'quantity_on_hand':    "20",
      'shelf_location':      "C-34.2",
      'price':               12.50,
@@ -356,7 +356,7 @@ for data in [
      'description':         "A fife designed using the pattern of those played in the continental army. Downright musical.",
      'serial_number':       "C3050",
      'value':               5.00,
-     'photo_id':            6},
+     'photo':               "items/fife.jpg"},
     {'quantity_on_hand':    "15",
      'shelf_location':      "C-34.2",
      'price':               25.50,
@@ -365,7 +365,7 @@ for data in [
      'description':         "A variety of bath scent that has been used since the founding of our nation. Wash up and smell like a rebel!",
      'serial_number':       "C3050",
      'value':               2.00,
-     'photo_id':            13},
+     'photo':               "items/water.jpg"},
 ]:
 
     sp = bmod.Sale_Item()
@@ -382,12 +382,12 @@ for data in [
     {'production_time':     "13",
      'price':               35.00,
      'name':                "Embroidered Handkerchief",
-     'description':         "A finely made cotton hankerchief that can be decorated with a monogram or message.",
+     'description':         "A finely made cotton handkerchief that can be decorated with a monogram or message.",
      'serial_number':       "C9349",
      'value':               4.00,
      'creator':             bmod.Vendor.objects.get(username='WizardOwl'),
-     'required_info':       'The message to be sewn into the hankerchief',
-     'photo_id':            8}
+     'required_info':       'The message to be sewn into the handkerchief',
+     'photo':               "items/handkerchief.jpg"}
 ]:
 
     cp = bmod.Custom_Item()
@@ -445,7 +445,7 @@ for data in [
      'serial_number':       "R4516",
      'value':               20.99,
      'owner':               bmod.User.objects.get(username='Hannibal'),
-     'photo_id':            2,
+     'photo':               "items/gove.jpg",
      'clothing_detail_id':  bmod.Clothing_Detail.objects.first().id,
      'price_per_day':       5.99},
     {'quantity_on_hand':    "0",
@@ -455,7 +455,7 @@ for data in [
      'serial_number':       "R3256",
      'value':               2304.00,
      'owner':               bmod.User.objects.get(username='Hannibal'),
-     'photo_id':            7,
+     'photo':               "items/gun.jpg",
      'price_per_day':       20.99},
     {'quantity_on_hand':    "0",
      'shelf_location':      "C-4.5",
@@ -464,7 +464,7 @@ for data in [
      'serial_number':       "R5678",
      'value':               12.00,
      'owner':               bmod.User.objects.get(username='Hannibal'),
-     'photo_id':            16,
+     'photo':               "items/pickles.jpg",
      'price_per_day':       15.00},
     {'quantity_on_hand':    "0",
      'shelf_location':      "C-3.5",
@@ -473,7 +473,7 @@ for data in [
      'serial_number':       "R8905",
      'value':               12.00,
      'owner':               bmod.User.objects.get(username='Hannibal'),
-     'photo_id':            17,
+     'photo':               "items/okra.jpg",
      'price_per_day':       1.00},
     {'quantity_on_hand':    "0",
      'shelf_location':      "C-3.5",
@@ -482,7 +482,7 @@ for data in [
      'serial_number':       "R7890",
      'value':               15.00,
      'owner':               bmod.User.objects.get(username='Hannibal'),
-     'photo_id':            18,
+     'photo':               "items/syrup.jpg",
      'price_per_day':       16.00}
 ]:
 
@@ -674,19 +674,19 @@ for data in [
      'description':     "Garden-fresh taste with the perfect crunch.",
      'low_price':       8.35,
      'high_price':      15.45,
-     'photo_id':        16,
+     'photo':           "items/pickles.jpg",
      'event_id':        1},
     {'name':            "Pickled Okra",
      'description':     "Garden-fresh and blemish-free okra is pickled to perfection with a crispy, light, and spicy taste.",
      'low_price':       9.95,
      'high_price':      11.00,
-     'photo_id':        17,
+     'photo':           "items/okra.jpg",
      'event_id':        1},
     {'name':            "Pumpkin Spice Syrup",
      'description':     "Make a splash at your table this year with delicious pumpkin spice syrup.",
      'low_price':       15.25,
      'high_price':      18.99,
-     'photo_id':        18,
+     'photo':           "items/syrup.jpg",
      'event_id':        1}
 ]:
 
