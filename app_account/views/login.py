@@ -105,6 +105,7 @@ def loginUser(request):
 @login_required(redirect_field_name='/')
 def logoutUser(request):
     logout(request)
-    if request.META:
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    # Implement when redirects on group-restricted pages are configured properly.
+    '''if request.META:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))'''
     return HttpResponseRedirect('/')
