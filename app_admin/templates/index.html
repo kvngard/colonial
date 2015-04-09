@@ -8,8 +8,8 @@
 	<div class="col s12 m3">
       <div class="card">
         <div class="card-image">
-          <img src="${ STATIC_URL }app_events/media/volunteer.jpg">
-          <span class="card-title">Users</span>
+          <img src="${ STATIC_URL }app_account/media/default_profile.jpg ">
+          <span class="card-title"></span>
         </div>
         <div class="card-content">
           <p>There are currently<strong> ${ total_users }</strong> registered users!</p>
@@ -20,8 +20,8 @@
     <div class="col s12 m3">
       <div class="card">
         <div class="card-image">
-          <img src="${ STATIC_URL }app_events/media/volunteer.jpg">
-          <span class="card-title">Transcations</span>
+          <img src="${ STATIC_URL }app_events/media/transaction2.jpg">
+          <span class="card-title"></span>
         </div>
         <div class="card-content">
           <p>You have processed <strong>${ total_transactions }</strong> transcations!</p>
@@ -32,11 +32,35 @@
     <div class="col s12 m3">
       <div class="card">
         <div class="card-image">
-          <img src="${ STATIC_URL }app_events/media/volunteer.jpg">
-          <span class="card-title">Payments</span>
+          <img src="${ STATIC_URL }app_events/media/money.jpg">
+          <span class="card-title"></span>
         </div>
         <div class="card-content">
-          <p>You have sold <strong>$${ payment_total }</strong> worth of products and services!</p>
+          <p>You have sold <strong>$${ payment_total }</strong> worth of products!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m3">
+      <div class="card">
+        <div class="card-image">
+          <img src="${ STATIC_URL }app_events/media/rentals.jpg">
+          <span class="card-title"></span>
+        </div>
+        <div class="card-content">
+          <p>You have <strong>${ total_rentals }</strong> item(s) being rented!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m3">
+      <div class="card">
+        <div class="card-image">
+          <img src="${ STATIC_URL }app_events/media/laterentals.jpg">
+          <span class="card-title"></span>
+        </div>
+        <div class="card-content">
+          <p>You have <strong>${ total_late_rentals }</strong> item(s) that are late and need to be returned!</p>
         </div>
       </div>
     </div>

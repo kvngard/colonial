@@ -435,7 +435,7 @@ for data in [
 print('Sales initialized')
 
 
-#           CREATE Rental ItemS          #
+#           CREATE Rental Items          #
 
 for data in [
     {'quantity_on_hand':    "1",
