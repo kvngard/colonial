@@ -1,6 +1,7 @@
 <%inherit file="admin_base.html" />
 
 <%block name="main">
+<h3>The following rentals are late and the rentees have been notified:</h3>
 <h5>>30 Days Late</h5>
 <table class="striped">
   <tr>
@@ -8,7 +9,6 @@
     <th>Rented By</th>
     <th>Current Fee</th>
     <th>Days Late</th>
-    <th>Options</th>
   </tr>
   %for rental in new:
     <tr>
@@ -16,10 +16,6 @@
         <td> ${ rental.transaction.customer } </td>
         <td> $${ rental.rental_item.price_per_day*dayslate[rental.rental_item.name] } </td>
         <td> ${ dayslate[rental.rental_item.name] } </td>
-        <td layout veritcal>
-            <a href="/app_admin/rentals.check_in/${ rental.id }" class="btn btn-xs btn-default">Return</a>
-            <a href="/app_admin/rentals.notify/${ rental.id }" class="btn red darken-3">Notify</a>
-        </td>
     </tr>
   %endfor
 </table>
@@ -30,7 +26,6 @@
     <th>Rented By</th>
     <th>Current Fee</th>
     <th>Days Late</th>
-    <th>Options</th>
   </tr>
   %for rental in thirty:
     <tr>
@@ -38,10 +33,6 @@
         <td> ${ rental.transaction.customer } </td>
         <td> $${ rental.rental_item.price_per_day*dayslate[rental.rental_item.name] } </td>
         <td> ${ dayslate[rental.rental_item.name] } </td>
-        <td layout veritcal>
-            <a href="/app_admin/rentals.check_in/${ rental.id }" class="btn btn-xs btn-default">Return</a>
-            <a href="/app_admin/rentals.notify/${ rental.id }" class="btn red darken-3">Notify</a>
-        </td>
     </tr>
   %endfor
 </table>
@@ -52,7 +43,6 @@
     <th>Rented By</th>
     <th>Current Fee</th>
     <th>Days Late</th>
-    <th>Options</th>
   </tr>
   %for rental in sixty:
     <tr>
@@ -60,10 +50,6 @@
         <td> ${ rental.transaction.customer } </td>
         <td> $${ rental.rental_item.price_per_day*dayslate[rental.rental_item.name] } </td>
         <td> ${ dayslate[rental.rental_item.name] } </td>
-        <td layout veritcal>
-            <a href="/app_admin/rentals.check_in/${ rental.id }" class="btn btn-xs btn-default">Return</a>
-            <a href="/app_admin/rentals.notify/${ rental.id }" class="btn red darken-3">Notify</a>
-        </td>
     </tr>
   %endfor
 </table>
@@ -74,7 +60,6 @@
     <th>Rented By</th>
     <th>Current Fee</th>
     <th>Days Late</th>
-    <th>Options</th>
   </tr>
   %for rental in ninety:
     <tr>
@@ -82,10 +67,6 @@
         <td> ${ rental.transaction.customer } </td>
         <td> $${ rental.rental_item.price_per_day*dayslate[rental.rental_item.name] } </td>
         <td> ${ dayslate[rental.rental_item.name] } </td>
-        <td layout veritcal>
-            <a href="/app_admin/rentals.check_in/${ rental.id }" class="btn btn-xs btn-default">Return</a>
-            <a href="/app_admin/rentals.notify/${ rental.id }" class="btn red darken-3">Notify</a>
-        </td>
     </tr>
   %endfor
 </table>
