@@ -697,7 +697,7 @@ for data in [
 
 print('Expected Sale Item(s) initialized')
 
-transaction = bmod.Transaction.objects.get(date=datetime.date.today())
+'''transaction = bmod.Transaction.objects.get(date=datetime.date.today())
 
 print(transaction.customer.get_full_name())
 
@@ -711,4 +711,4 @@ for line_item in transaction.sale_set.all():
 
 for line_item in transaction.damage_fee_set.all():
     print(line_item.rental_return.rental.rental_item.name)
-    print(line_item.amount)
+    print(line_item.amount)'''

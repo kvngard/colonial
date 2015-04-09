@@ -1,6 +1,10 @@
 /*Site-wide styles*/
 .helptext{
-  display: none;
+    display: none;
+}
+.errorlist{
+    margin-bottom: 0;
+    color: red;
 }
 .input-field label{
   left: 0;
