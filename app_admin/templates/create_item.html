@@ -2,13 +2,45 @@
 
 <%block name="main">
 
-
         <h1>${ title }</h1>
+        %if not item_type:
+            <div class="input-field col s12">
+                <label>Which item do you want to create?</label>
+                <br>
+                <select id="item_type">
+                    <option value="" disabled selected></option>
+                    <option value="store_item">Store Item</option>
+                    <option value="rental_item">Rental Item</option>
+                    <option value="custom_item">Custom Item</option>
+                </select>
+              </div>
+        %endif
 
-        <form id="account_form" method="POST" enctype="multipart/form-data">
-            ${ form }
-            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                <i class="mdi-content-send right"></i>
-            </button>
-        </form>
+        <div id="sale_item_form">
+            <form id="account_form" method="POST" enctype="multipart/form-data">
+                ${ sale_item_form }
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="mdi-content-send right"></i>
+                </button>
+            </form>
+        </div>
+
+        <div id="rental_item_form">
+            <form id="account_form" method="POST" enctype="multipart/form-data">
+                ${ rental_item_form }
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="mdi-content-send right"></i>
+                </button>
+            </form>
+        </div>
+
+        <div id="custom_item_form">
+            <form id="account_form" method="POST" enctype="multipart/form-data">
+                ${ custom_item_form }
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="mdi-content-send right"></i>
+                </button>
+            </form>
+        </div>
+
 </%block>

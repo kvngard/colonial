@@ -1,5 +1,5 @@
 from app_base.widgets import CheckboxSelectMultiple, MaterializeClearableFileInput
-from app_base.models import User, Event, Area, Item
+from app_base.models import User, Event, Area, Item, Sale_Item, Rental_Item, Custom_Item
 from app_base.forms import site_model_form
 from app_base.widgets import RadioSelect
 import app_base.models as mod
@@ -56,6 +56,36 @@ class ItemEditForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = ['name', 'description', 'serial_number', 'value', 'owner', 'photo']
+        widgets = {
+            'photo': MaterializeClearableFileInput(attrs={'class': 'upload-btn'}),
+        }
+
+
+class SaleItemEditForm(forms.ModelForm):
+
+    class Meta:
+        model = Sale_Item
+        fields = ['name', 'description', 'value', 'owner', 'photo', 'price', 'manufacturer', 'creator']
+        widgets = {
+            'photo': MaterializeClearableFileInput(attrs={'class': 'upload-btn'}),
+        }
+
+
+class RentalItemEditForm(forms.ModelForm):
+
+    class Meta:
+        model = Rental_Item
+        fields = ['name', 'description', 'value', 'owner', 'photo', 'price_per_day']
+        widgets = {
+            'photo': MaterializeClearableFileInput(attrs={'class': 'upload-btn'}),
+        }
+
+
+class CustomItemEditForm(forms.ModelForm):
+
+    class Meta:
+        model = Custom_Item
+        fields = ['name', 'description', 'value', 'owner', 'photo', 'production_time', 'required_info']
         widgets = {
             'photo': MaterializeClearableFileInput(attrs={'class': 'upload-btn'}),
         }

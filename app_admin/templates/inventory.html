@@ -10,13 +10,13 @@
     </div>
     <div class="filter">
         <p class="filter">
-            <input type="checkbox" id="sale_items_filter" checked="true"/>
+            <input type="checkbox" id="sale_items_filter" />
             <label for="sale_items_filter">Sale Items</label>
         </p>
     </div>
     <div class="filter">
         <p class="filter">
-            <input type="checkbox" id="rental_items_filter" checked="true"/>
+            <input type="checkbox" id="rental_items_filter" />
             <label for="rental_items_filter">Rental Items</label>
         </p>
     </div>
@@ -40,7 +40,8 @@
               <td> $${ item.value} </td>
               <td>
                   <a href="/app_admin/inventory.edit/${ item.id }/" class="btn btn-xs btn-default"><i class='mdi-editor-mode-edit'></i></a>
-                  <a href="/app_admin/inventory.delete/${ item.id }/" class="btn red darken-3"><i class='mdi-action-highlight-remove'></i></a>
+                  <a href="/app_admin/inventory.delete/${ item.id }/" class="btn red darken-3 tooltipped"
+                     data-position="bottom" data-delay="20" data-tooltip="Permanently Delete"><i class='mdi-action-highlight-remove'></i></a>
               </td>
           </tr>
       %endfor
