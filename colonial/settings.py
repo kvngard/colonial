@@ -20,11 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'f9ypdo#evwdgdakcb9-9z+-8q7+a+_gn(!ph9yr+^&)j^i=r0+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '.colonialheritagefoundation.org'
+]
 
 # Application definition
 
@@ -62,7 +64,7 @@ MIDDLEWARE_CLASSES = (
     'django_mako_plus.controller.router.RequestInitMiddleware',
 )
 
-DEBUG_PROPAGATE_EXCEPTIONS = DEBUG  # never set this True on a live site
+DEBUG_PROPAGATE_EXCEPTIONS = False  # never set this True on a live site
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
@@ -97,8 +99,12 @@ WSGI_APPLICATION = 'colonial.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'colonial',
+        'USER': 'postgres',
+        'PASSWORD': 'group13',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -118,14 +124,15 @@ USE_L10N = True
 
 USE_TZ = True
 
-MEDIA_ROOT = 'media/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'htdocs/colonial/media/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    BASE_DIR,
+    # BASE_DIR,
 )
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
@@ -139,7 +146,8 @@ DMP_TEMPLATES_DIRS = [
     # os.path.join(BASE_DIR, 'base_app', 'templates'),
 ]
 
-# identifies where the Mako template cache will be stored, relative to each app
+# identifies where the Mako template cache will be stored, relative to
+# each app
 DMP_TEMPLATES_CACHE_DIR = 'cached_templates'
 
 # the default app and page to render in Mako when the url is too short

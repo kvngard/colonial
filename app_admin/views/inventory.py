@@ -9,6 +9,9 @@ from . import templater
 @view_function
 @group_required('Manager', 'Admin')
 def process_request(request):
+    '''
+        method for ajax for items
+    '''
     params = {}
     if request.urlparams[0] == "true_false":
         params['items'] = Sale_Item.objects.all().order_by('name')
@@ -29,6 +32,9 @@ def process_request(request):
 @view_function
 @group_required('Manager', 'Admin')
 def create(request):
+    '''
+        method for creating and editing items
+    '''
     params = {}
     sale_item_form = SaleItemEditForm()
     rental_item_form = RentalItemEditForm()
@@ -66,6 +72,9 @@ def create(request):
 @view_function
 @group_required('Manager', 'Admin')
 def edit(request):
+    '''
+        method for editing
+    '''
     try:
         item = Item.objects.get(id=request.urlparams[0])
     except Item.DoesNotExist:
@@ -115,7 +124,9 @@ def edit(request):
 @view_function
 @group_required('Manager', 'Admin')
 def delete(request):
-
+    '''
+        method for deleting
+    '''
     try:
         item = Item.objects.get(id=request.urlparams[0])
     except Item.DoesNotExist:

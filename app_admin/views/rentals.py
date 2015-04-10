@@ -13,6 +13,9 @@ import datetime
 @view_function
 @group_required('Manager', 'Admin')
 def process_request(request):
+    '''
+        method for getting rentals and late rentals
+    '''
     params = {}
 
     try:
@@ -39,6 +42,9 @@ def process_request(request):
 @view_function
 @group_required('Manager', 'Admin')
 def checkout(request):
+    '''
+        method for getting late rentals
+    '''
     params = {}
 
     try:
@@ -81,7 +87,9 @@ def checkout(request):
 @view_function
 @group_required('Manager', 'Admin')
 def charge(request):
-
+    '''
+        method for getting rentals 
+    '''
     if request.method == "POST":
         params = {}
 
@@ -129,6 +137,9 @@ def charge(request):
 @view_function
 @group_required('Manager', 'Admin')
 def check_in(request):
+    '''
+        method for chcking in rentals
+    '''
     params = {}
     id = request.urlparams[0]
 
@@ -192,7 +203,9 @@ def check_in(request):
 @view_function
 @group_required('Manager', 'Admin')
 def notify(request):
-
+    '''
+        method for notifying customers of rentals
+    '''
     params = {}
 
     try:
@@ -223,7 +236,9 @@ def notify(request):
 @view_function
 @group_required('Manager', 'Admin')
 def report(request):
-
+    '''
+        method for getting rentals of certain days late
+    '''
     params = {}
 
     try:
@@ -270,7 +285,9 @@ def report(request):
 @view_function
 @group_required('Manager', 'Admin')
 def send_mass_overdue_emails(request):
-
+    '''
+        method for sending emails
+    '''
     params = {}
     debtors = {}
 
@@ -315,7 +332,9 @@ def send_mass_overdue_emails(request):
 @view_function
 @group_required('Manager', 'Admin')
 def send_manager_report_email(request):
-
+    '''
+        method for sending managers emails
+    '''
     params = {}
 
     try:

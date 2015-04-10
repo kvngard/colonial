@@ -28,7 +28,7 @@
     <li class='hide-on-med-and-up'>
       <a class="collapsible-header bold">
         ${ request.user.get_full_name() }
-         <img src='${ STATIC_URL }media/${ request.user.profile_image }' alt='profile_image' class='circle profile-sm responsive-img' />
+         <img src='${ MEDIA_URL }${ request.user.profile_image }' alt='profile_image' class='circle profile-sm responsive-img' />
       </a>
       <div class="collapsible-body">
         <ul>
@@ -42,7 +42,7 @@
       <li class='hide-on-med-and-up'><a class="collapsible-header bold"  href="/app_account/signup/">Sign Up</a></li>
   %endif
     <li>
-      <a class="collapsible-header bold">Events</a>
+      <a class="collapsible-header bold" href='/app_events/'>Events</a>
     </li>
     <li>
       <a class="collapsible-header bold" href='/app_store/'>Market</a>

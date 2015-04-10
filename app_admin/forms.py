@@ -5,6 +5,10 @@ from app_base.widgets import RadioSelect
 import app_base.models as mod
 from django import forms
 
+'''
+    classes for creating forms
+'''
+
 
 class Return_Form(forms.ModelForm):
 
@@ -48,14 +52,16 @@ class AreaEditForm(forms.ModelForm):
 
     class Meta:
         model = Area
-        fields = ['name', 'description', 'coordinator', 'supervisor', 'place_number']
+        fields = ['name', 'description', 'coordinator',
+                  'supervisor', 'place_number']
 
 
 class ItemEditForm(forms.ModelForm):
 
     class Meta:
         model = Item
-        fields = ['name', 'description', 'serial_number', 'value', 'owner', 'photo']
+        fields = ['name', 'description', 'serial_number',
+                  'value', 'owner', 'photo']
         widgets = {
             'photo': MaterializeClearableFileInput(attrs={'class': 'upload-btn'}),
         }
@@ -65,7 +71,8 @@ class SaleItemEditForm(forms.ModelForm):
 
     class Meta:
         model = Sale_Item
-        fields = ['name', 'description', 'value', 'owner', 'photo', 'price', 'manufacturer', 'creator']
+        fields = ['name', 'description', 'value', 'owner',
+                  'quantity_on_hand', 'photo', 'price', 'manufacturer', 'creator']
         widgets = {
             'photo': MaterializeClearableFileInput(attrs={'class': 'upload-btn'}),
         }
@@ -75,7 +82,8 @@ class RentalItemEditForm(forms.ModelForm):
 
     class Meta:
         model = Rental_Item
-        fields = ['name', 'description', 'value', 'owner', 'photo', 'price_per_day']
+        fields = ['name', 'description', 'value', 'owner',
+                  'quantity_on_hand', 'photo', 'price_per_day']
         widgets = {
             'photo': MaterializeClearableFileInput(attrs={'class': 'upload-btn'}),
         }
@@ -85,7 +93,8 @@ class CustomItemEditForm(forms.ModelForm):
 
     class Meta:
         model = Custom_Item
-        fields = ['name', 'description', 'value', 'owner', 'photo', 'production_time', 'required_info']
+        fields = ['name', 'description', 'value', 'owner',
+                  'photo', 'production_time', 'required_info']
         widgets = {
             'photo': MaterializeClearableFileInput(attrs={'class': 'upload-btn'}),
         }

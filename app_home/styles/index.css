@@ -14,7 +14,8 @@ html,body {
 .medium-parallax{
     height: 50rem;
 }
-div.hero-text{
+.hero-text{
+    padding: 0 !important;
     font-family: 'IM Fell DW Pica', serif;
     -webkit-user-select: none;
     -moz-user-select: none;

@@ -7,6 +7,10 @@ from . import templater
 
 @view_function
 def process_request(request):
+    '''
+        method for changing password
+        creates and sends change password form
+    '''
     params = {}
     form = PasswordChangeForm(request.user)
 

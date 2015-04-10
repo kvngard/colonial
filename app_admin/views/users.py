@@ -10,6 +10,9 @@ from . import templater
 @view_function
 @group_required('Manager', 'Admin')
 def process_request(request):
+    '''
+        method for getting users
+    '''
     users = User.objects.all()
     params = {}
     params['users'] = users
@@ -19,6 +22,9 @@ def process_request(request):
 @view_function
 @group_required('Manager', 'Admin')
 def create(request):
+    '''
+        method for creating and editing users
+    '''
     params = {}
     form = CustomUserCreationForm()
 
@@ -36,6 +42,9 @@ def create(request):
 @view_function
 @group_required('Manager', 'Admin')
 def edit(request):
+    '''
+        method for editing users
+    '''
     try:
         user = User.objects.get(id=request.urlparams[0])
     except User.DoesNotExist:
@@ -58,7 +67,9 @@ def edit(request):
 @view_function
 @group_required('Manager', 'Admin')
 def delete(request):
-
+    '''
+        method for deleting users
+    '''
     try:
         user = User.objects.get(id=request.urlparams[0])
     except User.DoesNotExist:

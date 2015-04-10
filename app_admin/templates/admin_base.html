@@ -1,5 +1,9 @@
 <%inherit file="/app_base/templates/base.html" />
 
+<%block name="polymer">
+   <link rel="stylesheet" href="${STATIC_URL}app_admin/styles/admin_base.css">
+</%block>
+
 <%block name="navigation_left">
   <ul class='left' layout horizontal>
       <div class="nav-shoulder left hide-on-med-and-down"></div>

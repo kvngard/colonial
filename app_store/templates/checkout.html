@@ -15,9 +15,34 @@
 <div class="viewport" layout vertical>
   <core-animated-pages selected="0" transitions="slide-from-right">
     <section id="first" flex>
-      <div class="box" id="cart">
-      </div>
-      <br>
+        %if rentals is UNDEFINED:
+              <div class="box" id="cart">
+              </div>
+          %else:
+            <div class="box">
+            <h1>Rentals to Check Out</h1>
+            <form method="POST" action="/app_admin/rentals.checkout/">
+            <table class="striped">
+            <tr>
+                <th>Item</th>
+                <th>Rented By</th>
+                <th>Rental Duration</th>
+                <th>Check Out Price</th>
+            </tr>
+            %for rental in rentals:
+                <tr>
+                    <td> ${ rental.rental_item.name } </td>
+                    <td> ${ rental.transaction.customer } </td>
+                    <td> ${ rental.duration } Days</td>
+                    <td> $${ rental.checkout_price } </td>
+                </tr>
+            %endfor
+          </table>
+          <br />
+          <h5>Total Purchase Price: $${ total }</h5>
+        </div>
+      %endif
+      <br />
       <div layout vertical center-center id="paginator">
         <core-selector id="selectbox" class="pagination" selected="0">
           <li class="pag-left"><a><i class="mdi-navigation-chevron-left"></i></a></li>

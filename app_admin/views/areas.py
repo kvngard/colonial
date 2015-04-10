@@ -9,6 +9,7 @@ from . import templater
 @view_function
 @group_required('Manager', 'Admin')
 def create(request):
+    ''' Creates a new area '''
     params = {}
     form = AreaEditForm()
     if request.method == 'POST':
@@ -27,6 +28,7 @@ def create(request):
 @view_function
 @group_required('Manager', 'Admin')
 def edit(request):
+    ''' Edits an area '''
     try:
         area = Area.objects.get(id=request.urlparams[0])
     except Area.DoesNotExist:
@@ -51,7 +53,7 @@ def edit(request):
 @view_function
 @group_required('Manager', 'Admin')
 def delete(request):
-
+    ''' Deletes an area '''
     try:
         area = Area.objects.get(id=request.urlparams[0])
         event_id = area.event_id

@@ -18,8 +18,8 @@ import subprocess
 
 __author__ = 'Group1-3'
 cursor = connection.cursor()
-cursor.execute("PRAGMA writable_schema = 1;")
-cursor.execute("delete from sqlite_master where type in ('table', 'index', 'trigger');")
+cursor.execute("DROP SCHEMA PUBLIC CASCADE")
+cursor.execute("CREATE SCHEMA PUBLIC")
 subprocess.call([sys.executable, "manage.py", "migrate"])
 
 
@@ -558,7 +558,7 @@ print('Rentals initialized')
 for data in [
     {'rental':              bmod.Rental.objects.get(date_due=datetime.date.today() - datetime.timedelta(2)),
      'date_in':       datetime.date.today() - datetime.timedelta(1),
-     'return_condition':    'It looks like someone lit it on fire.',
+     'return_condition':    'Poor',
      'handled_by':          bmod.Employee.objects.get(username='LittleLion')}
 ]:
 

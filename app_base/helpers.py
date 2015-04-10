@@ -3,6 +3,9 @@ from . import templater
 
 
 def send_mass_email(request, emailbody=None, recipient_list=None, template=None, title='Colonial Heritage Foundation'):
+    '''
+        method for sending email
+    '''
     if emailbody is None:
         if recipient_list is not None and template is not None:
             for key, value in recipient_list:

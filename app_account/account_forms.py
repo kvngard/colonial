@@ -13,7 +13,9 @@ class LoginForm(site_form):
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
 
     def clean(self):
-
+        '''
+            method for cleaning
+        '''
         try:
             username = self.cleaned_data['username']
             password = self.cleaned_data['password']
@@ -86,6 +88,9 @@ class LoginForm(site_form):
 
 
 class UserEditForm(forms.ModelForm):
+    '''
+        class for creating a form
+    '''
 
     class Meta:
         model = User

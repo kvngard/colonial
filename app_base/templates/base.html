@@ -70,7 +70,7 @@
                   <li>
                     <a href="#user_modal" class='grey-text text-darken-3 user-trigger'>
                        ${ request.user.get_full_name() }
-                       <img src='${ STATIC_URL }media/${ request.user.profile_image }' alt='profile_image' class='circle profile-sm responsive-img' />
+                       <img src='${MEDIA_URL}${ request.user.profile_image }' alt='profile_image' class='circle profile-sm responsive-img' />
                     </a>
                   </li>
                 %else:
@@ -94,7 +94,7 @@
                       <li class='hide-on-med-and-up'>
                         <a class="collapsible-header bold">
                           ${ request.user.get_full_name() }
-                           <img src='${ STATIC_URL }media/${ request.user.profile_image }' alt='profile_image' class='circle profile-sm responsive-img' />
+                           <img src='${ MEDIA_URL }${ request.user.profile_image }' alt='profile_image' class='circle profile-sm responsive-img' />
                         </a>
                         <div class="collapsible-body">
                           <ul>
@@ -132,7 +132,7 @@
               </div>
               <div class='account-right'>
                 <span class='helper'></span>
-                <img src='${ STATIC_URL }media/${ request.user.profile_image }' alt='profile_image' class='profile' />
+                <img src='${ MEDIA_URL }${ request.user.profile_image }' alt='profile_image' class='profile' />
               </div>
             </div>
           </div>

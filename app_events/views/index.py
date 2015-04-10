@@ -6,6 +6,9 @@ from . import templater
 
 @view_function
 def process_request(request):
+	'''
+        method for getting index
+    '''
     params = {}
 
 

@@ -5,7 +5,7 @@
     <div class="container">
         <h1>${ event.name }</h1>
         <div layout horizontal>
-            <img class="materialboxed" data-caption="Park map for the event. Area numbers will be added later" width="450" src="${ event.map_file }" />
+            <img class="materialboxed" data-caption="Park map for the event. Area numbers will be added later" width="450" src="${ MEDIA_URL }${ event.map_file }" />
             <ul class='information'>
                 <li>When: ${event.start_date} - ${event.end_date} </li>
                 <li>Where: ${ event.venue_name }</li>
@@ -27,7 +27,7 @@
             %for item in event.expected_sale_item_set.all():
                 <div class="store-item card col 12 s8 m4 l2">
                     <div class="card-image waves-effect waves-block waves-light">
-                      <img class="activator" src="${item.photo.image}">
+                      <img class="activator" src="${ MEDIA_URL }${item.photo}">
                     </div>
 
                     <div class="card-content">

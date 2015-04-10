@@ -299,6 +299,23 @@ class Transaction(models.Model):
         'User', related_name='shippedby', null=True, blank=True)
     customer = models.ForeignKey('User', related_name='orders')
 
+    def get_total(self):
+        total = 0
+
+        for r in self.rental_set.all():
+            total += r.amount + r.checkout_price
+
+        for s in self.sale_set.all():
+            total += s.amount
+
+        for l in self.late_fee_set.all():
+            total += l.amount
+
+        for d in self.damage_fee_set.all():
+            total += d.amount
+
+        return total
+
 
 class Transaction_Item(models.Model):
 
@@ -371,7 +388,8 @@ class Rental(Transaction_Item):
     def create_rental(item, duration):
         r = Rental()
         r.duration = duration
-        r.amount = Decimal(duration) * item.price_per_day * Rental.reserve_percent
+        r.amount = Decimal(
+            duration) * item.price_per_day * Rental.reserve_percent
         r.rental_item = item
         r.checkout_by_date = datetime.date.today() + datetime.timedelta(14)
         r.checkout_price = Decimal(r.duration) * item.price_per_day - r.amount
@@ -397,7 +415,8 @@ class Rental_Return(models.Model):
         ('Excellent', 'Excellent'),
     )
 
-    return_condition = models.CharField(max_length=10, choices=CONDITIONS, default=POOR)
+    return_condition = models.CharField(
+        max_length=10, choices=CONDITIONS, default=POOR)
     date_in = models.DateTimeField(null=True)
 
     rental = models.ForeignKey(Rental, related_name='return_instance')

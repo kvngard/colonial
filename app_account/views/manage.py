@@ -7,6 +7,9 @@ from . import templater
 
 @view_function
 def process_request(request):
+    '''
+        method for getting a user for viewing and editing
+    '''
     try:
         user = User.objects.get(id=request.user.id)
     except User.DoesNotExist:
@@ -21,6 +24,7 @@ def process_request(request):
             user = form.save(commit=False)
             print(request.FILES)
             user.profile_image = request.FILES['profile_image']
+            print(user.profile_image)
             user.save()
             return HttpResponseRedirect('/')
 

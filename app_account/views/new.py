@@ -7,6 +7,9 @@ from . import templater
 
 @view_function
 def validate_form(request):
+    '''
+        method for validating forms
+    '''
     params = {}
     form = CustomUserCreationForm()
 

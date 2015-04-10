@@ -3,23 +3,75 @@
 <%block name="main">
 <div layout horizontal center>
     <h1>Transactions</h1>
-  </div>
-
-  <table class="striped">
-    <tr>
-    	<th>ID</th>
-        <th>Customer Name</th>
-        <th>Sale Date</th>
-        <th>Phone Number</th>
-
-    </tr>
-      %for transaction in transactions:
-          <tr>
-          	  <td> ${ transaction.id} </td>
-              <td> ${ transaction.customer.get_full_name()} </td>
-              <td> ${ transaction.date.date()} </td>
-              <td>${ transaction.phone}</td>
-          </tr>
-      %endfor
-  </table>
+</div>
+    <ul class="collapsible popout" data-collapsible="accordion">
+    %for transaction in transactions:
+    %if transaction.get_total() > 0:
+    <li>
+      <div class="collapsible-header transaction-header">
+        <h4>${ '{:%m/%d/%y}'.format(transaction.date.date()) } - ${ transaction.customer.get_full_name() }</h4>
+      </div>
+      <div class="collapsible-body">
+      <h5>Transaction Balance: $${ transaction.get_total() }</h5>
+      %if len(transaction.rental_set.all()) > 0:
+        <h5>Rentals</h5>
+        <table class="striped">
+          %for rental in transaction.rental_set.all():
+            <tr>
+              <th>Item Name</th>
+              <th>Rental Duration</th>
+              <th>Reservation Payment</th>
+              <th>Checkout Payment</th>
+            </tr>
+            <tr>
+                <td> ${ rental.rental_item.name }  </td>
+                <td> ${ rental.duration } Days </td>
+                <td> $${ rental.amount } </td>
+                %if rental.date_out is not None:
+                  <td> $${ rental.checkout_price }</td>
+                %else:
+                  <td>Not Checked Out</td>
+                %endif
+            </tr>
+          %endfor
+        </table>
+      %endif
+      %if len(transaction.sale_set.all()) > 0:
+        <h5>Sales</h5>
+        <table class="striped">
+          %for sale in transaction.sale_set.all():
+            <tr>
+              <th>Item Name</th>
+              <th>Quantity</th>
+              <th>Amount Paid</th>
+            </tr>
+            <tr>
+                <td> ${ sale.sale_item.name } </td>
+                <td> ${ sale.quantity }</td>
+                <td> $${ sale.amount }</td>
+            </tr>
+          %endfor
+        </table>
+      %endif
+      %if len(transaction.payment_set.all()) > 0:
+        <h5>Payments</h5>
+        <table class="striped">
+          %for payment in transaction.payment_set.all():
+            <tr>
+              <th>Payment Date</th>
+              <th>Amount Paid</th>
+            </tr>
+            <tr>
+                <td> ${ '{:%m/%d/%y}'.format(payment.date_paid.date()) } </td>
+                <td> $${ payment.amount }</td>
+            </tr>
+          %endfor
+        </table>
+        <br />
+      %endif
+      </div>
+      </li>
+      %endif
+    %endfor
+    </ul>
 </%block>

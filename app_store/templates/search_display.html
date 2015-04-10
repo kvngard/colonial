@@ -2,9 +2,13 @@
 
 <%block name="content">
 %for item in items:
-  <div class="store-item card col 12 s12 m4 l2">
+  %if hasattr(item, 'price_per_day'):
+    <div class="store-item card col hide-on-med-and-down l2">
+  %else:
+    <div class="store-item card col s12 m6 l2">
+  %endif:
     <div class="card-image waves-effect waves-block waves-light">
-      <img class="activator" src="${item.photo.image}">
+      <img class="activator" src="${MEDIA_URL }${item.photo}">
     </div>
 
     <div class="card-content">
@@ -21,7 +25,7 @@
       <p>${item.description}</p>
       <form>
 
-       %if item.quantity_on_hand and hasattr(item, 'price'):
+        %if item.quantity_on_hand and hasattr(item, 'price'):
         <select class="select-dropdown">
           <option value="" disabled selected>Quantity</option>
           %if item.quantity_on_hand <= 5:
@@ -43,7 +47,10 @@
         </p>
         %endif
 
-        <a rel="${item.id}" href="#cart_modal" class="btn-flat waves-effect waves-light orange accent-3 white-text cart-trigger">Add to Cart</a>
+        <a rel="${item.id}" class="btn-flat waves-effect waves-light orange accent-3 white-text cart-trigger hide-on-med-and-down">Add to Cart</a>
+        <a rel="${item.id}" id='mobile'  class="btn-flat waves-effect waves-light orange accent-3 white-text hide-on-med-and-up mobile-trigger">Add to Cart</a>
+
+
       </form>
     </div>
   </div>

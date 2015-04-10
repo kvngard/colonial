@@ -12,7 +12,9 @@ import datetime
 @view_function
 @login_required(redirect_field_name='/app_store/')
 def process_request(request):
-
+    '''
+        method for checking out
+    '''
     params = {}
 
     total = calculate_total(request)
@@ -41,7 +43,9 @@ def process_request(request):
 @view_function
 @login_required(redirect_field_name='/app_store/')
 def receipt(request):
-
+    '''
+        method for receipt
+    '''
     params = {}
     t = mod.Transaction.objects.get(id=request.urlparams[0])
     paid = sum([ p.amount for p in t.payment_set.all() ])
@@ -64,7 +68,9 @@ def receipt(request):
 
 
 def create_transaction(request, response, amount, address):
-
+    '''
+        method for transaction
+    '''
     cart = get_cart(request)
 
     t = mod.Transaction()

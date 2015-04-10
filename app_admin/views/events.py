@@ -4,11 +4,12 @@ from app_base.admin import group_required
 from app_base.models import Event, Area
 from app_admin.forms import EventEditForm
 from . import templater
-
+'''@group_required means that they need to be part of that group'''
 
 @view_function
 @group_required('Manager', 'Admin')
 def process_request(request):
+    ''' Load the main page for events. '''
     events = Event.objects.all().order_by('start_date')
     params = {}
     params['events'] = events
@@ -18,6 +19,7 @@ def process_request(request):
 @view_function
 @group_required('Manager', 'Admin')
 def create(request):
+    ''' create an event '''
     params = {}
     form = EventEditForm()
     if request.method == 'POST':

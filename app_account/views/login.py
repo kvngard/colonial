@@ -8,6 +8,11 @@ from . import templater
 
 @view_function
 def process_request(request):
+    '''
+        method for logging in a user
+        authenticates a user if credentials are valid
+        ceates shopping_cart session variable for user
+    '''
     params = {}
     redirect_app = request.urlparams[0]
     redirect_func = request.urlparams[1]
@@ -54,6 +59,11 @@ def process_request(request):
 
 @view_function
 def loginUser(request):
+    '''
+        method for logging in a user
+        authenticates a user if credentials are valid
+        ceates shopping_cart session variable for user
+    '''
     params = {}
     redirect_app = request.REQUEST.get('redirect_app')
     redirect_func = request.REQUEST.get('redirect_func')
@@ -104,6 +114,9 @@ def loginUser(request):
 @view_function
 @login_required(redirect_field_name='/')
 def logoutUser(request):
+    '''
+        method for logging out a user
+    '''
     logout(request)
     # Implement when redirects on group-restricted pages are configured properly.
     '''if request.META:

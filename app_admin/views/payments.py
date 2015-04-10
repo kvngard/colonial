@@ -13,6 +13,9 @@ import datetime
 @view_function
 @group_required('Manager', 'Admin')
 def process_request(request):
+    '''
+        method for showing sales, rentals, payments, transaction
+    '''
     params = {}
 
     try:
@@ -27,6 +30,5 @@ def process_request(request):
     params['payments'] = payments
     params['sales'] = sales
     params['rentals'] = rentals
-
 
     return templater.render_to_response(request, 'payments.html', params)

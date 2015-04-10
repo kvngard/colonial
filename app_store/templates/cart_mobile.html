@@ -80,15 +80,22 @@
 
       <script type="text/javascript" src="${ STATIC_URL }app_store/scripts/cart.js"></script>
     </div>
+
     %if len(rentals) > 0 or len(sales) > 0:
       <br />
       <div id='checkout'>
+        <a href="/app_store/">
+          <button class="btn waves-effect waves-light green darken-1">
+            Back To Market
+          </button>
+        </a>
+      <br />
         %if request.user.is_authenticated():
         <a href="/app_store/checkout/">
         %else:
         <a href="/app_account/login/app_store/checkout/">
         %endif
-          <button class="btn waves-effect waves-light orange accent-3" type="submit" name="action">
+          <button class="btn waves-effect waves-light orange accent-3">
             Checkout
           </button>
         </a>

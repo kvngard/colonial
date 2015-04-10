@@ -3,12 +3,18 @@ import app_base.models as mod
 
 
 def save_cart(request, cart):
+    '''
+        method for saving the cart
+    '''
     request.session['shopping_cart'] = cart.to_json()
 
     request.session.modified = True
 
 
 def get_cart(request):
+    '''
+        method for getting the cart
+    '''
     cart = Cart()
 
     if 'shopping_cart' not in request.session:

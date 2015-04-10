@@ -11,7 +11,9 @@ checkout_percent = Decimal('0.80')
 
 
 def get_items():
-
+    '''
+        method for getting items
+    '''
     try:
         items = mod.Store_Item.objects.all().order_by('name')
     except mod.Store_Item.DoesNotExist:
@@ -21,7 +23,9 @@ def get_items():
 
 
 def sort_items(items):
-
+    '''
+        method for sorting items
+    '''
     sorted_items = []
 
     for item in items:
@@ -51,6 +55,9 @@ def calculate_total(request):
 
 @view_function
 def process_request(request):
+    '''
+        method for getting items
+    '''
     params = {}
 
     items = get_items()
@@ -63,6 +70,9 @@ def process_request(request):
 
 @view_function
 def search(request):
+    '''
+        method for searching
+    '''
     params = {}
     search_parameter = request.REQUEST.get('p')
 
@@ -81,6 +91,9 @@ def search(request):
 
 @view_function
 def show_cart(request):
+    '''
+        method for showing the cart
+    '''
     params = {}
     cart = get_cart(request)
 
@@ -93,6 +106,9 @@ def show_cart(request):
 
 @view_function
 def show_mobile_cart(request):
+    '''
+        method for showing cart
+    '''
     params = {}
     cart = get_cart(request)
 
@@ -105,10 +121,16 @@ def show_mobile_cart(request):
 
 @view_function
 def add_to_cart(request):
+    '''
+        method for adding to cart
+    '''
     item_id = request.REQUEST.get('i')
     duration = request.REQUEST.get('d')
     quantity = request.REQUEST.get('q')
     mobile = request.REQUEST.get('m')
+
+    if quantity is 'quantity' or quantity is '':
+        quantity = 1
 
     item = mod.Item.cast(mod.Store_Item.objects.get(id=item_id))
 
@@ -125,7 +147,9 @@ def add_to_cart(request):
 
 @view_function
 def delete_from_cart(request):
-
+    '''
+        method for deleting from cart
+    '''
     cart = get_cart(request)
     item_id = int(request.REQUEST.get('i'))
 
