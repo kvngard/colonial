@@ -22,13 +22,7 @@
 #selectbox {
     list-style: none;
 }
-section{
-    width: 100vw;
-}
 .box{
     width: 70%;
-    margin-left: 8vw;
-}
-.viewport{
-    height: 80vh;
+    height: inherit;
 }
