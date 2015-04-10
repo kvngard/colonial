@@ -6,6 +6,7 @@ from app_admin.forms import EventEditForm
 from . import templater
 '''@group_required means that they need to be part of that group'''
 
+
 @view_function
 @group_required('Manager', 'Admin')
 def process_request(request):

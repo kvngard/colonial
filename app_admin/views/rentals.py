@@ -88,7 +88,7 @@ def checkout(request):
 @group_required('Manager', 'Admin')
 def charge(request):
     '''
-        method for getting rentals 
+        method for getting rentals
     '''
     if request.method == "POST":
         params = {}
