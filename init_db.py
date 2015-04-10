@@ -557,8 +557,8 @@ print('Rentals initialized')
 
 for data in [
     {'rental':              bmod.Rental.objects.get(date_due=datetime.date.today() - datetime.timedelta(2)),
-     'date_in':       datetime.date.today() - datetime.timedelta(1),
-     'return_condition':    'It looks like someone lit it on fire.',
+     'date_in':             datetime.date.today() - datetime.timedelta(1),
+     'return_condition':    'Poor',
      'handled_by':          bmod.Employee.objects.get(username='LittleLion')}
 ]:
 
