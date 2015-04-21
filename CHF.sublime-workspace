@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"hide",
+				"hide-on-med-and-up"
+			],
+			[
 				"app_",
 				"app_admin"
 			],
@@ -252,122 +256,68 @@
 	"buffers":
 	[
 		{
+			"contents": "Package Control Messages\n========================\n\nAnaconda:\n--------\n\n  Changes in 1.4.5\n  ================\n  \n  ## Third party\n  * Bump version for Jedi library\n  \n  ## Fixes\n  * Allows relative rcfile path #73 #291\n  * Fix for #164\n  \n  For more detailed information about those changes run git v1.4.4..v1.4.5 on git repository\n  \n  ",
+			"settings":
+			{
+				"buffer_size": 336,
+				"line_ending": "Windows",
+				"name": "Package Control Messages",
+				"scratch": true
+			}
+		},
+		{
+			"file": "app_events/templates/index.html",
+			"settings":
+			{
+				"buffer_size": 7260,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app_events/templates/details.html",
+			"settings":
+			{
+				"buffer_size": 2279,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app_events/scripts/index.js",
+			"settings":
+			{
+				"buffer_size": 98,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app_base/templates/base.html",
+			"settings":
+			{
+				"buffer_size": 7540,
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "app_events/styles/index.css",
 			"settings":
 			{
-				"buffer_size": 456,
+				"buffer_size": 426,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app_home/styles/index.css",
+			"file": "static/app_events/styles/index.css",
 			"settings":
 			{
-				"buffer_size": 625,
+				"buffer_size": 426,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app_admin/views/transactions.py",
+			"file": "app_events/views/index.py",
 			"settings":
 			{
-				"buffer_size": 619,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app_admin/templates/payments.html",
-			"settings":
-			{
-				"buffer_size": 526,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app_admin/scripts/admin_base.js",
-			"settings":
-			{
-				"buffer_size": 896,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app_admin/styles/admin_base.css",
-			"settings":
-			{
-				"buffer_size": 670,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app_base/models.py",
-			"settings":
-			{
-				"buffer_size": 17308,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app_admin/templates/transactions.html",
-			"settings":
-			{
-				"buffer_size": 2418,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app_home/templates/index.html",
-			"settings":
-			{
-				"buffer_size": 4566,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app_store/templates/default_display.html",
-			"settings":
-			{
-				"buffer_size": 2143,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app_store/templates/search_display.html",
-			"settings":
-			{
-				"buffer_size": 2245,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app_store/scripts/default_display.js",
-			"settings":
-			{
-				"buffer_size": 1685,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app_store/views/index.py",
-			"settings":
-			{
-				"buffer_size": 3694,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app_admin/templates/admin_base.html",
-			"settings":
-			{
-				"buffer_size": 2388,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "colonial/settings.py",
-			"settings":
-			{
-				"buffer_size": 4815,
+				"buffer_size": 323,
 				"line_ending": "Windows"
 			}
 		},
@@ -472,42 +422,63 @@
 	"expanded_folders":
 	[
 		"/C/Apache24/htdocs/colonial",
-		"/C/Apache24/htdocs/colonial/app_admin/styles",
-		"/C/Apache24/htdocs/colonial/app_admin/templates",
-		"/C/Apache24/htdocs/colonial/app_admin/views",
-		"/C/Apache24/htdocs/colonial/app_base/styles",
+		"/C/Apache24/htdocs/colonial/app_base/scripts",
 		"/C/Apache24/htdocs/colonial/app_base/templates",
-		"/C/Apache24/htdocs/colonial/app_home",
+		"/C/Apache24/htdocs/colonial/app_events",
+		"/C/Apache24/htdocs/colonial/app_events/scripts",
+		"/C/Apache24/htdocs/colonial/app_events/styles",
+		"/C/Apache24/htdocs/colonial/app_events/templates",
+		"/C/Apache24/htdocs/colonial/app_events/views",
 		"/C/Apache24/htdocs/colonial/app_home/templates",
-		"/C/Apache24/htdocs/colonial/app_store",
 		"/C/Apache24/htdocs/colonial/app_store/scripts",
 		"/C/Apache24/htdocs/colonial/app_store/styles",
 		"/C/Apache24/htdocs/colonial/app_store/templates",
 		"/C/Apache24/htdocs/colonial/app_store/views",
-		"/C/Apache24/htdocs/colonial/colonial"
+		"/C/Apache24/htdocs/colonial/static",
+		"/C/Apache24/htdocs/colonial/static/app_events",
+		"/C/Apache24/htdocs/colonial/static/app_events/styles"
 	],
 	"file_history":
 	[
-		"/C/Apache24/htdocs/colonial/app_store/templates/search_display.html",
+		"/C/Apache24/htdocs/colonial/app_store/views/index.py",
+		"/C/Apache24/htdocs/colonial/app_home/templates/index.html",
+		"/C/Apache24/htdocs/colonial/app_admin/templates/admin_base.html",
+		"/C/Apache24/htdocs/colonial/app_account/views/new.py",
+		"/C/Apache24/htdocs/colonial/app_account/views/manage.py",
+		"/C/Apache24/htdocs/colonial/app_account/views/login.py",
+		"/C/Apache24/htdocs/colonial/app_account/views/change_password.py",
+		"/C/Apache24/htdocs/colonial/app_admin/views/areas.py",
+		"/C/Apache24/htdocs/colonial/app_admin/views/events.py",
 		"/C/Apache24/htdocs/colonial/app_admin/views/index.py",
+		"/C/Apache24/htdocs/colonial/app_admin/views/inventory.py",
+		"/C/Apache24/htdocs/colonial/app_admin/views/payments.py",
+		"/C/Apache24/htdocs/colonial/app_admin/views/rentals.py",
+		"/C/Apache24/htdocs/colonial/app_admin/views/transactions.py",
+		"/C/Apache24/htdocs/colonial/app_admin/views/users.py",
+		"/C/Apache24/htdocs/colonial/app_admin/views/batch.py",
+		"/C/Apache24/htdocs/colonial/app_base/admin.py",
+		"/C/Apache24/htdocs/colonial/colonial/settings.py",
+		"/C/Apache24/htdocs/colonial/app_events/views/details.py",
+		"/C/Apache24/htdocs/colonial/app_store/scripts/default_display.js",
+		"/C/Apache24/htdocs/colonial/app_store/templates/search_display.html",
+		"/C/Apache24/htdocs/colonial/app_store/templates/default_display.html",
+		"/C/Apache24/htdocs/colonial/app_admin/templates/transactions.html",
+		"/C/Apache24/htdocs/colonial/app_base/models.py",
+		"/C/Apache24/htdocs/colonial/app_admin/styles/admin_base.css",
+		"/C/Apache24/htdocs/colonial/app_admin/scripts/admin_base.js",
+		"/C/Apache24/htdocs/colonial/app_admin/templates/payments.html",
+		"/C/Apache24/htdocs/colonial/app_home/styles/index.css",
+		"/C/Apache24/htdocs/colonial/app_events/styles/index.css",
 		"/C/Apache24/htdocs/colonial/app_store/templates/cart_mobile.html",
 		"/C/Apache24/htdocs/colonial/app_store/templates/receipt_email.html",
 		"/C/Apache24/htdocs/colonial/app_store/templates/receipt.html",
 		"/C/Apache24/htdocs/colonial/app_admin/templates/index.html",
-		"/C/Apache24/htdocs/colonial/app_admin/views/rentals.py",
-		"/C/Apache24/htdocs/colonial/app_base/models.py",
-		"/C/Apache24/htdocs/colonial/app_admin/views/payments.py",
-		"/C/Apache24/htdocs/colonial/app_admin/templates/transactions.html",
 		"/C/Apache24/htdocs/colonial/app_base/templates/base.html",
-		"/C/Apache24/htdocs/colonial/app_admin/styles/admin_base.css",
-		"/C/Apache24/htdocs/colonial/app_store/templates/default_display.html",
 		"/C/Apache24/htdocs/colonial/app_admin/templates/rental_return.html",
 		"/C/Apache24/htdocs/colonial/app_admin/templates/rental_report.html",
 		"/C/Apache24/htdocs/colonial/app_admin/templates/rentals.html",
 		"/C/Apache24/htdocs/colonial/app_admin/templates/view_event.html",
 		"/C/Apache24/htdocs/colonial/app_admin/templates/events.html",
-		"/C/Apache24/htdocs/colonial/app_admin/views/batch.py",
-		"/C/Apache24/htdocs/colonial/colonial/settings.py",
 		"/C/Apache24/htdocs/colonial/app_store/templates/checkout.html",
 		"/C/Apache24/htdocs/colonial/app_events/templates/details.html",
 		"/C/Apache24/htdocs/colonial/app_store/templates/store.html",
@@ -518,14 +489,10 @@
 		"/C/Python34/Lib/site-packages/django/contrib/admin/templates/admin/custom_base.html",
 		"/C/Apache24/htdocs/colonial/app_admin/templates/inventory.html",
 		"/C/Apache24/htdocs/colonial/app_admin/templates/inventory_ajax.html",
-		"/C/Apache24/htdocs/colonial/app_home/templates/index.html",
-		"/C/Apache24/htdocs/colonial/app_home/styles/index.css",
 		"/C/Apache24/htdocs/colonial/init_db.py",
-		"/C/Apache24/htdocs/colonial/app_base/admin.py",
 		"/C/Apache24/htdocs/colonial/app_account/account_forms.py",
 		"/C/Apache24/htdocs/colonial/app_base/scripts/base.js",
 		"/C/Apache24/htdocs/colonial/app_base/templates/base_ajax.html",
-		"/C/Apache24/htdocs/colonial/app_account/views/login.py",
 		"/C/Users/Kevin/Development/colonial/app_store/scripts/cart.js",
 		"/C/Users/Kevin/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Kevin/Development/colonial/app_base/models.py",
@@ -600,22 +567,7 @@
 		"/C/Users/Kevin/Development/colonial/app_home/views/__init__.py",
 		"/C/Users/Kevin/Development/colonial/app_account/views/__init__.py",
 		"/C/Users/Kevin/Development/colonial/colonial/__init__.py",
-		"/C/Users/Kevin/Development/colonial/app_account/__init__.py",
-		"/C/Users/Kevin/Development/colonial/app_account/templates/login.html",
-		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/templates/login.html",
-		"/C/Python34/Lib/site-packages/django/db/models/fields/related.py",
-		"/C/Python34/Lib/site-packages/django/db/models/related.py",
-		"/C/Python34/Lib/site-packages/django_mako_plus/controller/router.py",
-		"/C/Python34/Lib/site-packages/django_mako_plus/controller/static_files.py",
-		"/C/Python34/Lib/site-packages/django_mako_plus/controller/signals.py",
-		"/C/Users/Kevin/Development/ColonialHeritageSite/homepage/styles/index.css",
-		"/C/Users/Kevin/Development/colonial/home/styles/index.css",
-		"/C/Users/Kevin/Development/colonial/base/templates/base.html",
-		"/C/Users/Kevin/Development/colonial/home/templates/index.html",
-		"/C/Users/Kevin/Development/colonial/base/views/index.py",
-		"/C/Users/Kevin/Development/colonial/base/styles/base.css",
-		"/C/Users/Kevin/Development/colonial/.bowerrc",
-		"/C/Python34/Lib/site-packages/django_mako_plus/controller/app_template/models.py"
+		"/C/Users/Kevin/Development/colonial/app_account/__init__.py"
 	],
 	"find":
 	{
@@ -803,357 +755,58 @@
 	"groups":
 	[
 		{
-			"selected": 12,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app_events/styles/index.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 456,
+						"buffer_size": 336,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								336,
+								336
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"auto_indent": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 15,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app_home/styles/index.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 625,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								166,
-								166
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 14,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app_admin/views/transactions.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 619,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								486,
-								486
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 12,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app_admin/templates/payments.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 526,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								255,
-								255
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Mako/Syntaxes/HTML (Mako).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 11,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app_admin/scripts/admin_base.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 896,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								148,
-								148
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "app_admin/styles/admin_base.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 670,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								545,
-								545
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": -0.0,
-						"translation.y": 309.0,
+						"translation.y": 330.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "app_base/models.py",
+					"buffer": 1,
+					"file": "app_events/templates/index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 17308,
+						"buffer_size": 7260,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								9806,
-								9810
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 5527.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "app_admin/templates/transactions.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2418,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								648,
-								648
+								1311,
+								1311
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Mako/Syntaxes/HTML (Mako).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "app_home/templates/index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4566,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4308,
-								4308
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Mako/Syntaxes/HTML (Mako).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1208.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "app_store/templates/default_display.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2143,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1567,
-								1567
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Mako/Syntaxes/HTML (Mako).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "app_store/templates/search_display.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2245,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2104,
-								2104
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Mako/Syntaxes/HTML (Mako).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "app_store/scripts/default_display.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1685,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -1165,50 +818,78 @@
 					"type": "text"
 				},
 				{
-					"buffer": 12,
-					"file": "app_store/views/index.py",
+					"buffer": 2,
+					"file": "app_events/templates/details.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3694,
+						"buffer_size": 2279,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2768,
-								2768
+								228,
+								228
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage",
+							"syntax": "Packages/Mako/Syntaxes/HTML (Mako).tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 840.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
-					"file": "app_admin/templates/admin_base.html",
+					"buffer": 3,
+					"file": "app_events/scripts/index.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2388,
+						"buffer_size": 98,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								151,
-								151
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app_base/templates/base.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7540,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6323,
+								6323
 							]
 						],
 						"settings":
@@ -1218,44 +899,102 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1445.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
-					"file": "colonial/settings.py",
+					"buffer": 5,
+					"file": "app_events/styles/index.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4815,
+						"buffer_size": 426,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								777,
-								777
+								0,
+								426
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage",
+							"syntax": "Packages/CSS/CSS.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 31.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 6,
+					"file": "static/app_events/styles/index.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 426,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								426,
+								426
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app_events/views/index.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 323,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								250,
+								250
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
 					"file": "/C/Apache24/conf/extra/httpd-vhosts.conf",
 					"semi_transient": false,
 					"settings":
@@ -1281,7 +1020,7 @@
 						"translation.y": 235.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 8,
 					"type": "text"
 				}
 			]

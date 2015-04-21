@@ -6,9 +6,7 @@ from . import templater
 
 @view_function
 def process_request(request):
-	'''
-        method for getting an event
-    '''
+    '''method for getting an event'''
     params = {}
     event_name = request.urlparams[0]
     event = mod.Event.objects.get(name=event_name)

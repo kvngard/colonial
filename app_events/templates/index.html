@@ -1,7 +1,84 @@
 <%inherit file="app_base/templates/base.html" />
 
 <%block name="content">
-  <div class="slider fullscreen">
+
+<div class=' hide-on-large-only'>
+  <div class="slider">
+    <ul class="slides">
+
+      <li>
+        <img src="${ STATIC_URL }app_events/media/food.jpg"> <!-- random image -->
+        <div class="caption center-align" layout vertical center>
+          <div class='overlay hide-on-med-and-down'>
+            <h1 class="headline">The Continental Feast</h1>
+            <br/ >
+          </div>
+          <div class='hide-on-med-and-up'>
+            <h1 class="headline">The Continental Feast</h1>
+          </div>
+          <a href='/app_events/details/The Continental Feast/' class="btn btn-large waves-effect orange darken-1">Event Details</a>
+        </div>
+      </li>
+      <li>
+        <img src="${ STATIC_URL }app_events/media/camp.jpg"> <!-- random image -->
+        <div class="caption center-align" layout vertical center>
+          <div class='overlay hide-on-med-and-down'>
+            <h1 class="headline">Rebels and Redcoats!</h1>
+          </div>
+          <div class='hide-on-med-and-up'>
+            <h1 class="headline">Rebels and Redcoats!</h1>
+          </div>
+          <a href='/app_events/details/Rebels and Redcoats!/' class="btn btn-large waves-effect orange darken-1">Event Details</a>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+  <div>
+  <div class="row">
+            <div class="col s12 m3">
+              <div class="card">
+                <div class="card-image">
+                  <img src="${ STATIC_URL }app_events/media/volunteer.jpg">
+                  <span class="card-title">Volunteer</span>
+                </div>
+                <div class="card-content">
+                  <p>Come along and lend a hand. We love to help people learn and also
+                  appreciate anyone with historic food-making talent.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col s12 m3">
+              <div class="card">
+                <div class="card-image">
+                  <img src="${ STATIC_URL }app_events/media/enjoy.jpg">
+                  <span class="card-title">Enjoy</span>
+                </div>
+                <div class="card-content">
+                  <p>There are plenty of games for the whole family. From stick pull to hoop rolling
+                  you will never be bored!</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col s12 m3">
+              <div class="card">
+                <div class="card-image">
+                  <img src="${ STATIC_URL }app_events/media/cannon.jpg">
+                  <span class="card-title">Celebrate</span>
+                </div>
+                <div class="card-content">
+                  <p>Join with us to celebrate the establishment and foundation of this country. Learn history the fun way, by experiencing it!</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+      </div>
+  </div>
+
+<div class="slider fullscreen hide-on-med-and-down">
     <ul class="slides">
 
       <li>

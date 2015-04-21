@@ -4,9 +4,11 @@
 
     <div class="container">
         <h1>${ event.name }</h1>
-        <div layout horizontal>
-            <img class="materialboxed" data-caption="Park map for the event. Area numbers will be added later" width="450" src="${ MEDIA_URL }${ event.map_file }" />
-            <ul class='information'>
+        <div class='row'>
+            <img class="materialboxed col m12 hide-on-med-and-down col l5" data-caption="Park map for the event. Area numbers will be added later" src="${ MEDIA_URL }${ event.map_file }" />
+            <div class="col s12 hide-on-large-only"><img class='responsive-img' src="${ MEDIA_URL }${ event.map_file }" /></div>
+            <div class='information col s12 m7 l4'>
+                <ul>
                 <li>When: ${event.start_date} - ${event.end_date} </li>
                 <li>Where: ${ event.venue_name }</li>
                 <p><strong>Address:</strong><br />${ event.address.get_line1() }<br />${ event.address.get_line2() }</p>
@@ -21,11 +23,12 @@
                     <br />
                 %endfor
             </ul>
+            </div>
         </div>
         <h4>Look for these artisan products at the event:</h4>
-        <div class='row' layout horizontal center>
+        <div class='row'>
             %for item in event.expected_sale_item_set.all():
-                <div class="store-item card col 12 s8 m4 l2">
+                <div class="store-item card col s12 m4 l2">
                     <div class="card-image waves-effect waves-block waves-light">
                       <img class="activator" src="${ MEDIA_URL }${item.photo}">
                     </div>
