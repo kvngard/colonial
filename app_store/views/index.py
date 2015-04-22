@@ -10,14 +10,17 @@ reserve_percent = Decimal('0.20')
 checkout_percent = Decimal('0.80')
 
 
-def get_items():
+def get_items(items=None):
     '''
         method for getting items
     '''
-    try:
-        items = mod.Store_Item.objects.all().order_by('name')
-    except mod.Store_Item.DoesNotExist:
-        return HttpResponseRedirect('/')
+
+    if items is None:
+        try:
+            items = mod.Store_Item.objects.all().order_by('name')
+        except mod.Store_Item.DoesNotExist:
+            return HttpResponseRedirect('/')
+    else:
 
     return items
 
@@ -56,7 +59,7 @@ def calculate_total(request):
 @view_function
 def process_request(request):
     '''
-        method for getting items
+        Default method for displaying all of the items in the store.
     '''
     params = {}
 
@@ -85,6 +88,36 @@ def search(request):
 
     items = sort_items(items)
     params['items'] = items
+
+    return templater.render_to_response(request, 'search_display.html', params)
+
+
+@view_function
+def filter(request):
+    '''
+        method for filtering
+    '''
+    params = {}
+    items = []
+    custom = request.REQUEST.get('c')
+    sales = request.REQUEST.get('s')
+    rentals = request.REQUEST.get('r')
+
+    # The boolean values are strange because the checkboxes pass lower-case
+    # boolean strings.
+
+    if custom == 'false' and sales == 'false' and rentals == 'false':
+        params['items'] = sort_items(get_items())
+    else:
+        if custom == 'true':
+            items.extend(list(mod.Custom_Item.objects.all()))
+        if sales == 'true':
+            items.extend(list(mod.Sale_Item.objects.all()))
+        if rentals == 'true':
+            items.extend(list(mod.Rental_Item.objects.all()))
+
+        print(items)
+        params['items'] = sort_items(items)
 
     return templater.render_to_response(request, 'search_display.html', params)
 

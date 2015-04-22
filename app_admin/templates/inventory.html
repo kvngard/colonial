@@ -3,48 +3,50 @@
 <%block name="main">
 
 
-  <div layout horizontal center>
-    <h1>Items</h1>
-    <div class="action-btn">
-      <a href="/app_admin/inventory.create/" class="btn-floating btn-large waves-effect waves-light"><i class="mdi-content-add"></i></a>
+  <div class='filter-header'>
+    <div layout horizontal center>
+      <h1>Inventory</h1>
+      <div class="action-btn">
+        <a href="/app_admin/inventory.create/" class="btn-floating btn-large waves-effect waves-light"><i class="mdi-content-add"></i></a>
+      </div>
     </div>
-    <div class="filter">
-        <p class="filter">
-            <input type="checkbox" id="sale_items_filter" />
-            <label for="sale_items_filter">Sale Items</label>
-        </p>
-    </div>
-    <div class="filter">
-        <p class="filter">
-            <input type="checkbox" id="rental_items_filter" />
-            <label for="rental_items_filter">Rental Items</label>
-        </p>
-    </div>
+    <ul>
+      <li>
+        <input type="checkbox" class='filled-in' id="sale_items_filter" />
+        <label for="sale_items_filter">Sale Items</label>
+      </li>
+      <li>
+        <input type="checkbox" class='filled-in' id="rental_items_filter" />
+        <label for="rental_items_filter">Rental Items</label>
+      </li>
+    </ul>
   </div>
 
-  <table class="striped" id="item_table">
-    <tr>
-        <th>Image</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Value</th>
-        <th>Options</th>
-    </tr>
-      %for item in items:
-          <tr>
-              <td>
-                  <img class="materialboxed" src="${MEDIA_URL }${ item.photo }" width="75"/>
-              </td>
-              <td> ${ item.name} </td>
-              <td> ${ item.description} </td>
-              <td> $${ item.value} </td>
-              <td>
-                  <a href="/app_admin/inventory.edit/${ item.id }/" class="btn btn-xs btn-default"><i class='mdi-editor-mode-edit'></i></a>
-                  <a href="/app_admin/inventory.delete/${ item.id }/" class="btn red darken-3 tooltipped"
-                     data-position="bottom" data-delay="20" data-tooltip="Permanently Delete"><i class='mdi-action-highlight-remove'></i></a>
-              </td>
-          </tr>
-      %endfor
-  </table>
+  <div id="item_table">
+    <table class="striped">
+      <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Value</th>
+          <th>Options</th>
+      </tr>
+        %for item in items:
+            <tr>
+                <td>
+                    <img class="materialboxed" src="${MEDIA_URL }${ item.photo }" width="75"/>
+                </td>
+                <td> ${ item.name} </td>
+                <td> ${ item.description} </td>
+                <td> $${ item.value} </td>
+                <td>
+                    <a href="/app_admin/inventory.edit/${ item.id }/" class="btn btn-xs btn-default"><i class='mdi-editor-mode-edit'></i></a>
+                    <a href="/app_admin/inventory.delete/${ item.id }/" class="btn red darken-3 tooltipped"
+                       data-position="bottom" data-delay="20" data-tooltip="Permanently Delete"><i class='mdi-action-highlight-remove'></i></a>
+                </td>
+            </tr>
+        %endfor
+    </table>
+  </div>
 
 </%block>

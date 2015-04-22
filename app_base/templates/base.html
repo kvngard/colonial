@@ -46,8 +46,8 @@
     </head>
     <body unresolved>
 
-            <nav class="white" role="navigation">
-              <div class="nav-wrapper">
+            <nav role="navigation">
+              <div class="nav-wrapper white">
 
                 <%block name="navigation_left">
                   <a href="/" class="left hide-on-med-and-down" id="logo">
@@ -82,45 +82,46 @@
                 <ul id="nav-mobile" class="side-nav">
                   <li><a href="#">Navbar Link</a></li>
                 </ul>
-                <%block name='mobile_nav'>
-                  <ul id="slide-out" class="side-nav">
-                    <li>
-                      <a href="/">
-                          <img src="${ STATIC_URL }app_home/media/logo.svg" alt='profile_image' class='nav-logo' />
-                      </a>
-                    </li>
-                    <ul class="collapsible" data-collapsible="accordion">
-                    %if request.user.is_authenticated():
-                      <li class='hide-on-med-and-up'>
-                        <a class="collapsible-header bold">
-                          ${ request.user.get_full_name() }
-                           <img src='${ MEDIA_URL }${ request.user.profile_image }' alt='profile_image' class='circle profile-sm responsive-img' />
-                        </a>
-                        <div class="collapsible-body">
-                          <ul>
-                            <li class='hide-on-med-and-up'><a href='/app_account/manage/'>Edit Profile</a></li>
-                            <li class='hide-on-med-and-up'><a href='/app_account/login.logoutUser/'>Log Out</a></li>
-                          </ul>
-                        </div>
-                      </li>
-                    %else:
-                        <li class='hide-on-med-and-up'><a class="collapsible-header bold" href="/app_account/login/app_store/">Log In</a></li>
-                        <li class='hide-on-med-and-up'><a class="collapsible-header bold"  href="/app_account/signup/">Sign Up</a></li>
-                    %endif
-                      <li>
-                        <a class="collapsible-header bold" href='/app_events/'>Events</a>
-                      </li>
-                      <li>
-                        <a class="collapsible-header bold" href='/app_store/'>Market</a>
-                      </li>
-                      %if request.user.groups.filter(name='Manager') or request.user.groups.filter(name='Admin'):
-                        <li><a class="collapsible-header bold" href="/app_admin/">Manage</a></li>
-                      %endif
-                    </ul>
-                  </ul>
-                </%block>
               </div>
           </nav>
+
+          <%block name='mobile_nav'>
+            <ul id="slide-out" class="side-nav">
+              <li>
+                <a href="/">
+                    <img src="${ STATIC_URL }app_home/media/logo.svg" alt='profile_image' class='nav-logo' />
+                </a>
+              </li>
+              <ul class="collapsible" data-collapsible="accordion">
+              %if request.user.is_authenticated():
+                <li class='hide-on-med-and-up'>
+                  <a class="collapsible-header bold">
+                    ${ request.user.get_full_name() }
+                     <img src='${ MEDIA_URL }${ request.user.profile_image }' alt='profile_image' class='circle profile-sm responsive-img' />
+                  </a>
+                  <div class="collapsible-body">
+                    <ul>
+                      <li class='hide-on-med-and-up'><a href='/app_account/manage/'>Edit Profile</a></li>
+                      <li class='hide-on-med-and-up'><a href='/app_account/login.logoutUser/'>Log Out</a></li>
+                    </ul>
+                  </div>
+                </li>
+              %else:
+                  <li class='hide-on-med-and-up'><a class="collapsible-header bold" href="/app_account/login/app_store/">Log In</a></li>
+                  <li class='hide-on-med-and-up'><a class="collapsible-header bold"  href="/app_account/signup/">Sign Up</a></li>
+              %endif
+                <li>
+                  <a class="collapsible-header bold" href='/app_events/'>Events</a>
+                </li>
+                <li>
+                  <a class="collapsible-header bold" href='/app_store/'>Market</a>
+                </li>
+                %if request.user.groups.filter(name='Manager') or request.user.groups.filter(name='Admin'):
+                  <li><a class="collapsible-header bold" href="/app_admin/">Manage</a></li>
+                %endif
+              </ul>
+            </ul>
+          </%block>
 
           %if request.user.is_authenticated():
           <div id="user_modal" class="user-tag z-depth-1 modal">
