@@ -20,7 +20,6 @@ def get_items(items=None):
             items = mod.Store_Item.objects.all().order_by('name')
         except mod.Store_Item.DoesNotExist:
             return HttpResponseRedirect('/')
-    else:
 
     return items
 

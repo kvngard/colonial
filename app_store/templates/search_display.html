@@ -5,7 +5,7 @@
   %if hasattr(item, 'price_per_day'):
     <div class="store-item card col hide-on-med-and-down l2">
   %else:
-    <div class="store-item card col s12 m6 l2">
+    <div class="store-item card col s12 m5 l2">
   %endif:
     <div class="card-image waves-effect waves-block waves-light">
       <img class="activator" src="${MEDIA_URL }${item.photo}">
@@ -21,7 +21,7 @@
     </div>
 
     <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4">${item.name}<i class="mdi-navigation-close right"></i></span>
+      <span class="card-title grey-text text-darken-4">${item.name}<i class="mdi-navigation-close"></i></span>
       <p>${item.description}</p>
       <form>
 

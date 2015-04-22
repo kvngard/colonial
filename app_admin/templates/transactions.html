@@ -11,8 +11,8 @@
       <div class="collapsible-header transaction-header">
         <h4>${ '{:%m/%d/%y}'.format(transaction.date.date()) } - ${ transaction.customer.get_full_name() }</h4>
       </div>
-      <div class="collapsible-body">
-      <h5>Transaction Balance: $${ transaction.get_total() }</h5>
+      <div class="collapsible-body transaction-body">
+      <h5>Transaction Balance: <strong>$${ transaction.get_total() }</strong></h5>
       %if len(transaction.rental_set.all()) > 0:
         <h5>Rentals</h5>
         <table class="striped">

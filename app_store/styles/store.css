@@ -9,15 +9,25 @@ main{
         margin: 2rem 0 0 0 !important;
     }
 }
-.cart-display{
-    width: 4rem !important;
-    height: 4rem !important;
-}
+
 .card-content {
     padding: 1rem;
 }
 .card-reveal {
     left: 0;
+}
+.card-image {
+    padding: .5rem;
+}
+.mdi-navigation-close{
+    position: absolute;
+    top: .5rem;
+    right: .75rem;
+}
+
+.cart-display{
+    width: 4rem !important;
+    height: 4rem !important;
 }
 .fixed-action-btn {
     right: 3rem;

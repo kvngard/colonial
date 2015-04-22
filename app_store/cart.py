@@ -26,6 +26,7 @@ def get_cart(request):
 
 
 class Cart:
+
     'Defines various methods and properties of a shopping cart.'
 
     def __init__(self, json=None):
@@ -35,18 +36,22 @@ class Cart:
         if json is not None:
             pass
 
-
     def to_json(self):
-        json_string = { 'rentals':[],'sales':[] }
+        '''
+            Method used to create a simplified python object that can
+            be successfully stored in the user's session variables.
+        '''
+        json_string = {'rentals': [], 'sales': []}
 
         for r in self.rentals.values():
-            json_string['rentals'].append({'duration': r.duration, 'id': r.rental_item.id})
+            json_string['rentals'].append(
+                {'duration': r.duration, 'id': r.rental_item.id})
 
         for s in self.sales.values():
-            json_string['sales'].append({'quantity': s.quantity, 'id': s.sale_item.id})
+            json_string['sales'].append(
+                {'quantity': s.quantity, 'id': s.sale_item.id})
 
         return json_string
-
 
     def from_json(self, json):
 
@@ -60,7 +65,6 @@ class Cart:
             sale = mod.Sale.create_sale(item, int(s['quantity']))
             self.sales[item.id] = sale
 
-
     def get_checkout_total(self):
         total = 0
 
@@ -71,7 +75,6 @@ class Cart:
             total += sale.amount
 
         return total
-
 
     def add_to_cart(self, item, quantity=None, duration=None):
         item = mod.Item.cast(item)
@@ -91,10 +94,11 @@ class Cart:
 
         print(self)
 
-
     def delete_from_cart(self, id):
 
-        if id in self.rentals: del self.rentals[id]
-        if id in self.sales: del self.sales[id]
+        if id in self.rentals:
+            del self.rentals[id]
+        if id in self.sales:
+            del self.sales[id]
 
         return

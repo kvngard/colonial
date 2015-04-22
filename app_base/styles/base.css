@@ -132,6 +132,7 @@ ul.side-nav.fixed .collapsible li a{
 .filter li{
     background-color: white !important;
     margin-left: 1rem;
+    margin-top: .25rem;
 }
 
 /*Site navigation bar styles*/

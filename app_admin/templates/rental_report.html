@@ -2,7 +2,8 @@
 
 <%block name="main">
 <h1>Overdue Rental Report</h1>
-<h5>>30 Days Late</h5>
+%if len(new) > 0:
+<h4>>30 Days Late</h4>
 <table class="striped">
   <tr>
     <th>Item</th>
@@ -19,7 +20,9 @@
     </tr>
   %endfor
 </table>
-<h5>30 Days Late</h5>
+%endif
+%if len(thirty) > 0:
+<h4>30 Days Late</h4>
 <table class="striped">
   <tr>
     <th>Item</th>
@@ -36,7 +39,9 @@
     </tr>
   %endfor
 </table>
-<h5>60 Days Late</h5>
+%endif
+%if len(sixty) > 0:
+<h4>60 Days Late</h4>
 <table class="striped">
   <tr>
     <th>Item</th>
@@ -53,7 +58,9 @@
     </tr>
   %endfor
 </table>
-<h5>90 Days Late</h5>
+%endif
+%if len(ninety) > 0:
+<h4>90 Days Late</h4>
 <table class="striped">
   <tr>
     <th>Item</th>
@@ -70,6 +77,7 @@
     </tr>
   %endfor
 </table>
+%endif
 <br>
 <div layout horizontal>
   <div id='notify'>

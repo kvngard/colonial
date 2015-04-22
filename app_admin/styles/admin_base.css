@@ -39,7 +39,6 @@ p.filter {
     margin: 0px;
 }
 
-.transaction-header {
-    height: initial !important;
-    line-height: initial !important;
+.transaction-body {
+    padding: 1rem;
 }

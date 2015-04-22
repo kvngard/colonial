@@ -27,7 +27,7 @@
             <td>${ s.sale_item.name }</td>
             <td>
               <select class="select-dropdown">
-                %for j in reversed( range( 0, s.quantity+1 ) ):
+                %for j in reversed( range( 1, s.quantity+1 ) ):
                   <option value="${j}"}>${j}</option>
                 %endfor
               </select>
@@ -52,8 +52,8 @@
             <th data-field="id">Item Name</th>
             <th data-field="duration">Rental Duration</th>
             <th data-field="price">Reservation Payment</th>
+            <th data-field="checkout">Pick Up By</th>
             <th data-field="price">Pick Up Payment</th>
-            <th data-field="price">Cost to Rent</th>
             <th>Options</th>
           </tr>
         </thead>
@@ -63,8 +63,8 @@
             <td>${ r.rental_item.name }</td>
             <td>${ r.duration } Days</td>
             <td>$${ round(r.amount, 2) }</td>
+            <td>${ '{:%m/%d/%y}'.format(r.checkout_by_date) }</td>
             <td>$${ round(r.checkout_price, 2) }</td>
-            <td>$${ round(r.amount + r.checkout_price, 2)  }</td>
             <td>
               <div class='options'>
                 <a rel="${ r.rental_item.id }" class="btn-flat waves-effect waves-light red accent-3 white-text delete-btn">Remove</a>
@@ -79,7 +79,7 @@
       <br />
       %if len(rentals) > 0:
         <h5>*Total Purchase Price: $${ round(total,2) }</h5>
-        <h6>*This price only includes the cost to <strong>reserve</strong> the rentals in your cart.<br /> You will need to pay the remainder when you check out the items.</h6>
+        <h6>*This price only includes the cost to <strong>reserve</strong> the rentals in your cart.<br />You will need to pay the remainder when you check out your reservation.</h6>
       %else:
         <h5>Total Purchase Price: $${ round(total,2) }</h5>
       %endif

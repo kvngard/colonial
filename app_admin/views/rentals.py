@@ -326,7 +326,7 @@ def send_mass_overdue_emails(request):
             fail_silently=False
         )
 
-    return templater.render_to_response(request, 'rental_report.html', params)
+    return templater.render_to_response(request, 'late_rental_email.html', params)
 
 
 @view_function

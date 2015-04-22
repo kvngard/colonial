@@ -11,8 +11,6 @@
   </ul>
 </%block>
 
-<%block name="navigation_right"></%block>
-
 <%block name='mobile_nav'>
 <ul id="slide-out" class="side-nav fixed">
   <li>
@@ -30,7 +28,8 @@
     </ul>
   %endif
   <ul class='filter'>
-    <li><h4>Filter</h4></li>
+    <li><h4>Filter By:</h4></li>
+    <li><h5>Type</h5></li>
     <li>
       <input type="checkbox" id="custom_item_filter" />
       <label for="custom_item_filter">Artisan Goods</label>
@@ -39,7 +38,7 @@
       <input type="checkbox" id="sale_items_filter" />
       <label for="sale_items_filter">Products</label>
     </li>
-    <li>
+    <li class='hide-on-med-and-down'>
       <input type="checkbox" id="rental_items_filter" />
       <label for="rental_items_filter">Rentals</label>
     </li>
